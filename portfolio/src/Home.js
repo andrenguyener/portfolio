@@ -22,7 +22,7 @@ class Home extends React.Component {
                             <Transition transitionOnMount animation='fade' duration={2900}>
                                 <div className="page-description">
                                     <p> user centric developer </p>
-                                    <p> designing inovations </p>
+                                    <p> designing innovations </p>
                                     <p> creating solutions </p>
                                 </div>
                             </Transition>
