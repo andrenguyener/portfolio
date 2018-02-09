@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link , NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import {
     Menu,
-    Responsive,
-    Image
+    Responsive
   } from "semantic-ui-react";
 import { slide as BurgerMenu } from 'react-burger-menu'
 

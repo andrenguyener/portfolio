@@ -4,8 +4,7 @@ import About from './About';
 import Projects from './Projects';
 import Contact from './Contact';
 import Navbar from './components/navbar'
-import { BrowserRouter as Router, Route, Redirect, Switch, withRouter, Link} from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 
 
 class App extends Component {
