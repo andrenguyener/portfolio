@@ -4,19 +4,6 @@
 /* TODO  Figure Out Font Family */
 /* 'Trade Gothic W01','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',Meiryo,メイリオ,sans-serif */
 /* Fonts */
-@font-face {
-  font-family: 'Trade-Gothic-W01';
-  src: url("/fonts/Trade-Gothic-W01.ttf") format("truetype");
-  src: url("/fonts/TradeGothicLTStd.otf") format("otf");
-  font-weight: 100;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'ipaexminchoregular';
-  src: url("/src/styles/fonts/Hiragino-Kaku-Gothic-ProN.ttf") format("ttf"), url("/src/styles/fonts/webfont/hiragino-kaku-gothic-pron-webfont.woff2") format("woff2"), url("/src/styles/fonts/webfont/hiragino-kaku-gothic-pron-webfont.woff") format("woff");
-  font-weight: 100;
-  font-style: normal; }
-
 /* General */
 html {
   background-color: #161616 !important; }

@@ -11,12 +11,12 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 class App extends Component {
 
     render() {
-        const currentKey = window.location.pathname.split('/')[1] || '/'
-        const timeout = { enter: 300, exit: 200 }
+        // const currentKey = window.location.pathname.split('/')[1] || '/'
+        // const timeout = { enter: 300, exit: 200 }
         return (
-            <Router basename={process.env.PUBLIC_URL}>
+            
                 <div className="App">
-                    
+                    <Router basename={process.env.PUBLIC_URL}>
                     {/* <TransitionGroup component="main" className="page-main">
                         <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear> */}
                             <div className="page-main-inner">
@@ -30,8 +30,9 @@ class App extends Component {
                             </div>
                         {/* </CSSTransition>
                     </TransitionGroup> */}
+                    </Router>
                 </div>
-                </Router>
+                
           
     
      
