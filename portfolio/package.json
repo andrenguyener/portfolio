@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://andrenguyener.github.io/",
+  "homepage": ".",
   "devDependencies": {
     "react-scripts": "1.0.17",
     "npm-run-all": "^4.0.2"
