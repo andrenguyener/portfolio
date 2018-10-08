@@ -4,8 +4,8 @@ import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import Navbar from "./components/navbar";
-// import { BrowserRouter as Router, Route, hashHistory} from 'react-router-dom'
-import { Router, Route, IndexRoute, HashRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, hashHistory } from "react-router-dom";
+// import { Router, Route, IndexRoute, HashRouter } from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         {/* <Router basename={process.env.PUBLIC_URL}> */}
-        <HashRouter>
+        <BrowserRouter>
           {/* <TransitionGroup component="main" className="page-main">
                         <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear> */}
           <div className="page-main-inner">
@@ -28,7 +28,7 @@ class App extends Component {
           </div>
           {/* </CSSTransition>
                     </TransitionGroup> */}
-        </HashRouter>
+        </BrowserRouter>
       </div>
     );
   }
