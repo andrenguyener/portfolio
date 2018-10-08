@@ -1,0 +1,465 @@
+@charset "UTF-8";
+/* Variables */
+/* Breakpoints */
+/* TODO  Figure Out Font Family */
+/* 'Trade Gothic W01','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',Meiryo,メイリオ,sans-serif */
+/* Fonts */
+/* General */
+html {
+  background-color: #161616 !important;
+}
+
+body {
+  background-color: #161616 !important;
+  background-image: url("./../assets/backgroundlines-mobile.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ededed;
+}
+@media (min-width: 768px) {
+  body {
+    background-image: url("./../assets/backgroundlines.svg");
+  }
+}
+
+html,
+body,
+#root,
+.App,
+.page-main-inner,
+#about-section,
+#work-section,
+#contact-section,
+#home-section {
+  height: 100%;
+  width: 100%;
+}
+
+.grid {
+  margin: 0 0 !important;
+  height: 100%;
+}
+
+/* Animation */
+/* Navigation Bar */
+#navigation-bar #logo {
+  position: absolute;
+  height: 70px;
+  top: 25px;
+  left: 50px;
+  z-index: 10;
+  font-size: 20px;
+}
+#navigation-bar #logo a {
+  color: #ededed;
+}
+#navigation-bar #logo p:hover {
+  cursor: pointer;
+  color: #303030;
+}
+@media (min-width: 768px) {
+  #navigation-bar #logo {
+    left: 70px;
+  }
+}
+
+#navigation-desktop {
+  background-color: transparent;
+  border-bottom: 0;
+  min-height: 0;
+  margin-top: 30px;
+  position: absolute;
+  right: 10px;
+  z-index: 100;
+}
+#navigation-desktop a {
+  color: #ededed;
+  margin-right: 40px;
+}
+#navigation-desktop a:hover {
+  color: #646464;
+}
+#navigation-desktop .selected {
+  color: #646464;
+}
+
+/* Mobile Navigation Bar */
+#navigation-mobile {
+  width: 100% !important;
+}
+#navigation-mobile a {
+  color: #ededed;
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+#navigation-mobile a:hover {
+  color: #646464;
+}
+#navigation-mobile a:first-of-type {
+  margin-top: 50px;
+}
+#navigation-mobile .selected {
+  color: #646464;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 24px;
+  right: 25px;
+  top: 25px;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #ededed;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: transparent;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+#nav-icon {
+  width: 30px;
+  height: 24px;
+  right: 25px;
+  top: 25px;
+  position: fixed;
+  z-index: 10000;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer !important;
+}
+
+#nav-icon span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: #ededed;
+  border-radius: 5px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+#nav-icon span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-icon span:nth-child(2),
+#nav-icon span:nth-child(3) {
+  top: 10px;
+}
+
+#nav-icon span:nth-child(4) {
+  top: 20px;
+}
+
+#nav-icon.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-icon.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#nav-icon.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#nav-icon.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+/* Left Box */
+.page-box {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+}
+
+@media (max-height: 499px) and (orientation: landscape) {
+  .page-box {
+    top: calc(30%);
+  }
+}
+@media (min-width: 768px) {
+  .page-box {
+    left: 70px;
+  }
+}
+
+.page-description p {
+  margin-bottom: 5px;
+}
+
+/* About */
+.about-picture {
+  flex-grow: 0;
+  position: absolute !important;
+  top: calc(50% - 170px);
+  left: 40px;
+  height: 150px;
+  width: auto;
+}
+
+@media (max-height: 499px) and (orientation: landscape) {
+  .about-picture {
+    top: calc(30%);
+    left: calc(300px) !important;
+  }
+}
+@media (min-width: 768px) {
+  .about-picture {
+    left: 70px;
+  }
+}
+
+/* Projects */
+.project-list p {
+  cursor: pointer;
+}
+.project-list p:hover {
+  color: #303030;
+}
+
+#work-section .project-image-container {
+  position: absolute;
+  top: 20%;
+  height: 500px;
+  width: 500px;
+  right: 5%;
+}
+
+#work-section #project-title {
+  position: absolute;
+  z-index: 2;
+  top: -5%;
+  left: 5%;
+}
+@media (min-width: 1024px) {
+  #work-section #project-title {
+    left: -150px;
+  }
+}
+
+#work-section .mobile-svg-bg {
+  width: 20%;
+}
+
+#work-section .desktop-svg-bg {
+  position: absolute;
+  width: 100%;
+}
+
+#work-section #mobile1 {
+  position: absolute;
+  top: 35%;
+  right: 35%;
+}
+
+#work-section #mobile2 {
+  position: absolute;
+  top: 35%;
+  right: 10%;
+}
+
+#work-section #desktop-description {
+  position: absolute;
+  top: 80%;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #work-section #desktop-description {
+    top: 10%;
+    left: -260px;
+    width: 50%;
+    text-align: right;
+  }
+}
+
+#work-section .built-with {
+  margin-top: 20px;
+}
+@media (min-width: 1024px) {
+  #work-section .built-with {
+    margin-top: 50px;
+  }
+}
+
+#work-section .previews {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+}
+#work-section .previews .icon {
+  cursor: pointer;
+}
+#work-section .previews .icon:hover {
+  color: #303030;
+}
+#work-section .previews h4 {
+  margin: 5px 0;
+}
+#work-section .previews h4:first-of-type {
+  margin-right: 20px;
+}
+@media (min-width: 1024px) {
+  #work-section .previews {
+    margin-top: 80px;
+  }
+}
+
+#work-section .label {
+  margin-top: 5px;
+}
+
+.modal {
+  background: #161616 !important;
+}
+.modal .header {
+  color: #ededed !important;
+}
+.modal .close {
+  color: #ededed !important;
+}
+.modal .content {
+  background: #161616 !important;
+}
+.modal .modal-mobile-img {
+  height: 400px;
+  width: auto;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.modal .label {
+  margin-top: 5px;
+}
+
+.modal-container {
+  background-color: #161616 !important;
+}
+.modal-container .modal-description {
+  margin-top: 15px;
+}
+.modal-container .modal-built-with {
+  margin-top: 20px;
+}
+.modal-container .modal-previews {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.modal-container .modal-previews .icon {
+  cursor: pointer;
+}
+.modal-container .modal-previews .icon:hover {
+  color: #303030;
+}
+.modal-container .modal-previews h4 {
+  margin: 0 0;
+}
+.modal-container .modal-previews h4:first-of-type {
+  margin-right: 20px;
+}
+
+/* Contact */
+#contact-section input,
+#contact-section textarea {
+  width: 200px;
+  padding: 15px 0px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #303030;
+  outline: none;
+  color: #ededed;
+}
+#contact-section input:focus,
+#contact-section input:active,
+#contact-section textarea:focus,
+#contact-section textarea:active {
+  border-bottom: 1px solid #ededed;
+}
+@media (min-width: 400px) {
+  #contact-section input,
+  #contact-section textarea {
+    width: 280px;
+  }
+}
+@media (min-width: 500px) {
+  #contact-section input,
+  #contact-section textarea {
+    width: 320px;
+  }
+}
+@media (min-width: 768px) {
+  #contact-section input,
+  #contact-section textarea {
+    width: 350px;
+  }
+}
+
+#contact-section #contact-button-send {
+  margin-top: 20px;
+  float: right;
+}
+#contact-section #contact-button-send:hover {
+  color: #646464;
+}
+@media (max-width: 767px) {
+  #contact-section #contact-button-send {
+    margin-bottom: 50px;
+  }
+}
+
+#contact-section #message {
+  height: 100px;
+}
