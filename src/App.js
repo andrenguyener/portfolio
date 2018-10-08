@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         {/* <Router basename={process.env.PUBLIC_URL}> */}
-        <BrowserRouter>
+        <Router>
           {/* <TransitionGroup component="main" className="page-main">
                         <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear> */}
           <div className="page-main-inner">
@@ -28,7 +28,7 @@ class App extends Component {
           </div>
           {/* </CSSTransition>
                     </TransitionGroup> */}
-        </BrowserRouter>
+        </Router>
       </div>
     );
   }
