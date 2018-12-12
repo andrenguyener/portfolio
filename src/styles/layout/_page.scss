@@ -1,0 +1,32 @@
+.page {
+	position: relative;
+	&__bars {
+		// top: 0;
+		position: fixed;
+		left: calc(50vw);
+
+		&,
+		&::before,
+		&::after {
+			width: 1px;
+			height: 100%;
+			background-color: var(--color-grey-light-1);
+			top: 0;
+			z-index: -1;
+		}
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+		}
+
+		&::before {
+			left: calc(25vw);
+		}
+
+		&::after {
+			left: calc(-25vw);
+		}
+	}
+}

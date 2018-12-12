@@ -1,0 +1,12 @@
+.logo {
+	position: fixed;
+	height: auto;
+	width: 6rem;
+	top: 3rem;
+	left: 3rem;
+
+	&__image {
+		height: 100%;
+		width: 100%;
+	}
+}

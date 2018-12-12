@@ -1,0 +1,21 @@
+//TODO Remove this and refactor into better convention
+section {
+	margin-left: 25vw;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	padding: 1rem;
+	max-width: 50vw;
+}
+
+.section-about {
+	.about__profile {
+		display: flex;
+		justify-content: center;
+		&-image {
+			height: 13rem;
+		}
+	}
+
+	.about__description {
+	}
+}
