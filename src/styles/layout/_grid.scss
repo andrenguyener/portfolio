@@ -1,17 +1,17 @@
 .container {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: center;
+	// justify-content: center;
 
 	& > * {
-		width: 50%;
+		width: calc(50% - 1rem);
 
 		&:nth-child(odd) {
-			padding-right: 1rem;
+			margin-right: 1rem;
 		}
 
 		&:nth-child(even) {
-			padding-left: 1rem;
+			margin-left: 1rem;
 		}
 	}
 }

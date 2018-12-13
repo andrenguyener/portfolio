@@ -1,10 +1,21 @@
 <template>
   <div class="project-box">
-    <div class="project-box__icon">
-      <img src alt>
+    <div class="project-box__content">
+      <div class="project-box__icon">
+        <img :src="require(`@/assets/projects/${project.icon}`)" alt>
+      </div>
     </div>
+
     <h3 class="project-box__title">{{ project.name }}</h3>
-    <div class="project-box__links"></div>
+    <div class="project-box__links">
+      <a href class="project-box__links-box link-heading">
+        <img :src="require(`@/assets/projects/github.svg`)" alt>github
+      </a>
+
+      <a href class="project-box__links-box link-heading">
+        <img :src="require(`@/assets/projects/eye.svg`)" alt>live demo
+      </a>
+    </div>
     <div class="modal-box">
       <div class="modal-box__content">
         <div class="modal-box__close">&times;</div>

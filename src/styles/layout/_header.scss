@@ -12,7 +12,7 @@
 		top: 0;
 		width: 100%;
 		height: 100%;
-		opacity: 0.5;
+		opacity: 0.15;
 		background-image: url("../assets/forest.jpg");
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -27,7 +27,10 @@
 	}
 
 	&__main {
-		font-size: 5rem;
+		font-size: 8rem;
+		font-family: TradeGothic-Bold;
+		letter-spacing: 3px;
+		margin-bottom: 2rem;
 	}
 
 	&__sub {
@@ -35,5 +38,6 @@
 			display: block;
 		}
 		font-size: 2rem;
+		letter-spacing: 0.6px;
 	}
 }
