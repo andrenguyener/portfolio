@@ -1,9 +1,9 @@
-.project-box {
+.project {
 	text-align: center;
 	position: relative;
-
+	// transition: all 0.2s;
 	&:nth-of-type(1) {
-		.project-box__content {
+		.project__content {
 			background-image: linear-gradient(
 				to right bottom,
 				#78ffd6,
@@ -13,7 +13,7 @@
 	}
 
 	&:nth-of-type(2) {
-		.project-box__content {
+		.project__content {
 			background-image: linear-gradient(
 				to right bottom,
 				#0f2027,
@@ -23,7 +23,7 @@
 	}
 
 	&:nth-of-type(3) {
-		.project-box__content {
+		.project__content {
 			background-image: linear-gradient(
 				to right bottom,
 				#0f0c29,
@@ -32,30 +32,61 @@
 		}
 	}
 
-	&__content {
-		display: flex;
-		// background-color: red;
-		height: 21rem;
-		width: 21rem;
-		justify-content: center;
-		align-items: center;
+	&:nth-of-type(4) {
+		.project__content {
+			background-image: linear-gradient(
+				to right bottom,
+				#ffffff,
+				#e6e6e6
+			);
+		}
+	}
+
+	&:nth-of-type(5) {
+		.project__content {
+			background-image: linear-gradient(
+				to right bottom,
+				#00f260,
+				#00a99d
+			);
+		}
+	}
+
+	&__box {
+		height: 22rem;
+		width: 22rem;
 		margin: 0 auto;
-		margin-bottom: 2rem;
-		transition: all 0.3s;
-		box-shadow: 0.2rem 0.2em 0.8rem var(--color-black);
+		margin-bottom: 3rem;
 		&:hover {
-			filter: blur(3px) brightness(60%);
-			box-shadow: 0.1rem 0.2rem 0.5rem var(--color-black);
-			~ .project-box__title,
-			~ .project-box__links {
+			cursor: pointer;
+			.project__content {
+				transform: translateY(-3px);
+				filter: blur(3px) brightness(40%);
+				box-shadow: 0.4rem 0.4rem 1rem var(--color-black);
+			}
+
+			.project__title,
+			.project__links {
+				transform: translateY(-3px);
 				opacity: 1;
 				visibility: visible;
 			}
 
-			> .project-box__icon {
-				transform: scale(0.9);
+			.project__icon {
+				// transform: scale(0.9);
 			}
 		}
+	}
+
+	&__content {
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+		transition: all 0.2s;
+		box-shadow: 0.2rem 0.2em 0.8rem var(--color-black);
 	}
 
 	&__icon {
@@ -63,17 +94,12 @@
 		width: 6rem;
 		display: flex;
 		justify-content: center;
-		img {
-			height: 100%;
-		}
-		transition: all 0.3s;
-	}
 
-	&__title:hover,
-	&__links:hover {
-		~ .project-box__content {
-			height: 100rem;
+		img {
+			object-fit: contain;
 		}
+
+		transition: all 0.2s;
 	}
 
 	&__title {
@@ -89,10 +115,13 @@
 
 	&__links {
 		display: flex;
+		justify-content: center;
 		position: absolute;
-		bottom: 2.8rem;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		bottom: 6em;
+		left: 0;
+		right: 0;
+		// left: 50%;
+		// transform: translate(-50%, -50%);
 		visibility: hidden;
 		opacity: 0;
 		transition: opacity 1s;
@@ -101,10 +130,10 @@
 			align-items: center;
 			// justify-content: space-around;
 			&:not(:last-child) {
-				margin-right: 2.5rem;
+				margin-right: 2rem;
 			}
 			img {
-				width: 2.8rem;
+				width: 2.5rem;
 				margin-right: 0.7rem;
 			}
 		}
