@@ -6,7 +6,6 @@
           <img :src="require(`@/assets/projects/${project.icon}`)" alt>
         </div>
       </div>
-
       <h3 class="project__title">{{ project.name }}</h3>
       <div class="project__links">
         <a href class="project__links-box link-heading">
@@ -18,7 +17,6 @@
         </a>
       </div>
     </div>
-
     <div class="modal-box" :class="{ active: isActive }">
       <div class="modal-box__content">
         <div class="modal-box__close" @click="isActive = !isActive">&times;</div>
