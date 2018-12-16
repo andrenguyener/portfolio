@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <template v-if="type !== 'both'">
-      <span :class="`bars--${type}`">&nbsp;</span>
-    </template>
-    <template v-else>
-      <span :class="`bars--vertical`">&nbsp;</span>
-      <span :class="`bars--horizontal`">&nbsp;</span>
-    </template>
-  </div>
+  <transition name="bars">
+    <div class="bars">
+      <span v-show="type !== 'both'" :class="`bars--${type}`">&nbsp;</span>
+      <span v-show="type === 'both'" :class="`bars--vertical`">&nbsp;</span>
+      <span v-show="type === 'both'" :class="`bars--horizontal`">&nbsp;</span>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -15,5 +13,5 @@ export default {
   props: {
     type: String
   }
-}
+};
 </script>
