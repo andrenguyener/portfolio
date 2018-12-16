@@ -4,6 +4,7 @@
 @import "base/base";
 @import "base/typography";
 
+@import "components/bars";
 @import "components/nav";
 @import "components/logo";
 @import "components/project-box";
@@ -38,7 +39,6 @@
 // - modal background lines
 // - modal text animate
 // - modal tags bold
-// - modal tags wrap after 70%? same as descr
 // - modal close button animate
 // - animate project boxes on modal open
 // - contact form

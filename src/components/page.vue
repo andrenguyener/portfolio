@@ -3,17 +3,19 @@
     <Logo></Logo>
     <Nav></Nav>
     <slot></slot>
-    <span class="page__bars">&nbsp;</span>
+    <Bars type="vertical"></Bars>
   </div>
 </template>
 
 <script>
 import Nav from '@/components/nav.vue';
 import Logo from '@/components/logo.vue';
+import Bars from '@/components/bars.vue';
 export default {
   components: {
     Nav,
-    Logo
+    Logo,
+    Bars
   }
 }
 </script>

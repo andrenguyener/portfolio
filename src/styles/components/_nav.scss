@@ -2,19 +2,18 @@
 	&__checkbox {
 		display: none;
 	}
-
 	&__button {
-		// background-color: var(--color-black);
-		height: 5rem;
-		width: 5rem;
+		height: 3rem;
+		width: 3rem;
 		position: fixed;
-		top: calc(50% - 5rem);
+		top: calc(50% - 1.5rem);
 		left: 3rem;
-		// border-radius: 50%;
 		z-index: 2000;
-		// box-shadow: 0 1rem 3rem rgba(var(--color-black), 0.1);
 		text-align: center;
 		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 
 		@include respond(tab-port) {
 			top: 4rem;
@@ -27,131 +26,190 @@
 		}
 	}
 
-	&__background {
-		height: 100%;
-		width: 100%;
-		opacity: 0;
+	&__container {
 		position: fixed;
-		background-color: var(--color-white);
-		z-index: -100;
-		transition: opacity 0.8s;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		opacity: 1;
+		background-color: rgba(#161616, 0.8);
+		z-index: 1000;
 	}
 
 	&__nav {
 		height: 100vh;
 		position: fixed;
 		top: 0;
-		left: 20%;
+		left: 25vw;
 		z-index: 1500;
-		visibility: hidden;
-		opacity: 0;
 		width: 0;
 		transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		width: 25vw;
+		overflow: hidden;
 	}
 
 	&__list {
 		position: absolute;
 		top: calc(50% - 2.5rem);
-		left: 10%;
-		transform: translate(-50%, -50%);
+		transform: translate(0%, -50%);
 		list-style: none;
 		text-align: center;
+
 		width: 100%;
 	}
 
 	&__item {
-		margin: 1rem;
+		font-family: TradeGothic-Bold;
+
+		animation: slideInLeft 0.5s backwards;
+		width: 100%;
+		text-align: left;
+		&:nth-child(1) {
+			animation-delay: 0s;
+		}
+		&:nth-child(2) {
+			animation-delay: 0.125s;
+		}
+		&:nth-child(3) {
+			animation-delay: 0.25s;
+		}
 	}
 
 	&__link {
 		&:link,
 		&:visited {
+			text-align: left;
 			display: inline-block;
-			font-size: 3rem;
-			font-weight: 300;
-			padding: 1rem 2rem;
-			color: var(--color-black);
+			font-size: 4rem;
+			letter-spacing: 1px;
+			padding: 1rem 0;
+			color: var(--color-white);
 			text-decoration: none;
 			text-transform: uppercase;
-			background-image: linear-gradient(
-				120deg,
-				transparent 0%,
-				transparent 50%,
-				var(--color-black) 50%
-			);
-			background-size: 220%;
-			transition: all 0.4s;
 		}
 
 		&:hover,
 		&:active {
-			background-position: 100%;
-			color: var(--color-black);
-			transform: translateX(1rem);
 		}
-	}
-
-	//FUNCTIONALITY
-	&__checkbox:checked ~ &__background {
-		opacity: (0.5);
-		z-index: 1000;
-	}
-
-	&__checkbox:checked ~ &__nav {
-		opacity: 1;
-		width: 100%;
-		visibility: visible;
 	}
 
 	//ICON
 	&__icon {
 		position: relative;
-		margin-top: 2.5rem;
-
-		&,
-		&::before,
-		&::after {
-			width: 3rem;
-			height: 2px;
-			background-color: var(--color-white);
-			display: inline-block;
-		}
-
-		&::before,
-		&::after {
+		top: 0;
+		width: 3rem;
+		height: 2px;
+		background-color: var(--color-white);
+		transition: all 0.5s;
+		opacity: 1;
+		&::before {
 			content: "";
 			position: absolute;
+			top: 0;
 			left: 0;
-			transition: all 0.2s;
+			width: 3rem;
+			height: 2px;
+			background-color: var(--color-grey-light-1);
+			z-index: -1;
 		}
 
-		&::before {
-			top: -0.8rem;
-		}
-		&::after {
-			top: 0.8rem;
+		&:nth-child(2) {
+			margin-top: 0.7rem;
+			margin-bottom: 0.7rem;
 		}
 	}
 
-	&__button:hover &__icon::before {
-		top: -1rem;
+	&__button:not(&__active):hover &__icon {
+		animation: meow 0.8s;
+
+		&:nth-child(1) {
+			animation-delay: 0s;
+		}
+		&:nth-child(2) {
+			animation-delay: 0.125s;
+		}
+		&:nth-child(3) {
+			animation-delay: 0.25s;
+		}
 	}
 
-	&__button:hover &__icon::after {
-		top: 1rem;
+	&__active &__icon {
+		&:nth-child(1),
+		&:nth-child(1)::before {
+			width: 0;
+		}
+
+		&:nth-child(3),
+		&:nth-child(3)::before {
+			width: 0;
+		}
 	}
 
-	&__checkbox:checked + &__button &__icon {
-		background-color: transparent;
+	&__container-enter-active {
+		transition: all 0.3s;
 	}
 
-	&__checkbox:checked + &__button &__icon::before {
-		top: 0;
-		transform: rotate(135deg);
+	&__container-leave-active {
+		transition: all 1s;
 	}
 
-	&__checkbox:checked + &__button &__icon::after {
-		top: 0;
-		transform: rotate(-135deg);
+	&__container-enter {
+		background-color: rgba(#161616, 0);
+	}
+
+	&__container-leave-active {
+		background-color: rgba(#161616, 0);
+
+		.navigation__item {
+			animation: slideOutRight 0.5s forwards;
+
+			&:nth-child(1) {
+				animation-delay: 0s;
+			}
+			&:nth-child(2) {
+				animation-delay: 0.125s;
+			}
+			&:nth-child(3) {
+				animation-delay: 0.25s;
+			}
+		}
+	}
+
+	@keyframes meow {
+		0% {
+			width: 100%;
+		}
+
+		50% {
+			width: 0%;
+			background-color: transparent;
+		}
+
+		100% {
+			width: 100%;
+		}
+	}
+
+	@keyframes slideInLeft {
+		from {
+			transform: translate3d(-100%, 0, 0);
+			visibility: visible;
+		}
+
+		to {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	@keyframes slideOutRight {
+		from {
+			transform: translate3d(0, 0, 0);
+		}
+
+		to {
+			visibility: hidden;
+			transform: translate3d(100%, 0, 0);
+		}
 	}
 }

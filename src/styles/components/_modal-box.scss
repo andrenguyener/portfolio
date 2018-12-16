@@ -1,6 +1,4 @@
 .modal-box {
-	opacity: 0;
-	visibility: hidden;
 	height: 100vh;
 	width: 100%;
 	position: fixed;
@@ -9,18 +7,13 @@
 	background-color: rgba(#161616, 0.9);
 	z-index: 9999;
 	overflow: auto;
-	transition: all 0.2s;
+	transition: all 1s;
 
 	@supports (-webkit-backdrop-filter: blur(10px)) or
 		(backdrop-filter: blur(10px)) {
 		-webkit-backdrop-filter: blur(10px);
 		backdrop-filter: blur(10px);
 		background-color: rgba(var(--color-black), 0.3);
-	}
-
-	&.active {
-		opacity: 1;
-		visibility: visible;
 	}
 
 	&__content {
@@ -118,14 +111,17 @@
 	}
 
 	&__tags {
+		width: 75%;
+
 		h3 {
 			font-size: 2rem;
 			text-align: left;
-			margin-bottom: 1rem;
+			margin-bottom: 0.3rem;
 		}
 
 		&-box {
 			display: flex;
+			flex-wrap: wrap;
 
 			&-item {
 				background-color: var(--color-grey-light-3);
@@ -133,9 +129,10 @@
 				font-size: 1.5rem;
 				padding: 0.9rem 1rem 0.5rem 1rem;
 				border-radius: 1rem;
+				margin-top: 0.7rem;
 
 				&:not(:last-child) {
-					margin-right: 1rem;
+					margin-right: 0.7rem;
 				}
 			}
 		}
@@ -158,5 +155,13 @@
 				margin-right: 0.7rem;
 			}
 		}
+	}
+
+	&-enter {
+		opacity: 0;
+	}
+
+	&-leave-active {
+		opacity: 0;
 	}
 }

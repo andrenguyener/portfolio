@@ -6,6 +6,19 @@
 	box-sizing: inherit;
 }
 
+::-webkit-scrollbar {
+	width: 0px; /* remove scrollbar space */
+	background: transparent; /* optional: just make scrollbar invisible */
+}
+
+// ::-webkit-scrollbar-track {
+// 	width: 0px;
+// }
+
+/* optional: show position indicator in red */
+// ::-webkit-scrollbar-thumb {
+// }
+
 html,
 body {
 	min-height: 100%;
@@ -16,6 +29,8 @@ body {
 html {
 	// This defines what 1rem is
 	font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+	overflow: scroll;
+	overflow-x: hidden;
 
 	@include respond(tab-land) {
 		// width < 1200?

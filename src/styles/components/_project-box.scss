@@ -57,8 +57,10 @@
 		width: 22rem;
 		margin: 0 auto;
 		margin-bottom: 3rem;
+
 		&:hover {
 			cursor: pointer;
+
 			.project__content {
 				transform: translateY(-3px);
 				filter: blur(3px) brightness(40%);
@@ -126,6 +128,7 @@
 		visibility: hidden;
 		opacity: 0;
 		transition: opacity 1s;
+
 		&-box {
 			display: flex;
 			align-items: center;
@@ -133,6 +136,7 @@
 			&:not(:last-child) {
 				margin-right: 2rem;
 			}
+
 			img {
 				width: 2.5rem;
 				margin-right: 0.7rem;
