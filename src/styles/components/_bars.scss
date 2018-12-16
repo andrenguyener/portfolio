@@ -31,12 +31,6 @@
 		}
 	}
 
-	.hidden {
-		visibility: hidden;
-		opacity: 0;
-		transition: visibility 0s 2s, opacity 2s linear;
-	}
-
 	&--horizontal {
 		position: fixed;
 		// top: calc(50vh);
@@ -78,23 +72,5 @@
 	}
 
 	&--both {
-	}
-
-	// &-enter &--horizontal {
-	// 	&,
-	// 	&::before,
-	// 	&::after {
-	// 		width: 0;
-	// 		opacity: 0;
-	// 	}
-	// }
-
-	&-enter &--vertical {
-		&,
-		&::before,
-		&::after {
-			height: 0;
-			// opacity: 0;
-		}
 	}
 }

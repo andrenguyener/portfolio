@@ -1,0 +1,36 @@
+@keyframes growIn {
+	0% {
+		width: 100%;
+	}
+
+	50% {
+		width: 0%;
+		background-color: transparent;
+	}
+
+	100% {
+		width: 100%;
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		transform: translate3d(-100%, 0, 0);
+		visibility: visible;
+	}
+
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes slideOutRight {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		visibility: hidden;
+		transform: translate3d(100%, 0, 0);
+	}
+}

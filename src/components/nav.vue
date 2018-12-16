@@ -10,24 +10,27 @@
       <span class="navigation__icon">&nbsp;</span>
     </div>
     <transition name="navigation__container">
-      <template v-if="isActive">
-        <div class="navigation__container">
-          <nav class="navigation__nav">
-            <ul class="navigation__list">
-              <li class="navigation__item">
-                <a href="#" class="navigation__link">About</a>
-              </li>
-              <li class="navigation__item">
-                <a href="#" class="navigation__link">Projects</a>
-              </li>
-              <li class="navigation__item">
-                <a href="#" class="navigation__link">Contact</a>
-              </li>
-            </ul>
-          </nav>
-          <Bars type="both"></Bars>
+      <div v-show="isActive" class="navigation__container">
+        <nav class="navigation__nav">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">About</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">Projects</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="navigation__social">
+          <span class="vertical-bar">&nbsp;</span>
+          <img :src="require(`@/assets/icons/github.svg`)" alt>
+          <img :src="require(`@/assets/icons/linkedin.svg`)" alt>
         </div>
-      </template>
+        <Bars type="both"></Bars>
+      </div>
     </transition>
     <!-- <div class="navigation__background">&nbsp;</div> -->
   </div>

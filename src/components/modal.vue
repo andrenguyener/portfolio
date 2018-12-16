@@ -57,11 +57,11 @@
         </div>
         <div class="modal-box__links">
           <a href class="modal-box__links-box link-heading">
-            <img :src="require(`@/assets/projects/github.svg`)" alt>github
+            <img :src="require(`@/assets/icons/github.svg`)" alt>github
           </a>
 
           <a href class="modal-box__links-box link-heading">
-            <img :src="require(`@/assets/projects/eye.svg`)" alt>live demo
+            <img :src="require(`@/assets/icons/eye.svg`)" alt>live demo
           </a>
         </div>
       </div>

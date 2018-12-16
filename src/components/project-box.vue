@@ -9,11 +9,11 @@
       <h3 class="project__title">{{ project.name }}</h3>
       <div class="project__links">
         <a href class="project__links-box link-heading">
-          <img :src="require(`@/assets/projects/github.svg`)" alt>github
+          <img :src="require(`@/assets/icons/github.svg`)" alt>github
         </a>
 
         <a href class="project__links-box link-heading">
-          <img :src="require(`@/assets/projects/eye.svg`)" alt>live demo
+          <img :src="require(`@/assets/icons/eye.svg`)" alt>live demo
         </a>
       </div>
     </div>
