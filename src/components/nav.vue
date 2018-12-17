@@ -26,8 +26,12 @@
         </nav>
         <div class="navigation__social">
           <span class="vertical-bar">&nbsp;</span>
-          <img :src="require(`@/assets/icons/github.svg`)" alt>
-          <img :src="require(`@/assets/icons/linkedin.svg`)" alt>
+          <a href class="navigation__social-link">
+            <img :src="require(`@/assets/icons/github.svg`)" alt>
+          </a>
+          <a href class="navigation__social-link">
+            <img :src="require(`@/assets/icons/linkedin.svg`)" alt>
+          </a>
         </div>
         <Bars type="both"></Bars>
       </div>
