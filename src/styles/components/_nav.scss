@@ -3,10 +3,10 @@
 		display: none;
 	}
 	&__button {
-		height: 3rem;
+		height: 2rem;
 		width: 3rem;
 		position: fixed;
-		top: calc(50% - 1.5rem);
+		top: calc(50% - 1rem);
 		left: 3rem;
 		z-index: 2000;
 		text-align: center;
@@ -77,6 +77,19 @@
 	}
 
 	&__link {
+		transition: all 0.3s cubic-bezier(0, 0, 0.23, 1);
+		background-position: 0%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-image: linear-gradient(
+			to right,
+			var(--color-pink),
+			var(--color-pink) 50%,
+			var(--color-white) 50%
+		);
+		background-size: 200% 100%;
+		background-position: 100%;
+
 		&:link,
 		&:visited {
 			text-align: left;
@@ -91,6 +104,8 @@
 
 		&:hover,
 		&:active {
+			transition: all 0.4s cubic-bezier(0, 0, 0.23, 1);
+			background-position: 0%;
 		}
 	}
 
@@ -107,7 +122,11 @@
 			height: 2rem;
 			width: 3px;
 			background-color: var(--color-white);
-			transition: all 0.5s 0.3s;
+			animation: slideInDown 0.4s backwards;
+		}
+
+		&-container {
+			animation: slideInLeft 0.5s backwards;
 		}
 
 		&-link {
@@ -115,14 +134,21 @@
 			width: 2rem;
 			height: auto;
 			fill: white;
-			transition: all 0.5s 0.8s;
+			margin-right: 1rem;
+
+			&:hover {
+				svg {
+					fill: var(--color-pink);
+				}
+			}
 
 			&:not(:last-child) {
 				margin-left: 1rem;
-				margin-right: 1rem;
 			}
 
-			img {
+			svg {
+				transition: all 0.2s;
+				fill: var(--color-white);
 				width: 100%;
 			}
 		}
@@ -149,8 +175,8 @@
 		}
 
 		&:nth-child(2) {
-			margin-top: 0.7rem;
-			margin-bottom: 0.7rem;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
 		}
 	}
 
@@ -212,16 +238,6 @@
 				opacity: 0;
 			}
 		}
-
-		.vertical-bar {
-			top: 0;
-			transform: translateY(-200%);
-		}
-
-		.navigation__social-link {
-			left: 0;
-			transform: translateX(-400%);
-		}
 	}
 
 	&__container-leave-to {
@@ -252,12 +268,11 @@
 		}
 
 		.vertical-bar {
-			transform: translateY(200%);
+			animation: slideOutDown 0.5s forwards;
 		}
 
-		.navigation__social-link {
-			transform: translateX(400%);
-			transition-delay: 0s;
+		.navigation__social-container {
+			animation: slideOutRight 0.5s forwards;
 		}
 	}
 }

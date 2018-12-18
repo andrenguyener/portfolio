@@ -57,14 +57,14 @@
 		width: 22rem;
 		margin: 0 auto;
 		margin-bottom: 3rem;
+		box-shadow: 0.2rem 0.2em 0.8rem var(--color-black);
 
 		&:hover {
 			cursor: pointer;
-
+			box-shadow: 0.4rem 0.4rem 1rem var(--color-black);
 			.project__content {
 				transform: translateY(-3px);
 				filter: blur(3px) brightness(40%);
-				box-shadow: 0.4rem 0.4rem 1rem var(--color-black);
 			}
 
 			.project__title,
@@ -89,7 +89,6 @@
 		margin: 0 auto;
 		margin-bottom: 2rem;
 		transition: all 0.2s;
-		box-shadow: 0.2rem 0.2em 0.8rem var(--color-black);
 	}
 
 	&__icon {
@@ -133,13 +132,25 @@
 			display: flex;
 			align-items: center;
 			// justify-content: space-around;
+			transition: all 0.2s;
+
+			&:hover {
+				color: var(--color-pink);
+
+				svg {
+					fill: var(--color-pink);
+				}
+			}
+
 			&:not(:last-child) {
 				margin-right: 2rem;
 			}
 
-			img {
+			svg {
 				width: 2.5rem;
 				margin-right: 0.7rem;
+				fill: var(--color-white);
+				transition: all 0.2s;
 			}
 		}
 	}

@@ -7,13 +7,19 @@
 }
 
 ::-webkit-scrollbar {
-	width: 0px; /* remove scrollbar space */
+	width: 2px; /* remove scrollbar space */
 	background: transparent; /* optional: just make scrollbar invisible */
 }
 
-// ::-webkit-scrollbar-track {
-// 	width: 0px;
-// }
+::-webkit-scrollbar-track {
+	// width: 10px;
+	// background: #eb2f64;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: white;
+	border-radius: 3px;
+}
 
 /* optional: show position indicator in red */
 // ::-webkit-scrollbar-thumb {
@@ -50,16 +56,17 @@ html {
 body {
 	background-color: var(--color-grey-light-2);
 	box-sizing: border-box;
-	background-image: linear-gradient(
-		to bottom,
-		var(--color-grey-dark),
-		var(--color-grey-light-2)
-	);
+	// background-image: linear-gradient(
+	// 	to bottom,
+	// 	var(--color-grey-dark),
+	// 	var(--color-grey-light-2)
+	// );
+	background-color: var(--color-grey-dark);
 	background-size: cover;
 	background-repeat: no-repeat;
 }
 
 ::selection {
-	background-color: #eb2f64;
+	background-color: var(--color-pink);
 	color: var(--color-white);
 }

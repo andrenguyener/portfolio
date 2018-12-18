@@ -3,6 +3,10 @@
     <Logo></Logo>
     <Nav></Nav>
     <slot></slot>
+    <div class="vignette">
+      <span class="vignette__top"></span>
+      <span class="vignette__bottom"></span>
+    </div>
     <Bars type="vertical"></Bars>
   </div>
 </template>

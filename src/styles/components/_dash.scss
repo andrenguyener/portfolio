@@ -1,0 +1,21 @@
+.dash {
+	&__horizontal {
+		&-right {
+			@include dash;
+			// top: 100vh;
+
+			right: calc(25% - 1rem + 2px);
+			// right: 0;
+		}
+
+		&-left {
+			@include dash;
+			left: calc(25% - 0.5rem + 2px);
+		}
+
+		&-center {
+			@include dash;
+			left: calc(50vw - 0.5rem + 1px);
+		}
+	}
+}
