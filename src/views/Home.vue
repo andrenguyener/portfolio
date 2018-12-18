@@ -7,6 +7,7 @@
     <Projects></Projects>
     <Dash location="center"></Dash>
     <Contact></Contact>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import Header from '@/sections/header.vue';
 import About from '@/sections/about.vue';
 import Projects from '@/sections/projects.vue';
 import Contact from '@/sections/contact.vue';
+import Footer from '@/sections/footer.vue';
 import Dash from '@/components/dash.vue';
 export default {
   components: {
@@ -22,6 +24,7 @@ export default {
     About,
     Projects,
     Contact,
+    Footer,
     Dash
   }
 }

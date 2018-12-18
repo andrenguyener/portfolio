@@ -4,13 +4,13 @@
 			@include dash;
 			// top: 100vh;
 
-			right: calc(25% - 1rem + 2px);
+			right: calc(25% - 1rem + 4px);
 			// right: 0;
 		}
 
 		&-left {
 			@include dash;
-			left: calc(25% - 0.5rem + 2px);
+			left: calc(25% - 0.5rem + 1px);
 		}
 
 		&-center {

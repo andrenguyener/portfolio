@@ -53,7 +53,14 @@ main {
 	.contact__description {
 		color: var(--color-grey);
 	}
+}
 
-	.contact__form {
+.footer {
+	text-align: center;
+	margin-bottom: 2rem;
+
+	&__text {
+		color: var(--color-grey);
+		font-size: 1.3rem;
 	}
 }

@@ -101,7 +101,7 @@ export default {
       // console.log(this.visible)
     },
     handleScroll () {
-      this.scrolled = window.scrollY === 0
+      this.scrolled = window.scrollY < 300
       dataContext.$emit('isTop', this.scrolled)
       // console.log(this.scrolled)
     }

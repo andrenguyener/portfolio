@@ -8,15 +8,19 @@
 
       <form action class="form">
         <div class="form__group">
-          <input type="text" class="form__input" placeholder="Full name" id="name" required>
+          <input type="text" class="form__input" required placeholder="Full name" id="name">
           <label for="name" class="form__label">Full name</label>
         </div>
         <div class="form__group">
-          <input type="email" class="form__input" placeholder="Email address" id="email" required>
+          <input type="email" class="form__input" required placeholder="Email address" id="email">
           <label for="email" class="form__label">Email address</label>
         </div>
         <div class="form__group">
-          <button>Send message</button>
+          <textarea name id minlength="1" required class="form__text-area" placeholder="Message"></textarea>
+          <label for="message" class="form__label">Message</label>
+        </div>
+        <div class="form__group">
+          <button class="form__button">Send message</button>
         </div>
       </form>
     </div>
