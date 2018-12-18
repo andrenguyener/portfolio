@@ -35,6 +35,10 @@
 		opacity: 1;
 		background-color: rgba(#161616, 0.9);
 		z-index: 1000;
+		transition: all 0.5s;
+		&.top_visible {
+			background-color: transparent;
+		}
 	}
 
 	&__nav {

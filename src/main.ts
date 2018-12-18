@@ -3,6 +3,11 @@ import App from './App.vue'
 import router from './router'
 import '@/styles/main.scss'
 import './registerServiceWorker'
+import VueObserveVisibility from 'vue-observe-visibility'
+
+export const dataContext = new Vue()
+
+Vue.use(VueObserveVisibility)
 
 Vue.config.productionTip = false
 

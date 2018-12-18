@@ -1,16 +1,12 @@
 <template>
   <div class="navigation">
-    <div
-      class="navigation__button"
-      :class="{ navigation__active: isActive}"
-      @click="isActive = !isActive"
-    >
+    <div class="navigation__button" :class="{ navigation__active: isActive}" @click="navClicked">
       <span class="navigation__icon">&nbsp;</span>
       <span class="navigation__icon">&nbsp;</span>
       <span class="navigation__icon">&nbsp;</span>
     </div>
     <transition name="navigation__container">
-      <div v-show="isActive" class="navigation__container">
+      <div v-show="isActive" class="navigation__container" :class="{top_visible: isTop}">
         <nav class="navigation__nav">
           <ul class="navigation__list">
             <li class="navigation__item">
@@ -72,14 +68,28 @@
 
 <script>
 import Bars from '@/components/bars.vue';
+import { dataContext } from '@/main.ts';
+
 export default {
   components: {
     Bars
   },
   data: function () {
     return {
-      isActive: false
+      isActive: false,
+      isTop: true
     }
+  },
+  methods: {
+    navClicked () {
+      this.isActive = !this.isActive
+      dataContext.$emit('navActive', this.isActive)
+    }
+  },
+  created () {
+    dataContext.$on('isTop', isTop => {
+      this.isTop = isTop
+    })
   }
 }
 </script>

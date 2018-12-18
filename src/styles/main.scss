@@ -11,6 +11,7 @@
 @import "components/project-box";
 @import "components/modal-box";
 @import "components/dash";
+@import "components/contact";
 
 @import "layout/grid";
 @import "layout/page";
@@ -20,28 +21,14 @@
 @import "pages/home";
 
 //TODO
+// - add margin to vue observe visibility
 // - animate logo on hover
-// - nav to be more animated
-// - nav screen - black
-// - nav screen - lines background
-// - nav links animate in / hover
 // - nav scroll to link
-// - animate header when nav opens
-// - vignette over whole page
 // - scroll display affect
-// - scroll bar change
 // - scroll affect
-// - adjust about section sizing picture / description
-// - adjust text sizing / spacing for all text
 // - project name animate
 // - project tags animate
 // - add href links
-// - links on hover
-// - modal background darker? blur?
-// - modal background lines
-// - modal text animate
-// - modal tags bold
-// - modal close button animate
 // - animate project boxes on modal open
 // - contact form
 // - footer
@@ -55,7 +42,6 @@
 // - compress images
 // - add more fonts to font family
 // - refactor css properties into mixins
-// - put modal into its own components
 // - clean up file structure
 // - make mito description / tags
 // - project box add functionality if live demo exists or not

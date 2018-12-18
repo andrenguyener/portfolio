@@ -24,6 +24,7 @@
 		top: 38%;
 		left: 25%;
 		padding-left: 1rem;
+		overflow: hidden;
 	}
 
 	&__main {
@@ -31,6 +32,8 @@
 		font-family: TradeGothic-Bold;
 		letter-spacing: 3px;
 		margin-bottom: 2rem;
+		overflow: hidden;
+		animation: slideInDown 1s forwards;
 	}
 
 	&__sub {
@@ -39,6 +42,8 @@
 		}
 		font-size: 2rem;
 		letter-spacing: 0.6px;
+		overflow: hidden;
+		animation: slideInUp 1s forwards;
 	}
 
 	&__date {
@@ -46,9 +51,9 @@
 		align-items: center;
 		justify-content: center;
 		position: absolute;
-		top: 80vh;
+		bottom: 18vh;
 		left: calc(25vw - 0.5rem + 1px);
-
+		overflow: hidden;
 		.horizontal-bar-1 {
 			width: 1rem;
 			height: 3px;
@@ -59,6 +64,7 @@
 		&-time {
 			letter-spacing: 0.5px;
 			color: var(--color-grey);
+			animation: slideInUp 0.5s forwards;
 		}
 	}
 
@@ -82,5 +88,19 @@
 			rgba(22, 22, 22, 1) 0%,
 			rgba(22, 22, 22, 0) 100%
 		);
+	}
+
+	&__view.nav__active {
+		.header__main {
+			animation: slideOutUp 0.5s forwards;
+		}
+
+		.header__sub {
+			animation: slideOutDown 0.5s forwards;
+		}
+
+		+ .header__date .header__date-time {
+			animation: slideOutUp 0.5s forwards;
+		}
 	}
 }
