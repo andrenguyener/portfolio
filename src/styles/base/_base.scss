@@ -56,12 +56,13 @@ html {
 body {
 	background-color: var(--color-grey-light-2);
 	box-sizing: border-box;
-	// background-image: linear-gradient(
-	// 	to bottom,
-	// 	var(--color-grey-dark),
-	// 	var(--color-grey-light-2)
-	// );
-	background-color: var(--color-grey-dark);
+	background-image: linear-gradient(
+		to bottom,
+		var(--color-grey-dark),
+		var(--color-grey-dark) 100vh,
+		var(--color-grey-light-2)
+	);
+	// background-color: var(--color-grey-dark);
 	background-size: cover;
 	background-repeat: no-repeat;
 }

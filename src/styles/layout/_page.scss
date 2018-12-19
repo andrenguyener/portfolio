@@ -1,33 +1,33 @@
 .page {
 	position: relative;
 
-	.vignette {
-		&__top {
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: 6rem;
-			width: 100vw;
-			z-index: 0;
-			background-image: linear-gradient(
-				to bottom,
-				var(--color-grey-dark),
-				transparent
-			);
-		}
+	// .vignette {
+	// 	&__top {
+	// 		position: fixed;
+	// 		top: 0;
+	// 		left: 0;
+	// 		height: 6rem;
+	// 		width: 100vw;
+	// 		z-index: 0;
+	// 		background-image: linear-gradient(
+	// 			to bottom,
+	// 			var(--color-grey-dark),
+	// 			transparent
+	// 		);
+	// 	}
 
-		&__bottom {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			height: 6rem;
-			width: 100vw;
-			z-index: 0;
-			background-image: linear-gradient(
-				to top,
-				var(--color-grey-dark),
-				transparent
-			);
-		}
-	}
+	// 	&__bottom {
+	// 		position: fixed;
+	// 		bottom: 0;
+	// 		left: 0;
+	// 		height: 6rem;
+	// 		width: 100vw;
+	// 		z-index: 0;
+	// 		background-image: linear-gradient(
+	// 			to top,
+	// 			var(--color-grey-dark),
+	// 			transparent
+	// 		);
+	// 	}
+	// }
 }

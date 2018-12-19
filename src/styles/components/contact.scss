@@ -36,7 +36,7 @@
 		}
 
 		&:focus:valid {
-			border-bottom: 1px solid #55c57a;
+			border-bottom: 1px solid var(--color-green);
 		}
 
 		&:focus:invalid {
@@ -70,7 +70,7 @@
 		// }
 
 		&:focus:valid {
-			border-bottom: 1px solid #55c57a;
+			border-bottom: 1px solid var(--color-green);
 		}
 	}
 

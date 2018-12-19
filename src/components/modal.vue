@@ -56,7 +56,12 @@
           </div>
         </div>
         <div class="modal-box__links">
-          <a href class="modal-box__links-box link-heading">
+          <a
+            :href="project.github"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="modal-box__links-box link-heading"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.02 23.02">
               <defs></defs>
               <title>Asset 27</title>
@@ -71,7 +76,12 @@
             </svg>github
           </a>
 
-          <a href class="modal-box__links-box link-heading">
+          <a
+            :href="project.live"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="modal-box__links-box link-heading"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 15.29">
               <defs></defs>
               <title>Asset 26</title>
