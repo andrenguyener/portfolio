@@ -1,5 +1,5 @@
 <template>
-  <section class="section-about">
+  <section id="about" class="section-about">
     <h3 class="section-heading">About</h3>
     <div class="container">
       <div class="about__profile">
@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import Dash from '@/components/dash.vue';
+import Dash from "@/components/dash.vue";
 export default {
   components: {
     Dash
   }
-}
+};
 </script>

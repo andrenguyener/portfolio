@@ -118,12 +118,13 @@
 		justify-content: center;
 		position: absolute;
 		align-items: center;
-		top: calc(75% - 1rem);
-		left: calc(75% - 1.5px);
+		top: calc(75% - 1.25rem);
+		left: calc(75% - 1.25px);
 		overflow: hidden;
 
 		.vertical-bar {
-			height: 2rem;
+			height: 2.5rem;
+			// height: 100%;
 			width: 3px;
 			background-color: var(--color-white);
 			animation: slideInDown 0.4s backwards;
@@ -138,7 +139,6 @@
 			width: 2rem;
 			height: auto;
 			fill: white;
-			margin-right: 1rem;
 
 			&:hover {
 				svg {
@@ -146,11 +146,16 @@
 				}
 			}
 
-			&:not(:last-child) {
+			&:first-child {
 				margin-left: 1rem;
 			}
 
+			&:not(:last-child) {
+				margin-right: 1rem;
+			}
+
 			svg {
+				max-height: 2.3rem;
 				transition: all 0.2s;
 				fill: var(--color-white);
 				width: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <section class="section-projects">
+  <section id="projects" class="section-projects">
     <h3 class="section-heading">Projects</h3>
     <div class="container">
       <template v-for="project in projects">
