@@ -2,11 +2,8 @@
   <div class="page">
     <Logo></Logo>
     <Nav></Nav>
+    <Scroll></Scroll>
     <slot></slot>
-    <div class="vignette">
-      <span class="vignette__top"></span>
-      <span class="vignette__bottom"></span>
-    </div>
     <Bars type="vertical"></Bars>
   </div>
 </template>
@@ -15,11 +12,13 @@
 import Nav from '@/components/nav.vue';
 import Logo from '@/components/logo.vue';
 import Bars from '@/components/bars.vue';
+import Scroll from '@/components/scroll.vue';
 export default {
   components: {
     Nav,
     Logo,
-    Bars
+    Bars,
+    Scroll
   }
 }
 </script>

@@ -6,6 +6,7 @@
 @import "base/animations";
 
 @import "components/bars";
+@import "components/scroll";
 @import "components/nav";
 @import "components/logo";
 @import "components/project-box";
@@ -21,12 +22,7 @@
 @import "pages/home";
 
 //TODO
-// - scroll display affect
 // - document name / fav icon
-// - project name animate
-// - project tags animate
-// - animate project boxes on modal open
-// - animate items on scrolling to them
 // - media query sizes
 // - adjust bar background for smaller screens (25vw wont work)
 // - css support for properties
