@@ -5,10 +5,45 @@
 	top: 3rem;
 	left: 3rem;
 	z-index: 1;
+	animation: fadeIn 2s;
 
 	&__image {
 		height: 100%;
 		width: 100%;
-		filter: invert(1);
+		// filter: invert(1);
+		transition: all 0.2s;
+		fill: white;
+		overflow: visible;
+
+		path {
+			transition: all 0.2s;
+		}
+
+		polygon {
+			transition: all 0.2s;
+		}
+
+		&:hover {
+			path {
+			}
+
+			polygon {
+				fill: var(--color-pink);
+
+				&:first-child {
+					transform: translateX(5px) translateY(-5px);
+				}
+
+				&:last-child {
+					transform: translateX(-6px) translateY(5px);
+				}
+			}
+		}
+	}
+}
+
+@keyframes draw {
+	100% {
+		stroke-dashoffset: 0;
 	}
 }

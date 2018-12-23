@@ -1,9 +1,9 @@
 <template>
-  <header class="header">
+  <header class="header" id="header">
     <div
       class="header__title"
       :class="{header__view: headerVisible, nav__active: navActive}"
-      v-observe-visibility="visibilityChanged"
+      v-observe-visibility="{callback: visibilityChanged}"
     >
       <h1 class="header__main">Andre Nguyen</h1>
       <h2 class="header__sub">
@@ -22,89 +22,89 @@
 </template>
 
 <script>
-import Dash from '@/components/dash.vue';
-import { dataContext } from '@/main.ts';
+import Dash from "@/components/dash.vue";
+import { dataContext } from "@/main.ts";
 
 export default {
   components: {
     Dash
   },
-  data: function () {
+  data: function() {
     return {
       headerVisible: false,
       scrolled: false,
       navActive: false,
       today: false
-    }
+    };
   },
-  created () {
-    window.addEventListener('scroll', this.handleScroll)
-    dataContext.$on('navActive', navActive => {
-      this.navActive = navActive
-    })
-    let objToday = new Date()
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
+    dataContext.$on("navActive", navActive => {
+      this.navActive = navActive;
+    });
+    let objToday = new Date();
 
     let weekday = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ]
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
 
-    let dayOfWeek = weekday[objToday.getDay()]
+    let dayOfWeek = weekday[objToday.getDay()];
 
-    let domEnder = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th']
+    let domEnder = ["th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"];
 
     let dayOfMonth =
       objToday.getDate() < 10
-        ? '0' + objToday.getDate() + domEnder[objToday.getDate()]
+        ? "0" + objToday.getDate() + domEnder[objToday.getDate()]
         : objToday.getDate() +
           domEnder[
             parseFloat(
-              ('' + objToday.getDate()).substr(
-                ('' + objToday.getDate()).length - 1
+              ("" + objToday.getDate()).substr(
+                ("" + objToday.getDate()).length - 1
               )
             )
-          ]
+          ];
 
     let months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sept',
-      'Oct',
-      'Nov',
-      'Dec'
-    ]
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
 
-    let curMonth = months[objToday.getMonth()]
+    let curMonth = months[objToday.getMonth()];
 
-    let curYear = objToday.getFullYear()
+    let curYear = objToday.getFullYear();
 
-    let today = `${curMonth} ${dayOfMonth}, ${curYear}`
-    this.today = today
+    let today = `${curMonth} ${dayOfMonth}, ${curYear}`;
+    this.today = today;
   },
-  mounted () {},
+  mounted() {},
   methods: {
-    visibilityChanged (isVisible, entry) {
-      this.headerVisible = isVisible
+    visibilityChanged(isVisible) {
+      this.headerVisible = isVisible;
       // console.log(entry)
-      dataContext.$emit('isHeaderVisible', this.headerVisible)
+      dataContext.$emit("isHeaderVisible", this.headerVisible);
       // console.log(this.visible)
     },
-    handleScroll () {
-      this.scrolled = window.scrollY < 300
-      dataContext.$emit('isTop', this.scrolled)
+    handleScroll() {
+      this.scrolled = window.scrollY < 300;
+      dataContext.$emit("isTop", this.scrolled);
       // console.log(this.scrolled)
     }
   }
-}
+};
 </script>

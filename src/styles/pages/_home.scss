@@ -22,9 +22,12 @@ main {
 }
 
 .section-about {
+	overflow: hidden;
 	.about__profile {
 		display: flex;
 		justify-content: center;
+		// opacity: 0;
+		// animation: fadeIn 1s;
 
 		&-image {
 			filter: grayscale(100%);
@@ -52,8 +55,11 @@ main {
 .section-contact {
 	.contact__description {
 		color: var(--color-grey);
-	}
 
+		&:first-child {
+			margin-top: 2rem;
+		}
+	}
 	.contact__links {
 		display: flex;
 		align-items: center;
@@ -61,11 +67,22 @@ main {
 		color: var(--color-white);
 		font-size: 1.2rem;
 		margin-top: 1rem;
+		transition: all 0.3s;
+
 		svg {
 			fill: white;
 			width: 2.5rem;
 			max-height: 2.5rem;
 			margin-right: 1rem;
+			transition: all 0.3s;
+		}
+
+		&:hover {
+			color: var(--color-pink);
+
+			svg {
+				fill: var(--color-pink);
+			}
 		}
 	}
 }

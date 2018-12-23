@@ -5,7 +5,7 @@
       <div class="contact__description">
         <p class="paragraph">Have a question?</p>
 
-        <a href class="contact__links">
+        <a href="./resume.pdf" rel="noopener noreferrer" target="_blank" class="contact__links">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.76 19.86">
             <path
               class="cls-1"

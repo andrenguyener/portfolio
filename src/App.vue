@@ -1,6 +1,6 @@
 <template>
   <Page>
-    <router-view/>
+    <router-view v-cloak/>
   </Page>
 </template>
 
@@ -12,3 +12,9 @@ export default {
   }
 }
 </script>
+
+<style>
+[v-cloak] {
+  display: none;
+}
+</style>

@@ -71,7 +71,12 @@
                 </g>
               </svg>
             </a>
-            <a href class="navigation__social-link">
+            <a
+              href="./resume.pdf"
+              rel="noopener noreferrer"
+              target="_blank"
+              class="navigation__social-link"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.76 19.86">
                 <path
                   class="cls-1"
@@ -89,29 +94,30 @@
 </template>
 
 <script>
-import Bars from '@/components/bars.vue';
-import { dataContext } from '@/main.ts';
+import Bars from "@/components/bars.vue";
+
+import { dataContext } from "@/main.ts";
 
 export default {
   components: {
     Bars
   },
-  data: function () {
+  data: function() {
     return {
       isActive: false,
       isTop: true
-    }
+    };
   },
   methods: {
-    navClicked () {
-      this.isActive = !this.isActive
-      dataContext.$emit('navActive', this.isActive)
+    navClicked() {
+      this.isActive = !this.isActive;
+      dataContext.$emit("navActive", this.isActive);
     }
   },
-  created () {
-    dataContext.$on('isTop', isTop => {
-      this.isTop = isTop
-    })
+  created() {
+    dataContext.$on("isTop", isTop => {
+      this.isTop = isTop;
+    });
   }
-}
+};
 </script>
