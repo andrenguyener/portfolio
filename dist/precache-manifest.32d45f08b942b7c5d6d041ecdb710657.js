@@ -60,16 +60,16 @@ self.__precacheManifest = [
     "url": "/img/mobile2.86c9f501.jpg"
   },
   {
-    "revision": "86c99df1493e569703d3ddc771bbbe24",
-    "url": "/img/forest-s.86c99df1.jpg"
+    "revision": "7bea79083234140f7af14d534f63ca04",
+    "url": "/img/forest-xs.7bea7908.jpg"
   },
   {
     "revision": "12667ee9420dbf3ae61cac674741304e",
     "url": "/img/mobile1.12667ee9.jpg"
   },
   {
-    "revision": "46094402cc4f44013e64692f7b8b8c7f",
-    "url": "/fonts/TradeGothicLTStd.46094402.otf"
+    "revision": "86c99df1493e569703d3ddc771bbbe24",
+    "url": "/img/forest-s.86c99df1.jpg"
   },
   {
     "revision": "02b3f3c850a9b336df307140d56377dc",
@@ -86,10 +86,6 @@ self.__precacheManifest = [
   {
     "revision": "965e4efe7b758331caff0eab3089971b",
     "url": "/img/logo.965e4efe.png"
-  },
-  {
-    "revision": "7bea79083234140f7af14d534f63ca04",
-    "url": "/img/forest-xs.7bea7908.jpg"
   },
   {
     "revision": "9fccd19708cd823fe80270d0f5a25fb1",
@@ -110,6 +106,10 @@ self.__precacheManifest = [
   {
     "revision": "03641a4659ff7619835d43e1a7a1fac5",
     "url": "/img/desktop.03641a46.jpg"
+  },
+  {
+    "revision": "46094402cc4f44013e64692f7b8b8c7f",
+    "url": "/fonts/TradeGothicLTStd.46094402.otf"
   },
   {
     "revision": "e9dde3cd578948f7a68232a7f3f0e4a0",
