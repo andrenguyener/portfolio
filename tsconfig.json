@@ -9,6 +9,7 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"sourceMap": true,
+		"noImplicitAny": false,
 		"baseUrl": ".",
 		"types": ["webpack-env"],
 		"paths": {
@@ -16,6 +17,7 @@
 		},
 		"lib": ["esnext", "dom", "dom.iterable", "scripthost"]
 	},
+
 	"include": [
 		"src/**/*.ts",
 		"src/**/*.tsx",
