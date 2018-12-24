@@ -13,23 +13,10 @@
 @import "components/modal-box";
 @import "components/dash";
 @import "components/contact";
+@import "components/not_found";
 
 @import "layout/grid";
 @import "layout/page";
 @import "layout/header";
-// @import "layout/about";
 
 @import "pages/home";
-
-//TODO
-// - document name / fav icon
-// - media query sizes
-// - adjust bar background for smaller screens (25vw wont work)
-// - css support for properties
-// - smaller image sizes for each width
-// - compress images
-// - add more fonts to font family
-// - refactor css properties into mixins
-// - clean up file structure
-// - make mito description / tags
-// - project box add functionality if live demo exists or not

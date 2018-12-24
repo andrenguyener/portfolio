@@ -18,7 +18,7 @@
 
 		@include respond(tab-port) {
 			top: 4rem;
-			right: 4rem;
+			left: calc(100% - 6rem);
 		}
 
 		@include respond(phone) {
@@ -37,6 +37,7 @@
 		background-color: rgba(#161616, 0.9);
 		z-index: 1000;
 		transition: all 0.5s;
+
 		&.top_visible {
 			background-color: transparent;
 		}
@@ -52,6 +53,10 @@
 		transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 		width: 25vw;
 		overflow: hidden;
+
+		@include respond(phone) {
+			width: 50vw;
+		}
 	}
 
 	&__list {
@@ -65,7 +70,7 @@
 	}
 
 	&__item {
-		font-family: TradeGothic-Bold;
+		font-family: TradeGothic-Bold, Roboto-Bold;
 
 		animation: slideInLeft 0.5s backwards;
 		width: 100%;
@@ -123,9 +128,13 @@
 		left: calc(75% - 1.25px);
 		overflow: hidden;
 
+		@include respond(phone) {
+			left: calc(25%);
+			justify-content: flex-start;
+		}
+
 		.vertical-bar {
 			height: 2.5rem;
-			// height: 100%;
 			width: 3px;
 			background-color: var(--color-white);
 			animation: slideInDown 0.4s backwards;

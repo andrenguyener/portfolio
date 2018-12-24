@@ -18,9 +18,6 @@
         </p>
       </div>
     </div>
-    <!-- <div> -->
-    <!-- <Dash location="left"></Dash> -->
-    <!-- </div> -->
   </section>
 </template>
 

@@ -29,6 +29,12 @@
 			left: calc(-25vw);
 			transition-delay: 0.4s;
 		}
+
+		@include respond(tab-port) {
+			& {
+				width: 0px;
+			}
+		}
 	}
 
 	&--horizontal {

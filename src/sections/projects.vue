@@ -20,14 +20,15 @@ export default {
       projects: [
         {
           name: 'Mito',
-          description: 'lorem lorem lorem',
+          description:
+            'Mito is a social platform that lets users purchase products available on major online e-commerce shops, such as Amazon, to send to one another without exchanging physical addresses.',
           icon: 'mito/logo.png',
           desktopImage: 'mito/desktop.jpg',
           mobileImage1: 'mito/mobile1.jpg',
           mobileImage2: 'mito/mobile2.jpg',
-          tags: ['Swift', 'Go'],
+          tags: ['Swift', 'Go', 'Node', 'SQL'],
           github: 'https://github.com/andrenguyener/mito',
-          live: 'https://projectmito.io/'
+          live: ''
         },
         {
           name: 'Drippy Chat',

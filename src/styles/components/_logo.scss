@@ -6,13 +6,13 @@
 	left: 3rem;
 	z-index: 1;
 	animation: fadeIn 2s;
+	overflow: visible;
 
 	&__image {
 		height: 100%;
 		width: 100%;
-		// filter: invert(1);
 		transition: all 0.2s;
-		fill: white;
+		fill: var(--color-white);
 		overflow: visible;
 
 		path {
@@ -24,9 +24,6 @@
 		}
 
 		&:hover {
-			path {
-			}
-
 			polygon {
 				fill: var(--color-pink);
 
@@ -39,11 +36,5 @@
 				}
 			}
 		}
-	}
-}
-
-@keyframes draw {
-	100% {
-		stroke-dashoffset: 0;
 	}
 }

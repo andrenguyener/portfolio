@@ -12,7 +12,6 @@
           points="16.77 0 0 46.08 14.75 46.08 16.86 40.92 21.28 30.11 23.7 24.19 16.77 0"
         ></polygon>
       </svg>
-      <!-- <img src="@/assets/logo.png" alt > -->
     </a>
   </div>
 </template>

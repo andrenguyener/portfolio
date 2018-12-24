@@ -1,10 +1,6 @@
 <template>
   <header class="header" id="header">
-    <div
-      class="header__title"
-      :class="{header__view: headerVisible, nav__active: navActive}"
-      v-observe-visibility="{callback: visibilityChanged}"
-    >
+    <div class="header__title" :class="{nav__active: navActive}">
       <h1 class="header__main">Andre Nguyen</h1>
       <h2 class="header__sub">
         <span>A user-centric software engineer</span>
@@ -31,7 +27,6 @@ export default {
   },
   data: function () {
     return {
-      headerVisible: false,
       scrolled: false,
       navActive: false,
       today: false
@@ -94,16 +89,9 @@ export default {
   },
   mounted () {},
   methods: {
-    visibilityChanged (isVisible) {
-      this.headerVisible = isVisible
-      // console.log(entry)
-      dataContext.$emit('isHeaderVisible', this.headerVisible)
-      // console.log(this.visible)
-    },
     handleScroll () {
       this.scrolled = window.scrollY < 300
       dataContext.$emit('isTop', this.scrolled)
-      // console.log(this.scrolled)
     }
   }
 }

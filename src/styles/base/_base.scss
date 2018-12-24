@@ -38,6 +38,10 @@ html {
 	overflow: scroll;
 	overflow-x: hidden;
 
+	&.modal_open {
+		overflow: hidden;
+	}
+
 	@include respond(tab-land) {
 		// width < 1200?
 		font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
