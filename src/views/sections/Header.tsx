@@ -199,14 +199,14 @@ const Container = styled.header`
         width: 100%;
         height: 100%;
         opacity: 0.1;
-        background-image: url("/forest-s.jpg");
+        background-image: url("/images/forest-s.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         z-index: -1;
         animation: ${animations.fadeInHeader} 1s;
 
         @media only screen and (max-width: 37.5em) {
-            background-image: url("/forest-xs.jpg");
+            background-image: url("/images/forest-xs.jpg");
         }
     }
 `;

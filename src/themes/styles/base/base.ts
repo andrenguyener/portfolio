@@ -24,8 +24,8 @@ export const base = (theme: Theme) => {
         }
 
         ::-webkit-scrollbar-thumb {
-            background-color: ${theme.color.white};
-            border-radius: 3px;
+            /* background-color: ${theme.color.white}; */
+            /* border-radius: 3px; */
         }
 
         html,

@@ -10,7 +10,7 @@ export const About = () => {
                 <SectionHeading>About</SectionHeading>
                 <Container>
                     <Profile>
-                        <img src="/headshot.jpg" alt="profile image" />
+                        <img src="/images/headshot.jpg" alt="profile image" />
                     </Profile>
                     <Description>
                         <p>
