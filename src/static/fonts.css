@@ -1,0 +1,19 @@
+@font-face {
+    font-family: TradeGothic;
+    src: url("/fonts/TradeGothicLTStd.otf");
+}
+
+@font-face {
+    font-family: TradeGothic-Bold;
+    src: url("/fonts/TradeGothic-Bold.otf");
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: Roboto-Bold;
+    src: url("/fonts/Roboto-Bold.ttf");
+}
