@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import {
     Container,
@@ -7,7 +7,6 @@ import {
     Section,
     SectionHeading,
 } from "./../../components";
-import { mixins } from "./../../themes/styles/abstracts";
 
 const projectList: ProjectBoxProps[] = [
     {

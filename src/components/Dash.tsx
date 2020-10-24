@@ -22,18 +22,21 @@ const DashContainer = styled.span<{ location: "right" | "left" | "center" }>`
                         left: calc(50vw - 0.5rem + 1px);
                     `
                 );
+                break;
             case "left":
                 s.push(
                     css`
                         left: calc(25% - 0.5rem + 1px);
                     `
                 );
+                break;
             case "right":
                 s.push(
                     css`
                         right: calc(25% - 1rem + 4px);
                     `
                 );
+                break;
             default:
         }
         return s;

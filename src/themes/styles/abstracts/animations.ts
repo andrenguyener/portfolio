@@ -121,3 +121,21 @@ export const fadeIn = keyframes`
 		opacity: 1;
 	}
 `;
+
+export const spinner = (size: number) => {
+    const done = 0;
+    const less = 0.66 * size;
+    const none = 3.14 * size;
+    return keyframes`
+		0% {
+			transform: rotate(0);
+			stroke-dashoffset: ${none};
+		} 50% {
+			transform: rotate(120deg);
+			stroke-dashoffset: ${less};
+		} 100% {
+			transform: rotate(270deg);
+			stroke-dashoffset: ${done};
+		}
+	`;
+};

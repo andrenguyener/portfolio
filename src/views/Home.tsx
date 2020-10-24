@@ -14,7 +14,7 @@ export const Home = () => {
     React.useEffect(() => {
         setTimeout(() => {
             setShowContent(true);
-        }, 1800);
+        }, 800);
     }, []);
 
     return (
@@ -25,7 +25,7 @@ export const Home = () => {
                         in={!showContent}
                         timeout={{
                             enter: 0,
-                            exit: 1000,
+                            exit: 500,
                         }}
                         unmountOnExit={true}
                         classNames="loading__container"
@@ -92,7 +92,7 @@ const Loading = styled.div`
 
             /* transition: all 5s; */
             /* opacity: 1; */
-            animation: ${animations.fadeIn} 0.5s, ${animations.grow} forwards 2s;
+            animation: ${animations.fadeIn} 0.5s, ${animations.grow} forwards 1s;
         }
     }
 

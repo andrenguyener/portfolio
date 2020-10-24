@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 
+import { ScrollArrow } from "./../../components";
 import { animations, mixins } from "./../../themes/styles/abstracts";
 import { NavigationContext } from "./../../utils";
 
@@ -58,11 +59,23 @@ export const Header: React.FC = () => {
                 <HorizontalBar1>&nbsp;</HorizontalBar1>
                 <DateTime>{today}</DateTime>
             </DateContainer>
+            <ScrollArrowContainer>
+                <ScrollArrow />
+            </ScrollArrowContainer>
             <HorizontalBarRight />
             <Fade />
         </Container>
     );
 };
+
+const ScrollArrowContainer = styled.div`
+    position: absolute;
+    width: 25rem;
+    height: 25rem;
+
+    right: calc(25% - 2px);
+    bottom: 25%;
+`;
 
 const Fade = styled.div`
     position: absolute;
@@ -203,7 +216,7 @@ const Container = styled.header`
         background-size: cover;
         background-repeat: no-repeat;
         z-index: -1;
-        animation: ${animations.fadeInHeader} 1s;
+        animation: ${animations.fadeInHeader} 2s;
 
         @media only screen and (max-width: 37.5em) {
             background-image: url("/images/forest-xs.jpg");
