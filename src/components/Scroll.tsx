@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { mixins } from "./../themes/styles/abstracts";
+import { animations, mixins } from "./../themes/styles/abstracts";
 
 export const Scroll: React.FC = () => {
     const scrollRef = React.useRef<HTMLSpanElement>(null);
@@ -53,6 +53,8 @@ const ScrollContainer = styled.div`
             display: none;
         `
     )}
+
+    animation: ${animations.fadeIn} 1s linear 1s backwards;
 `;
 
 const ScrollBar = styled.span`

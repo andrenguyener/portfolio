@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { mixins } from "./../themes/styles/abstracts";
+import { animations, mixins } from "./../themes/styles/abstracts";
 
 type Props = {
     type: "vertical" | "horizontal" | "both";
@@ -111,6 +111,8 @@ export const Bar = styled.span<{ type?: "vertical" | "horizontal" }>`
         }
         return s;
     }}
+
+    animation: ${animations.slideInDown} 1s linear;
 `;
 
 export const BarVertical = styled.span<{ isActive: boolean }>`
