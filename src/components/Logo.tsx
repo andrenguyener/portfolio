@@ -2,6 +2,7 @@ import { animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
 
 import { animations } from "./../themes/styles/abstracts";
+import { constants } from "./../utils";
 
 const Logo: React.FC = () => {
     const onClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -45,7 +46,7 @@ const LogoContainer = styled.div`
     top: 3rem;
     left: 3rem;
     z-index: 1;
-    animation: ${animations.fadeIn} 2s;
+    animation: ${animations.fadeIn} 2s linear ${constants.LOADING_TIME + 200 + "ms"} backwards;
 
     &:hover {
         ${Polygon} {

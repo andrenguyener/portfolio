@@ -10,7 +10,7 @@ import Bars, {
     ModalBarsExitActive,
 } from "./../../components/Bars";
 import { animations, mixins } from "./../../themes/styles/abstracts";
-import { NavigationContext, useIsTopInView } from "./../../utils";
+import { constants, NavigationContext, useIsTopInView } from "./../../utils";
 
 const NavigationLink = (props: LinkProps) => {
     const { ref, ...restProps } = props;
@@ -151,7 +151,7 @@ const Button = styled.div<{ isActive: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    animation: ${animations.fadeIn} 2s;
+    animation: ${animations.fadeIn} 2s linear ${constants.LOADING_TIME + 200 + "ms"} backwards;
 
     ${mixins.respond(
         "tab-land",

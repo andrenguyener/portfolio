@@ -2,13 +2,14 @@ import { Link } from "react-scroll";
 import styled from "styled-components";
 
 import { animations } from "./../themes/styles/abstracts";
+import { constants } from "./../utils";
 
 const spinnerSize = 286;
 
 export const ScrollArrow = () => {
     return (
         <ScrollArrowContainer>
-            <Link to="about" smooth={true} duration={450} href="#">
+            <Link to="projects" smooth={true} duration={450} href="#">
                 <CircleSVG>
                     <circle r={spinnerSize / 2 - 1} cx={spinnerSize / 2} cy={spinnerSize / 2} />
                 </CircleSVG>
@@ -36,8 +37,8 @@ const Arrow = styled.div`
         fill: #fff;
         stroke: #fff;
         stroke-width: 0;
-        animation: ${animations.slideInDown} 1s forwards 1s,
-            ${animations.fadeIn} 1s linear 1s backwards;
+        animation: ${animations.slideInDown} 1s forwards ${constants.LOADING_TIME + 200 + "ms"},
+            ${animations.fadeIn} 1s linear ${constants.LOADING_TIME + 200 + "ms"} backwards;
     }
 `;
 
@@ -54,8 +55,9 @@ const CircleSVG = styled.svg`
         stroke-dasharray: calc(3.14 * ${spinnerSize});
         transform-origin: calc(0.5px * ${spinnerSize}) calc(0.5px * ${spinnerSize}) 0;
         transform: rotate(-90deg);
-        animation: ${animations.spinner(spinnerSize)} 2s linear 1.5s 1 backwards,
-            ${animations.fadeIn} 1s linear 1s backwards;
+        animation: ${animations.spinner(spinnerSize)} 2s linear
+                ${constants.LOADING_TIME + 700 + "ms"} 1 backwards,
+            ${animations.fadeIn} 1s linear ${constants.LOADING_TIME + 200 + "ms"} backwards;
     }
 `;
 

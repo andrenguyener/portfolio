@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { Dash } from "./../components";
 import { animations } from "./../themes/styles/abstracts";
+import { constants } from "./../utils";
 import { Layout, Page } from "./layout";
 import { About, Contact, Footer, Header, Projects } from "./sections";
 
@@ -14,7 +15,7 @@ export const Home = () => {
     React.useEffect(() => {
         setTimeout(() => {
             setShowContent(true);
-        }, 800);
+        }, constants.LOADING_TIME);
     }, []);
 
     return (
@@ -46,12 +47,12 @@ export const Home = () => {
                         <div>
                             <Header />
                             <Dash location="right" />
-                            <Element name="about">
-                                <About />
-                            </Element>
-                            <Dash location="left" />
                             <Element name="projects">
                                 <Projects />
+                            </Element>
+                            <Dash location="left" />
+                            <Element name="about">
+                                <About />
                             </Element>
                             <Dash location="center" />
                             <Element name="contact">

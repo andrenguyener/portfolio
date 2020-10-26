@@ -1,3 +1,4 @@
+import * as constants from "./constants";
 import { useIsTopInView } from "./hooks";
 import {
     NavigationContext,
@@ -5,9 +6,16 @@ import {
     NavigationContextProvider,
 } from "./NavigationProvider";
 
-export { useIsTopInView, NavigationContext, NavigationContextConsumer, NavigationContextProvider };
+export {
+    constants,
+    useIsTopInView,
+    NavigationContext,
+    NavigationContextConsumer,
+    NavigationContextProvider,
+};
 
 export default {
+    constants,
     useIsTopInView,
     NavigationContext,
     NavigationContextConsumer,
