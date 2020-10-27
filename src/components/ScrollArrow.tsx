@@ -54,7 +54,7 @@ const Arrow = styled.div`
         fill: #fff;
         stroke: #fff;
         stroke-width: 0;
-        transition: all 1s;
+        transition: all 1s ease-in-out;
     }
 `;
 
@@ -104,6 +104,14 @@ const ScrollArrowContainer = styled.div`
                 circle {
                     animation: ${animations.spinner(spinnerSize)} 2s linear,
                         ${animations.fadeIn} 1s linear;
+                }
+            }
+        }
+
+        &-enter-done {
+            ${Arrow} {
+                svg {
+                    animation: ${animations.hover} 1.5s ease-in-out infinite;
                 }
             }
         }

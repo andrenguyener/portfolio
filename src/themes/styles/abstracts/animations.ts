@@ -132,6 +132,35 @@ export const fadeOut = keyframes`
 	}
 `;
 
+export const pulse = keyframes`
+	from {
+	  transform: scale3d(1, 1, 1);
+	}
+  
+	50% {
+	  transform: scale3d(2.05, 2.05, 2.05);
+	}
+  
+	to {
+	  transform: scale3d(1, 1, 1);
+	}
+`;
+
+export const hover = keyframes`
+  0% {
+    
+    transform: translateY(0);
+  }
+  50% {
+    
+    transform: translateY(4px);
+  }
+  100% {
+    
+    transform: translateY(0);
+  }
+`;
+
 export const spinner = (size: number) => {
     const done = 0;
     const less = 0.66 * size;
