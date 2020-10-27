@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-scroll";
 import { CSSTransition } from "react-transition-group";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { animations } from "./../themes/styles/abstracts";
-import { useIsPageLoaded } from "./../utils";
+import { NavigationContext, useIsPageLoaded } from "./../utils";
 
 const spinnerSize = 286;
 
 export const ScrollArrow = () => {
     const showContent = useIsPageLoaded();
+    const { isActive } = useContext(NavigationContext);
 
     return (
         <>
@@ -19,7 +20,7 @@ export const ScrollArrow = () => {
                 classNames="scroll_arrow"
                 unmountOnExit={true}
             >
-                <ScrollArrowContainer>
+                <ScrollArrowContainer navActive={isActive}>
                     <Link to="projects" smooth={true} duration={450} href="#">
                         <CircleSVG>
                             <circle
@@ -28,7 +29,7 @@ export const ScrollArrow = () => {
                                 cy={spinnerSize / 2}
                             />
                         </CircleSVG>
-                        <Arrow>
+                        <Arrow navActive={isActive}>
                             <svg id="svg-arrow-bottom" viewBox="0 0 20 24">
                                 <polygon points="10.4,22.7 19.2,14 18.5,13.3 10.5,21.2 10.5,0.9 9.5,0.9 9.5,21.2 1.5,13.3 0.8,14 9.6,22.7 10,23.1 10,23.1 10,23.1" />
                             </svg>
@@ -40,7 +41,7 @@ export const ScrollArrow = () => {
     );
 };
 
-const Arrow = styled.div`
+const Arrow = styled.div<{ navActive: boolean }>`
     position: absolute;
     top: 50%;
     left: 50%;
@@ -55,6 +56,16 @@ const Arrow = styled.div`
         stroke: #fff;
         stroke-width: 0;
         transition: all 1s ease-in-out;
+
+        ${(props) => {
+            const s = [];
+            if (props.navActive) {
+                s.push(css`
+                    opacity: 0;
+                `);
+            }
+            return s;
+        }}
     }
 `;
 

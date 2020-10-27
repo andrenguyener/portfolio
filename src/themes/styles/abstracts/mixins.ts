@@ -23,6 +23,7 @@ export const dash = css`
     height: 3px;
     /* todo fix this color */
     background-color: white;
+    z-index: 1750;
 `;
 
 // MEDIA QUERY MANAGER

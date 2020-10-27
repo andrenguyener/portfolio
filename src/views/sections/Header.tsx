@@ -64,13 +64,12 @@ export const Header: React.FC = () => {
                     </Sub>
                 </Title>
                 <DateContainer>
-                    <HorizontalBar1>&nbsp;</HorizontalBar1>
+                    <HorizontalBar>&nbsp;</HorizontalBar>
                     <DateTime navActive={isActive}>{today}</DateTime>
                 </DateContainer>
                 <ScrollArrowContainer>
                     <ScrollArrow />
                 </ScrollArrowContainer>
-                <HorizontalBarRight />
                 <Fade />
             </Container>
         </CSSTransition>
@@ -96,8 +95,6 @@ const Fade = styled.div`
     background-image: linear-gradient(to top, rgba(22, 22, 22, 1) 0%, rgba(22, 22, 22, 0) 100%);
 `;
 
-const HorizontalBarRight = styled.span``;
-
 const DateTime = styled.p<{ navActive: boolean }>`
     letter-spacing: 0.5px;
     color: ${(props) => props.theme.color.gray.base};
@@ -118,10 +115,10 @@ const DateTime = styled.p<{ navActive: boolean }>`
     }}
 `;
 
-const HorizontalBar1 = styled.span`
-    width: 1rem;
-    height: 3px;
-    background-color: ${(props) => props.theme.color.white};
+const HorizontalBar = styled.span`
+    ${mixins.dash}
+
+    position: relative;
     margin-right: 1rem;
 `;
 
@@ -243,7 +240,7 @@ const Container = styled.header<{ navActive: boolean }>`
 
     &.header__container {
         &-enter {
-            ${HorizontalBar1} {
+            ${HorizontalBar} {
                 animation: ${animations.slideInLeft} 0.5s linear 0.75s backwards,
                     ${animations.fadeIn} 0.5s linear 0.75s backwards;
             }
