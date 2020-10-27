@@ -5,18 +5,12 @@ import styled from "styled-components";
 
 import { Dash } from "./../components";
 import { animations } from "./../themes/styles/abstracts";
-import { constants } from "./../utils";
+import { useIsPageLoaded } from "./../utils";
 import { Layout, Page } from "./layout";
 import { About, Contact, Footer, Header, Projects } from "./sections";
 
 export const Home = () => {
-    const [showContent, setShowContent] = React.useState(false);
-
-    React.useEffect(() => {
-        setTimeout(() => {
-            setShowContent(true);
-        }, constants.LOADING_TIME);
-    }, []);
+    const showContent = useIsPageLoaded();
 
     return (
         <Layout>
@@ -128,6 +122,9 @@ const HomeContainer = styled.div`
         &-enter-active {
             opacity: 1;
             transition: all 2s;
+        }
+
+        &-enter-done {
         }
 
         &-exit {

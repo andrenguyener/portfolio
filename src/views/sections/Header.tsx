@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
+import { CSSTransition } from "react-transition-group";
 import styled, { css } from "styled-components";
 
 import { ScrollArrow } from "./../../components";
 import { animations, mixins } from "./../../themes/styles/abstracts";
-import { NavigationContext } from "./../../utils";
+import { NavigationContext, useIsPageLoaded } from "./../../utils";
 
 const objToday = new Date();
 
@@ -44,27 +45,35 @@ const today = `${curMonth} ${dayOfMonth}, ${curYear}`;
 
 export const Header: React.FC = () => {
     const { isActive } = useContext(NavigationContext);
+    // Todo abstract to common util?
+    const [loaded, setLoaded] = React.useState(false);
+    React.useEffect(() => {
+        setLoaded(true);
+    }, []);
 
     return (
-        <Container>
-            <Title navActive={isActive}>
-                <Main>Andre Nguyen</Main>
-                <Sub>
-                    <span>A user-centric software engineer</span>
-                    <span>that brings to life</span>
-                    <span>innovative ideas and solutions</span>
-                </Sub>
-            </Title>
-            <DateContainer>
-                <HorizontalBar1>&nbsp;</HorizontalBar1>
-                <DateTime>{today}</DateTime>
-            </DateContainer>
-            <ScrollArrowContainer>
-                <ScrollArrow />
-            </ScrollArrowContainer>
-            <HorizontalBarRight />
-            <Fade />
-        </Container>
+        // Todo not working
+        <CSSTransition in={loaded} timeout={3500} classNames="header__container">
+            <Container key={"meow"} navActive={isActive}>
+                <Title navActive={isActive}>
+                    <Main>Andre Nguyen</Main>
+                    <Sub>
+                        <span>A user-centric software engineer</span>
+                        <span>that brings to life</span>
+                        <span>innovative ideas and solutions</span>
+                    </Sub>
+                </Title>
+                <DateContainer>
+                    <HorizontalBar1>&nbsp;</HorizontalBar1>
+                    <DateTime navActive={isActive}>{today}</DateTime>
+                </DateContainer>
+                <ScrollArrowContainer>
+                    <ScrollArrow />
+                </ScrollArrowContainer>
+                <HorizontalBarRight />
+                <Fade />
+            </Container>
+        </CSSTransition>
     );
 };
 
@@ -89,17 +98,30 @@ const Fade = styled.div`
 
 const HorizontalBarRight = styled.span``;
 
-const DateTime = styled.p`
+const DateTime = styled.p<{ navActive: boolean }>`
     letter-spacing: 0.5px;
     color: ${(props) => props.theme.color.gray.base};
-    animation: ${animations.slideInUp} 0.5s forwards;
     font-size: 0.5em;
+
+    ${(props) => {
+        const s = [];
+        if (props.navActive) {
+            s.push(css`
+                animation: ${animations.slideOutUp} 0.5s forwards, ${animations.fadeOut} 0.5s linear;
+            `);
+        } else {
+            s.push(css`
+                animation: ${animations.slideInDown} 0.5s linear, ${animations.fadeIn} 0.5s linear;
+            `);
+        }
+        return s;
+    }}
 `;
 
 const HorizontalBar1 = styled.span`
     width: 1rem;
     height: 3px;
-    background-color: ${(props) => props.theme.color.gray.base};
+    background-color: ${(props) => props.theme.color.white};
     margin-right: 1rem;
 `;
 
@@ -187,17 +209,13 @@ const Title = styled.div<{ navActive: boolean }>`
                 ${Sub} {
                     animation: ${animations.slideOutDown} 0.5s forwards;
                 }
-
-                ${Date} ${DateTime} {
-                    animation: ${animations.slideOutUp} 0.5s forwards;
-                }
             `);
         }
         return s;
     }}
 `;
 
-const Container = styled.header`
+const Container = styled.header<{ navActive: boolean }>`
     color: ${(props) => props.theme.color.white};
 
     height: 100vh;
@@ -220,6 +238,26 @@ const Container = styled.header`
 
         @media only screen and (max-width: 37.5em) {
             background-image: url("/images/forest-xs.jpg");
+        }
+    }
+
+    &.header__container {
+        &-enter {
+            ${HorizontalBar1} {
+                animation: ${animations.slideInLeft} 0.5s linear 0.75s backwards,
+                    ${animations.fadeIn} 0.5s linear 0.75s backwards;
+            }
+
+            ${DateTime} {
+                animation-fill-mode: backwards;
+                animation-delay: 2s;
+            }
+        }
+
+        &-enter-active {
+        }
+
+        &-enter-done {
         }
     }
 `;

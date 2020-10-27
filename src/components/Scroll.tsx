@@ -62,6 +62,7 @@ const ScrollBar = styled.span`
     content: "";
     background-color: ${(props) => props.theme.color.white};
     height: 100%;
+    transition: all 0.5s ease-in-out;
 `;
 
 export default Scroll;

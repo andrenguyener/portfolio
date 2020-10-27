@@ -59,7 +59,6 @@
         // Do not use banned terms: caller, callee, eval, arguments.
         "no-banned-terms": true,
 
-        // Todo(shun): Need to clarify this rule
         // "no-cookies": true,
         "no-delete-expression": true,
 
@@ -81,7 +80,6 @@
         // Do not use the version of the Function constructor that accepts a string argument
         "no-function-constructor-with-string-args": true,
 
-        // Todo(shun): Turn on this rule later (this will only allow https url except the list)
         // "no-http-string": [true, "http://www.example.com/?.*", "http://www.examples.com/?.*"],
         "no-inner-html": true,
 

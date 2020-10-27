@@ -8,9 +8,9 @@ import SmoothScroll from "./../../utils/SmoothScroll";
 
 export const Page: React.FC = ({ children }) => {
     React.useEffect(() => {
-        if (!(window as any)?.smoothScroll) {
-            (window as any).smoothScroll = SmoothScroll(document, 120, 12);
-        }
+        // if (!(window as any)?.smoothScroll) {
+        //     (window as any).smoothScroll = SmoothScroll(document, 120, 12);
+        // }
     }, []);
     return (
         <PageContainer>

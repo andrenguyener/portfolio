@@ -122,6 +122,16 @@ export const fadeIn = keyframes`
 	}
 `;
 
+export const fadeOut = keyframes`
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+`;
+
 export const spinner = (size: number) => {
     const done = 0;
     const less = 0.66 * size;

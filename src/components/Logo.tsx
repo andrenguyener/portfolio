@@ -1,24 +1,34 @@
 import { animateScroll as scroll } from "react-scroll";
+import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 
 import { animations } from "./../themes/styles/abstracts";
-import { constants } from "./../utils";
+import { useIsPageLoaded } from "./../utils";
 
 const Logo: React.FC = () => {
+    const showContent = useIsPageLoaded();
+
     const onClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         event.preventDefault();
         scroll.scrollToTop();
     };
     return (
-        <LogoContainer>
-            <a href="/" onClick={onClick}>
-                <Image xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.13 46.9">
-                    <Polygon points="61.13 2.23 46.56 2.23 37.74 22.02 44.87 46.9 61.13 2.23" />
-                    <Path d="M44.91,46.86H30.17l-1.48-4.78h-13l4.74-11.6h4.7l-1.35-4.36L16.33.09H31.5ZM31.33,45.29H42.82L30.32,1.66H18.41l6.88,24,2,6.38H21.49L18,40.51H29.85Z" />
-                    <Polygon points="16.77 0 0 46.08 14.75 46.08 16.86 40.92 21.28 30.11 23.7 24.19 16.77 0" />
-                </Image>
-            </a>
-        </LogoContainer>
+        <CSSTransition
+            in={showContent}
+            timeout={{ enter: 2000, exit: 0 }}
+            classNames="logo__container"
+            unmountOnExit={true}
+        >
+            <LogoContainer>
+                <a href="/" onClick={onClick}>
+                    <Image xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.13 46.9">
+                        <Polygon points="61.13 2.23 46.56 2.23 37.74 22.02 44.87 46.9 61.13 2.23" />
+                        <Path d="M44.91,46.86H30.17l-1.48-4.78h-13l4.74-11.6h4.7l-1.35-4.36L16.33.09H31.5ZM31.33,45.29H42.82L30.32,1.66H18.41l6.88,24,2,6.38H21.49L18,40.51H29.85Z" />
+                        <Polygon points="16.77 0 0 46.08 14.75 46.08 16.86 40.92 21.28 30.11 23.7 24.19 16.77 0" />
+                    </Image>
+                </a>
+            </LogoContainer>
+        </CSSTransition>
     );
 };
 
@@ -46,7 +56,6 @@ const LogoContainer = styled.div`
     top: 3rem;
     left: 3rem;
     z-index: 1;
-    animation: ${animations.fadeIn} 2s linear ${constants.LOADING_TIME + 200 + "ms"} backwards;
 
     &:hover {
         ${Polygon} {
@@ -59,6 +68,12 @@ const LogoContainer = styled.div`
             &:last-child {
                 transform: translateX(-6px) translateY(5px);
             }
+        }
+    }
+
+    &.logo__container {
+        &-enter {
+            animation: ${animations.fadeIn} 2s linear;
         }
     }
 `;
