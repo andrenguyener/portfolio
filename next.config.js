@@ -1,4 +1,8 @@
-module.exports = {
-    // Target must be serverless
-    target: 'serverless'
-  };
+const withTM = require("next-transpile-modules")([
+  "gsap"
+]);
+
+module.exports = withTM({
+  // Target must be serverless
+  target: 'serverless'
+});
