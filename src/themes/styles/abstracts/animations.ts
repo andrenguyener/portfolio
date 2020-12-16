@@ -148,7 +148,6 @@ export const pulse = keyframes`
 
 export const hover = keyframes`
   0% {
-    
     transform: translateY(0);
   }
   50% {

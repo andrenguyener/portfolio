@@ -12,14 +12,19 @@
         "lint": "run-p -l lint:**"
     },
     "dependencies": {
+        "gsap": "^3.5.1",
+        "hover-effect": "^1.1.0",
         "next": "9.5.5",
+        "next-transpile-modules": "^4.1.0",
         "polished": "^4.0.3",
         "react": "16.14.0",
+        "react-animated-cursor": "^2.1.5",
         "react-dom": "16.14.0",
         "react-intersection-observer": "^8.29.1",
         "react-scroll": "^1.8.1",
         "react-transition-group": "^4.4.1",
-        "styled-components": "^5.2.0"
+        "styled-components": "^5.2.0",
+        "three": "^0.122.0"
     },
     "devDependencies": {
         "@types/node": "^14.11.10",

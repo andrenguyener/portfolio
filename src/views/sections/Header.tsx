@@ -1,10 +1,10 @@
+import { gsap } from "gsap";
 import React, { useContext } from "react";
-import { CSSTransition } from "react-transition-group";
 import styled, { css } from "styled-components";
 
 import { ScrollArrow } from "./../../components";
-import { animations, mixins } from "./../../themes/styles/abstracts";
-import { NavigationContext, useIsPageLoaded } from "./../../utils";
+import { NavigationContext, useIsTopInView } from "./../../utils";
+import { animationsRefs } from "./Header.animations";
 
 const objToday = new Date();
 
@@ -43,36 +43,96 @@ const curYear = objToday.getFullYear();
 
 const today = `${curMonth} ${dayOfMonth}, ${curYear}`;
 
+const MAX_WIDTH = "2000px";
+
+const {
+    backgroundFadeIn,
+    dateTimeSlideAway,
+    dateTimeSlideIn,
+    elRefs,
+    titleSlideAway,
+    titleSlideIn,
+} = animationsRefs();
+
+const timeline = gsap.timeline();
+
+// const parallaxIt = (e, target, movement) => {
+//     const container = document.getElementById("header_container");
+
+//     const relX = e.pageX - container?.offsetLeft;
+//     const relY = e.pageY - container?.offsetTop;
+
+//     gsap.timeline().to(target, 1, {
+//         x: ((relX - container?.clientWidth / 2) / container?.clientWidth) * movement,
+//         y: ((relY - container?.clientHeight / 2) / container?.clientHeight) * movement,
+//     });
+// };
+
 export const Header: React.FC = () => {
     const { isActive } = useContext(NavigationContext);
-    // Todo abstract to common util?
-    const [loaded, setLoaded] = React.useState(false);
+    const [isReady, setIsReady] = React.useState(false);
+    const isTop = useIsTopInView();
+
     React.useEffect(() => {
-        setLoaded(true);
+        if (isReady) {
+            if (isActive) {
+                timeline.progress(0).clear();
+                timeline.add(titleSlideAway()).add(dateTimeSlideAway()).play();
+            } else {
+                timeline.progress(1).clear();
+                timeline.add(titleSlideIn()).add(dateTimeSlideIn(true), "-=0.5").play();
+            }
+        }
+    }, [isActive]);
+
+    React.useEffect(() => {
+        const introTimeline = gsap.timeline({ delay: 1.3 });
+
+        introTimeline.set(
+            [
+                elRefs.title.main.current,
+                elRefs.title.sub.current,
+                elRefs.dateTime.current,
+                elRefs.horizontalBar.current,
+            ],
+            { visibility: "visible" }
+        );
+        introTimeline
+            .add(titleSlideIn(), "title")
+            .add(backgroundFadeIn(), "title-=1")
+            .add(dateTimeSlideIn())
+            .play();
+        setIsReady(true);
     }, []);
 
+    React.useEffect(() => {
+        document.querySelector("#header_container")?.addEventListener("mousemove", (_) => {
+            // parallaxIt(e, elRefs.background.current, -100);
+        });
+    }, [isTop]);
+
     return (
-        // Todo not working
-        <CSSTransition in={loaded} timeout={3500} classNames="header__container">
-            <Container key={"meow"} navActive={isActive}>
-                <Title navActive={isActive}>
-                    <Main>Andre Nguyen</Main>
-                    <Sub>
-                        <span>A user-centric software engineer</span>
-                        <span>that brings to life</span>
-                        <span>innovative ideas and solutions</span>
+        <Container id="header_container">
+            <ContainerBackground ref={elRefs.background} />
+            <WidthContainer>
+                <Title>
+                    <Main ref={elRefs.title.main}>Andre Nguyen</Main>
+                    <Sub ref={elRefs.title.sub}>
+                        <span>I'm a software engineer based in Seattle, WA</span>
+                        <span>specializing in bringing to life cool ideas, websites,</span>
+                        <span>applications, and everything in between</span>
                     </Sub>
                 </Title>
-                <DateContainer>
-                    <HorizontalBar>&nbsp;</HorizontalBar>
-                    <DateTime navActive={isActive}>{today}</DateTime>
-                </DateContainer>
-                <ScrollArrowContainer>
-                    <ScrollArrow />
-                </ScrollArrowContainer>
-                <Fade />
-            </Container>
-        </CSSTransition>
+            </WidthContainer>
+            <DateContainer>
+                <HorizontalBar ref={elRefs.horizontalBar}>&nbsp;</HorizontalBar>
+                <DateTime ref={elRefs.dateTime}>{today}</DateTime>
+            </DateContainer>
+            <ScrollArrowContainer>
+                <ScrollArrow />
+            </ScrollArrowContainer>
+            <Fade />
+        </Container>
     );
 };
 
@@ -82,7 +142,16 @@ const ScrollArrowContainer = styled.div`
     height: 25rem;
 
     right: calc(25% - 2px);
-    bottom: 25%;
+    bottom: 10%;
+    transform: translate(50%, 50%);
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-port",
+            css`
+                right: calc(10%);
+            `
+        )}
 `;
 
 const Fade = styled.div`
@@ -95,28 +164,17 @@ const Fade = styled.div`
     background-image: linear-gradient(to top, rgba(22, 22, 22, 1) 0%, rgba(22, 22, 22, 0) 100%);
 `;
 
-const DateTime = styled.p<{ navActive: boolean }>`
+const DateTime = styled.p`
+    ${({ theme }) => theme.mixins.initialHidden};
     letter-spacing: 0.5px;
-    color: ${(props) => props.theme.color.gray.base};
+    color: ${({ theme }) => theme.color.gray.base};
     font-size: 0.5em;
-
-    ${(props) => {
-        const s = [];
-        if (props.navActive) {
-            s.push(css`
-                animation: ${animations.slideOutUp} 0.5s forwards, ${animations.fadeOut} 0.5s linear;
-            `);
-        } else {
-            s.push(css`
-                animation: ${animations.slideInDown} 0.5s linear, ${animations.fadeIn} 0.5s linear;
-            `);
-        }
-        return s;
-    }}
+    font-family: ${({ theme }) => theme.font.mono};
 `;
 
 const HorizontalBar = styled.span`
-    ${mixins.dash}
+    ${({ theme }) => theme.mixins.dash};
+    ${({ theme }) => theme.mixins.initialHidden};
 
     position: relative;
     margin-right: 1rem;
@@ -131,12 +189,22 @@ const DateContainer = styled.div`
     left: calc(25vw - 0.5rem + 1px);
     overflow: hidden;
 
-    ${mixins.respond(
-        "phone",
-        css`
-            top: 75vh;
-        `
-    )}
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                top: 75vh;
+                transform: translateY(-50%);
+            `
+        )}
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-port",
+            css`
+                left: calc(10% - 0.5rem + 1px);
+            `
+        )}
 `;
 
 const Sub = styled.h2`
@@ -144,119 +212,128 @@ const Sub = styled.h2`
         display: block;
     }
 
-    font-size: 2rem;
-    letter-spacing: 0.6px;
-    overflow: hidden;
-    animation: ${animations.slideInUp} 1s forwards;
+    ${({ theme }) => theme.mixins.initialHidden};
 
-    ${mixins.respond(
-        "phone",
-        css`
-            font-size: 1.7rem;
-        `
-    )}
+    font-size: 1.5rem;
+    font-weight: normal;
+    overflow: hidden;
+    margin-right: 10%;
+    color: ${({ theme }) => theme.color.gray.base};
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-port",
+            css`
+                margin-right: 10%;
+            `
+        )}
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                font-size: 1.4rem;
+            `
+        )}
 `;
 
 const Main = styled.h1`
     font-size: 8rem;
-    font-family: TradeGothic-Bold, Roboto-Bold;
+
+    font-family: ${({ theme }) => theme.font.sansBold};
     letter-spacing: 3px;
     margin-bottom: 2rem;
     overflow: hidden;
-    animation: ${animations.slideInDown} 1s forwards;
 
-    ${mixins.respond(
-        "tab-port",
-        css`
-            font-size: 6rem;
-        `
-    )}
+    ${({ theme }) => theme.mixins.initialHidden};
 
-    ${mixins.respond(
-        "phone",
-        css`
-            font-size: 5rem;
-        `
-    )}
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-port",
+            css`
+                font-size: 6rem;
+                margin-right: 10%;
+            `
+        )}
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                font-size: 5rem;
+            `
+        )}
 `;
 
-const Title = styled.div<{ navActive: boolean }>`
+const Title = styled.div`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     left: 25%;
     overflow: hidden;
 
-    ${mixins.respond(
-        "phone",
-        css`
-            top: 30%;
-            left: 10%;
-        `
-    )}
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "small-screen",
+            css`
+                left: calc(15%);
+                width: 85%;
+            `
+        )}
 
-    ${(props) => {
-        const s = [];
-        if (props.navActive) {
-            s.push(css`
-                ${Main} {
-                    animation: ${animations.slideOutUp} 0.5s forwards;
-                }
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-land",
+            css`
+                left: 10%;
+                width: 90%;
+            `
+        )}
 
-                ${Sub} {
-                    animation: ${animations.slideOutDown} 0.5s forwards;
-                }
-            `);
-        }
-        return s;
-    }}
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                top: 30%;
+                left: 10%;
+            `
+        )}
 `;
 
-const Container = styled.header<{ navActive: boolean }>`
-    color: ${(props) => props.theme.color.white};
+const ContainerBackground = styled.div`
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background-image: url("/images/forest-s.jpg");
+    background-size: cover;
+    background-clip: content-box;
+    background-repeat: no-repeat;
+    z-index: -1;
 
+    ${({ theme }) => theme.mixins.initialHidden};
+
+    @media only screen and (max-width: 37.5em) {
+        background-image: url("/images/forest-xs.jpg");
+    }
+`;
+
+const WidthContainer = styled.div`
+    position: absolute;
+    max-width: ${MAX_WIDTH};
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+`;
+
+const Container = styled.header`
+    color: ${({ theme }) => theme.color.white};
     height: 100vh;
     position: relative;
-
-    &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.1;
-        background-image: url("/images/forest-s.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        z-index: -1;
-        animation: ${animations.fadeInHeader} 2s;
-
-        @media only screen and (max-width: 37.5em) {
-            background-image: url("/images/forest-xs.jpg");
-        }
-    }
-
-    &.header__container {
-        &-enter {
-            ${HorizontalBar} {
-                animation: ${animations.slideInLeft} 0.5s linear 0.75s backwards,
-                    ${animations.fadeIn} 0.5s linear 0.75s backwards;
-            }
-
-            ${DateTime} {
-                animation-fill-mode: backwards;
-                animation-delay: 2s;
-            }
-        }
-
-        &-enter-active {
-        }
-
-        &-enter-done {
-        }
-    }
 `;
 
 export default Header;

@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components";
 
-import { animations, mixins } from "./../themes/styles/abstracts";
-
 type Props = {
     type: "vertical" | "horizontal" | "both";
 };
@@ -9,130 +7,109 @@ type Props = {
 const Bars: React.FC<Props> = ({ type }) => {
     return (
         <BarsContainer>
-            <Bar type={type !== "both" ? type : undefined}>&nbsp;</Bar>
-            {type === "both" && <BarVertical isActive={type === "both"}>&nbsp;</BarVertical>}
-            {type === "both" && <BarHorizontal isActive={type === "both"}>&nbsp;</BarHorizontal>}
+            {type === "vertical" && (
+                <>
+                    <BarVerticalBefore id="bars_vertical-before">&nbsp;</BarVerticalBefore>
+                    <BarVertical id="bars_vertical">&nbsp;</BarVertical>
+                    <BarVerticalAfter id="bars_vertical-after">&nbsp;</BarVerticalAfter>
+                </>
+            )}
+            {type === "horizontal" && (
+                <>
+                    <BarHorizontalBefore id="bars_horizontal-before">&nbsp;</BarHorizontalBefore>
+                    <BarHorizontal id="bars_horizontal">&nbsp;</BarHorizontal>
+                    <BarHorizontalAfter id="bars_horizontal-after">&nbsp;</BarHorizontalAfter>
+                </>
+            )}
+            {type === "both" && (
+                <>
+                    <BarVerticalBefore id="bars_vertical-before">&nbsp;</BarVerticalBefore>
+                    <BarVertical id="bars_vertical">&nbsp;</BarVertical>
+                    <BarVerticalAfter id="bars_vertical-after">&nbsp;</BarVerticalAfter>
+                    <BarHorizontalBefore id="bars_horizontal-before">&nbsp;</BarHorizontalBefore>
+                    <BarHorizontal id="bars_horizontal">&nbsp;</BarHorizontal>
+                    <BarHorizontalAfter id="bars_horizontal-after">&nbsp;</BarHorizontalAfter>
+                </>
+            )}
         </BarsContainer>
     );
 };
 
 const BarsContainer = styled.div`
     position: relative;
+    max-width: 1000px;
 `;
 
 const verticalCss = css`
     position: fixed;
-    left: calc(50vw);
-
-    &,
-    &::before,
-    &::after {
-        width: 1px;
-        height: 100%;
-        background-color: ${(props) => props.theme.color.gray.light_1};
-        top: 0;
-        z-index: -1;
-        transition: all 0.7s ease-in-out;
-    }
-
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-    }
-
-    &::before {
-        left: calc(25vw);
-        transition-delay: 0.3s;
-    }
-
-    &::after {
-        left: calc(-25vw);
-        transition-delay: 0.4s;
-    }
-
-    ${mixins.respond(
-        "tab-port",
-        css`
-            & {
-                width: 0px;
-            }
-        `
-    )}
+    width: 1px;
+    height: 100%;
+    /* background-color: ${(props) => props.theme.color.primary.base}; */
+    background-color: ${(props) => props.theme.color.gray.light_1};
+    top: 0;
+    z-index: -1;
 `;
 
 const horizontalCss = css`
     position: fixed;
+
+    width: 100%;
+    height: 1px;
+    /* background-color: ${(props) => props.theme.color.primary.base}; */
+    background-color: ${(props) => props.theme.color.gray.light_1};
+    left: 0;
+    z-index: -1;
+    opacity: 1;
+`;
+
+export const BarVerticalBefore = styled.span`
+    ${verticalCss}
+    left: calc(25vw);
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-port",
+            css`
+                left: calc(10vw);
+            `
+        )}
+`;
+
+export const BarVerticalAfter = styled.span`
+    ${verticalCss}
+    left: calc(75vw);
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-port",
+            css`
+                left: calc(90vw);
+            `
+        )}
+`;
+
+export const BarVertical = styled.span`
+    ${verticalCss}
+
+    left: calc(50vw);
+`;
+
+export const BarHorizontalBefore = styled.span`
+    ${horizontalCss}
+
+    top: calc(25vh);
+`;
+
+export const BarHorizontalAfter = styled.span`
+    ${horizontalCss}
+
+    top: calc(75vh);
+`;
+
+export const BarHorizontal = styled.span`
+    ${horizontalCss}
+
     top: calc(50vh);
-
-    &,
-    &::before,
-    &::after {
-        transition: all 0.7s ease-in-out;
-        width: 100%;
-        height: 1px;
-        background-color: ${(props) => props.theme.color.gray.light_1};
-        left: 0;
-        z-index: -1;
-        opacity: 1;
-    }
-
-    &::before {
-        transition-delay: 0.3s;
-    }
-
-    &::after {
-        transition-delay: 0.5s;
-    }
-
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-    }
-
-    &::before {
-        top: calc(25vh);
-    }
-
-    &::after {
-        top: calc(-25vh);
-    }
-`;
-
-export const Bar = styled.span<{ type?: "vertical" | "horizontal" }>`
-    ${(props) => {
-        const s = [];
-        if (props.type === "vertical") {
-            s.push(verticalCss);
-        }
-        if (props.type === "horizontal") {
-            s.push(horizontalCss);
-        }
-        return s;
-    }}
-
-    animation: ${animations.slideInDown} 1s linear;
-`;
-
-export const BarVertical = styled.span<{ isActive: boolean }>`
-    ${(props) => {
-        const s = [];
-        if (props.isActive) {
-            s.push(verticalCss);
-        }
-        return s;
-    }}
-`;
-
-export const BarHorizontal = styled.span<{ isActive: boolean }>`
-    ${(props) => {
-        const s = [];
-        if (props.isActive) {
-            s.push(horizontalCss);
-        }
-        return s;
-    }}
 `;
 
 export const ModalBarsEnter = css`

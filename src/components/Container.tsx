@@ -2,13 +2,14 @@ import styled, { css } from "styled-components";
 
 import { mixins } from "./../themes/styles/abstracts";
 
-export const Container: React.FC = (props) => {
-    return <StyledContainer>{props.children}</StyledContainer>;
+export const Container: React.FC<{ noWrap?: boolean }> = (props) => {
+    return <StyledContainer noWrap={!!props.noWrap}>{props.children}</StyledContainer>;
 };
 
-const StyledContainer = styled.div`
+// TODO make other options for different widths
+const StyledContainer = styled.div<{ noWrap: boolean }>`
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: ${(props) => (props.noWrap ? "row nowrap" : "row wrap")};
 
     & > * {
         width: calc(50% - 1rem);
@@ -22,7 +23,7 @@ const StyledContainer = styled.div`
         }
 
         ${mixins.respond(
-            "phone",
+            "tab-port",
             css`
                 width: calc(100%);
 

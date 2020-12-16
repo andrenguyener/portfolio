@@ -9,13 +9,15 @@ export const Footer = () => {
 };
 
 const FooterText = styled.h5`
-    color: ${(props) => props.theme.color.gray.base};
-    font-size: 1.3rem;
+    color: ${({ theme }) => theme.color.gray.base};
+    font-size: 1.1rem;
+    font-family: ${({ theme }) => theme.font.mono};
 `;
 
 const FooterContainer = styled.footer`
     text-align: center;
-    margin-bottom: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 `;
 
 export default Footer;

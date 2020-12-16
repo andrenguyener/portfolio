@@ -1,24 +1,56 @@
+import React from "react";
 import styled, { css } from "styled-components";
 
-import { Container, Section, SectionHeading } from "./../../components";
-import { mixins } from "./../../themes/styles/abstracts";
+import { Container, NumberedHeading, Section, SectionHeading } from "./../../components";
+import { tweens } from "./../../themes/styles/abstracts";
+import { Geometric } from "./../../vendors/geometric";
+import hoverEffect from "./../../vendors/hover-effect";
 
 export const About = () => {
+    const elRefs = {
+        image: React.createRef<HTMLDivElement>(),
+        heading: React.createRef<HTMLHeadingElement>(),
+        description: React.createRef<HTMLDivElement>(),
+        geometric: React.createRef<HTMLDivElement>(),
+    };
+
+    React.useEffect(() => {
+        tweens.scrollTriggerHeadingTimeline(elRefs.heading.current!);
+        const batch = [elRefs.image.current, elRefs.description.current, elRefs.geometric.current];
+        tweens.scrollTriggerBatch(batch);
+
+        // tslint:disable-next-line:no-unused-expression
+        new hoverEffect({
+            parent: elRefs.image.current,
+            intensity: 0.3,
+            image1: "/images/headshot_1.jpg",
+            image2: "/images/headshot_2.jpg",
+            displacementImage: "/images/texture.png",
+            imagesRatio: 9 / 16,
+        });
+    }, []);
+
     return (
         <AboutContainer>
             <Section>
-                <SectionHeading>About</SectionHeading>
+                <SectionHeadingWrapper>
+                    <SectionHeading ref={elRefs.heading}>
+                        <NumberedHeading number={2} />
+                        About
+                    </SectionHeading>
+                </SectionHeadingWrapper>
                 <Container>
-                    <Profile>
-                        <img src="/images/headshot.jpg" alt="profile image" />
-                    </Profile>
+                    <Profile ref={elRefs.image} />
                     <Description>
-                        <p>
+                        <p ref={elRefs.description}>
                             I am student studying Informatics at the University of Washington. I
                             spend my time learning new web technologies and building cool
                             applications. Aside from that, you can find me spinning on my head or
                             watching anime.
                         </p>
+                        <CSSImageContainer ref={elRefs.geometric}>
+                            <Geometric />
+                        </CSSImageContainer>
                     </Description>
                 </Container>
             </Section>
@@ -26,70 +58,59 @@ export const About = () => {
     );
 };
 
+const CSSImageContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 5rem;
+
+    ${({ theme }) => theme.mixins.initialHidden};
+`;
+
 const Description = styled.div`
     color: ${(props) => props.theme.color.gray.base};
 
-    ${mixins.respond(
-        "phone",
-        css`
-            margin: 0 auto;
-            width: 80%;
-        `
-    )}
+    p {
+        ${({ theme }) => theme.mixins.initialHidden};
+    }
 `;
 
 const Profile = styled.div`
-    display: flex;
-    justify-content: center;
+    position: relative;
 
-    img {
-        filter: grayscale(100%);
-        height: 18rem;
-        overflow: hidden;
-        object-fit: cover;
-        object-position: 0 -2rem;
-        width: 80%;
-        box-shadow: ${(props) => `0.2rem 0.2em 0.8rem ${props.theme.color.black}`};
-        transition: all 0.5s;
+    ${({ theme }) => theme.mixins.hollowBorder};
+    ${({ theme }) => theme.mixins.initialHidden};
 
-        ${mixins.respond(
-            "big-desktop",
-            css`
-                height: 20rem;
-                object-position: 0 -3rem;
-            `
-        )}
+    &:after {
+        content: "";
+        display: block;
+        padding-bottom: 56%;
 
-        ${mixins.respond(
-            "tab-land",
-            css`
-                height: 16rem;
-                object-position: 0 -1rem;
-            `
-        )}
+        ${({ theme }) =>
+            theme.mixins.respond(
+                "phone",
+                css`
+                    padding-bottom: 46%;
+                `
+            )};
+    }
 
-    ${mixins.respond(
-            "tab-port",
-            css`
-                height: 20rem;
-                object-position: 0 0;
-            `
-        )}
-
-    ${mixins.respond(
-            "phone",
-            css`
-                height: 18rem;
-                object-position: 0 -2rem;
-                margin-bottom: 1rem;
-            `
-        )}
+    canvas {
+        position: absolute;
+        border-radius: 2px;
+        transition: ${({ theme }) => theme.transition};
+        filter: grayscale(0.4);
+    }
 
     &:hover {
-            filter: grayscale(0);
-            transform: translateY(-3px);
-            box-shadow: ${(props) => `0.4rem 0.4rem 1rem ${props.theme.color.black}`};
-        }
+        ${({ theme }) => theme.mixins.hollowBorderHover};
+    }
+`;
+
+const SectionHeadingWrapper = styled.div`
+    overflow: hidden;
+    > * {
+        ${({ theme }) => theme.mixins.initialHidden};
     }
 `;
 

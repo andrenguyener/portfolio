@@ -1,14 +1,15 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { animations, mixins } from "./../themes/styles/abstracts";
 
 export const Scroll: React.FC = () => {
     const scrollRef = React.useRef<HTMLSpanElement>(null);
     const [progress, setProgress] = React.useState(0);
+
     React.useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    });
+    }, []);
+
     const handleScroll = () => {
         if (scrollRef?.current) {
             const percent =
@@ -20,6 +21,7 @@ export const Scroll: React.FC = () => {
             setProgress(percent);
         }
     };
+
     return (
         <ScrollContainer>
             <ScrollBar ref={scrollRef} />
@@ -30,12 +32,12 @@ export const Scroll: React.FC = () => {
 
 const Counter = styled.span<{ progress: number }>`
     position: absolute;
-    font-family: Helvetica;
-    font-size: 0.6em;
+    font-family: ${({ theme }) => theme.font.mono};
+    font-size: 0.55em;
     font-weight: lighter;
-    color: ${(props) => (props.progress > 99 ? "#fff" : "#333")};
+    color: ${({ progress }) => (progress > 99 ? "#fff" : "#333")};
     margin-top: 0.5rem;
-    margin-left: 2rem;
+    right: 0;
 `;
 
 const ScrollContainer = styled.div`
@@ -47,20 +49,21 @@ const ScrollContainer = styled.div`
     width: 10rem;
     background: rgba(255, 255, 255, 0.2);
 
-    ${mixins.respond(
-        "tab-port",
-        css`
-            display: none;
-        `
-    )}
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-port",
+            css`
+                display: none;
+            `
+        )};
 
-    animation: ${animations.fadeIn} 1s linear 1s backwards;
+    animation: ${({ theme }) => theme.animations.fadeIn} 1s linear 1s backwards;
 `;
 
 const ScrollBar = styled.span`
     position: absolute;
     content: "";
-    background-color: ${(props) => props.theme.color.white};
+    background-color: ${({ theme }) => theme.color.white};
     height: 100%;
     transition: all 0.5s ease-in-out;
 `;

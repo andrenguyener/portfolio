@@ -1,4 +1,10 @@
+import { animations, mixins } from "./styles/abstracts";
+
 export type CSSColor = string;
+
+export type FontFamily = string;
+
+export type FontSize = string;
 
 export interface PrimaryColors {
     lighter: CSSColor;
@@ -19,6 +25,22 @@ export interface Grayscale {
 }
 
 export interface Theme {
+    font: {
+        sans: FontFamily;
+        sansBold: FontFamily;
+        mono: FontFamily;
+    };
+    fontSize: {
+        xxs: FontSize;
+        xs: FontSize;
+        sm: FontSize;
+        md: FontSize;
+        lg: FontSize;
+        xl: FontSize;
+        xxl: FontSize;
+        heading: FontSize;
+    };
+    borderRadius: string;
     color: {
         ink: CSSColor;
         fill: CSSColor;
@@ -28,7 +50,10 @@ export interface Theme {
         primary: PrimaryColors;
         secondary: SecondaryColors;
     };
+    transition: string;
     modal: {
         color: CSSColor;
     };
+    mixins: typeof mixins;
+    animations: typeof animations;
 }

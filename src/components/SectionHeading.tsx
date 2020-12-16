@@ -1,22 +1,26 @@
+import React, { HTMLProps } from "react";
 import styled, { css } from "styled-components";
 
-import { mixins } from "./../themes/styles/abstracts";
-
-export const SectionHeading: React.FC = (props) => {
-    return <SectionHeadingContainer>{props.children}</SectionHeadingContainer>;
-};
+export const SectionHeading = React.forwardRef<HTMLHeadingElement, HTMLProps<HTMLHeadingElement>>(
+    (props, ref) => {
+        const { as, ...restProps } = props;
+        return <SectionHeadingContainer {...restProps} ref={ref} />;
+    }
+);
 
 const SectionHeadingContainer = styled.h3`
     font-size: 1.3rem;
     margin-bottom: 3rem;
     letter-spacing: 0.5px;
+    overflow: hidden;
 
-    ${mixins.respond(
-        "tab-port",
-        css`
-            margin-bottom: 5rem;
-        `
-    )}
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "tab-port",
+            css`
+                margin-bottom: 5rem;
+            `
+        )}
 `;
 
 export default SectionHeading;
