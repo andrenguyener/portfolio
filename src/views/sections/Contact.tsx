@@ -11,13 +11,46 @@ const elRefs = {
     form: React.createRef<HTMLFormElement>(),
 };
 
+const encode = (data: object = {}) => {
+    return Object.keys(data)
+        .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+};
+
 export const Contact = () => {
+    const [state, setState] = React.useState({});
+    const [displaySuccess, setDisplaySuccess] = React.useState(false);
+
     React.useEffect(() => {
         tweens.scrollTriggerHeadingTimeline(elRefs.heading.current!);
         const batch = [elRefs.description.current, elRefs.form.current];
 
         tweens.scrollTriggerBatch(batch);
     }, []);
+
+    const formName = "contact";
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setState({ ...state, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({
+                "form-name": formName,
+                ...state,
+            }),
+        })
+            .then(() => {
+                setDisplaySuccess(true);
+            })
+            .catch((error) => {
+                alert(error);
+            });
+    };
 
     return (
         <ContactContainer>
@@ -45,13 +78,30 @@ export const Contact = () => {
                             <span>{constants.links.email}</span>
                         </Links>
                     </Description>
-                    <Form ref={elRefs.form}>
+                    <Form
+                        ref={elRefs.form}
+                        data-netlify={true}
+                        name={formName}
+                        method="post"
+                        data-netlify-honeypot="bot-field"
+                        onSubmit={handleSubmit}
+                    >
                         <FormGroup>
+                            {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+                            <input type="hidden" name="form-name" value="contact" />
+                            <p hidden={true}>
+                                <label>
+                                    Don’t fill this out:
+                                    <input name="bot-field" onChange={handleChange} />
+                                </label>
+                            </p>
                             <FormInput
                                 type="text"
                                 required={true}
                                 placeholder="Full name"
                                 id="name"
+                                name="name"
+                                onChange={handleChange}
                             />
                             <FormLabel htmlFor="name">Full name</FormLabel>
                         </FormGroup>
@@ -61,6 +111,8 @@ export const Contact = () => {
                                 required={true}
                                 placeholder="Email address"
                                 id="email"
+                                name="email"
+                                onChange={handleChange}
                             />
                             <FormLabel htmlFor="email">Email address</FormLabel>
                         </FormGroup>
@@ -70,12 +122,20 @@ export const Contact = () => {
                                 minLength={1}
                                 required={true}
                                 placeholder="Message"
+                                name="message"
+                                onChange={handleChange}
                             />
                             <FormLabel htmlFor="message">Message</FormLabel>
                         </FormGroup>
                         <FormGroup>
-                            <FormButton>Send message</FormButton>
+                            <FormButton type="submit">Send message</FormButton>
                         </FormGroup>
+                        {displaySuccess && (
+                            <>
+                                <p>Thanks!</p>
+                                <p>I'll do my best to get back to you</p>
+                            </>
+                        )}
                     </Form>
                 </Container>
             </Section>
