@@ -1,1 +1,4 @@
-export const target = 'serverless';
+module.exports = {
+    // Target must be serverless
+    target: 'serverless'
+  };
