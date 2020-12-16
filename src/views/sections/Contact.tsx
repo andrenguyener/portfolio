@@ -11,7 +11,7 @@ const elRefs = {
     form: React.createRef<HTMLFormElement>(),
 };
 
-const encode = (data: object = {}) => {
+const encode = (data: { [key: string]: string } = {}) => {
     return Object.keys(data)
         .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
         .join("&");
