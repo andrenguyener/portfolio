@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useEventListener } from "./hooks/useEventListener";
-import IsDevice from "./helpers/IsDevice.js";
+import IsDevice from "./helpers/isDevice.js";
 
 /**
  * Cursor Core
