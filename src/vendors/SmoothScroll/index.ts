@@ -31,7 +31,8 @@ export const SmoothScroll = (_target: Element | Document, speed: number, smooth:
 
         target.scrollTop += delta;
 
-        if (Math.abs(delta) > 0.5) {
+        // Adjust this to liking
+        if (Math.abs(delta) > 1) {
             requestFrame(update);
         } else {
             moving = false;

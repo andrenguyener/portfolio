@@ -9,26 +9,24 @@ import { About, Contact, Footer, Header, Jobs, OtherProjects, Projects } from ".
 export const Home = () => {
     return (
         <HomeContainer>
-            <div>
-                <Header />
-                <Dash location="right" />
-                <Element name={navLinks.projects}>
-                    <Projects />
-                </Element>
-                <Dash location="center" />
-                <OtherProjects />
-                <Dash location="left" />
-                <Element name={navLinks.about}>
-                    <About />
-                </Element>
-                <Jobs />
-                <Dash location="center" />
-                <Element name={navLinks.contact}>
-                    <Contact />
-                </Element>
-                <Dash location="farRight" />
-                <Footer />
-            </div>
+            <Header />
+            <Dash location="right" />
+            <Element name={navLinks.projects}>
+                <Projects />
+            </Element>
+            <Dash location="center" />
+            <OtherProjects />
+            <Dash location="left" />
+            <Element name={navLinks.about}>
+                <About />
+            </Element>
+            <Jobs />
+            <Dash location="center" />
+            <Element name={navLinks.contact}>
+                <Contact />
+            </Element>
+            <Dash location="farRight" />
+            <Footer />
         </HomeContainer>
     );
 };

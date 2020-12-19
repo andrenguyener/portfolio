@@ -42,6 +42,7 @@ const Counter = styled.span<{ progress: number }>`
 
 const ScrollContainer = styled.div`
     position: fixed;
+    z-index: 1;
     max-width: 5rem;
     top: 50%;
     right: 3rem;

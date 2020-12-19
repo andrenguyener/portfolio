@@ -4,10 +4,10 @@ import { rgba as _rgba } from "polished";
 import React from "react";
 import styled, { css } from "styled-components";
 
-import { Bars, Logo, Scroll } from "./../../components";
+import { Logo, Scroll as ScrollProgress } from "./../../components";
 import Navigation from "./Navigation";
 
-// import SmoothScroll from "./../../vendors/SmoothScroll";
+import SmoothScroll from "./../../vendors/SmoothScroll";
 
 const AnimatedCursor = dynamic(() => import("./../../vendors/AnimatedCursor"), {
     ssr: false,
@@ -44,13 +44,14 @@ export const Page: React.FC = ({ children }) => {
                 .play();
         }
         setLoaded(true);
+        SmoothScroll(document, 50, 10);
     }, []);
 
     return (
-        <PageContainer>
+        <PageContainer className="wow">
             <Logo />
             <Navigation />
-            <Scroll />
+            <ScrollProgress />
             <AnimatedCursor
                 innerSize={8}
                 outerSize={8}
@@ -67,12 +68,33 @@ export const Page: React.FC = ({ children }) => {
                 <Block id="block-3" />
                 <Block id="block-4" />
             </Blocks>
-            <Bars type="vertical" />
             <FadeTop />
             <FadeBottom />
+            <Scroll>
+                <div className="foward">Scroll</div>
+                <div className="backward">Back</div>
+            </Scroll>
         </PageContainer>
     );
 };
+
+const Scroll = styled.div`
+    position: fixed;
+    z-index: 10;
+    left: 50%;
+    margin-left: -50px;
+    margin-bottom: 50px;
+    /* height: 100px; */
+    width: 100px;
+    cursor: pointer;
+    color: rgba(237, 237, 237, 1);
+    bottom: 0;
+    text-align: center;
+    font-family: TradeGothic-Bold;
+    font-size: 20px;
+    line-height: 1.7em;
+    letter-spacing: 0.07em;
+`;
 
 const Block = styled.div`
     position: absolute;

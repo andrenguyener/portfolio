@@ -52,6 +52,10 @@ export const Navi: React.FC = () => {
         setIsReady(true);
     }, []);
 
+    const onSetActive = (link: keyof typeof constants.navLinks) => (to: string) => {
+        console.warn(link, to);
+    };
+
     return (
         <>
             <Navigation className="navigation__container">
@@ -68,6 +72,7 @@ export const Navi: React.FC = () => {
                                     <NavigationLink
                                         to={constants.navLinks.projects}
                                         onClick={onLinkClick}
+                                        onSetActive={onSetActive(constants.navLinks.projects)}
                                     >
                                         Projects
                                     </NavigationLink>

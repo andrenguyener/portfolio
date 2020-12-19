@@ -2,8 +2,9 @@ import { gsap } from "gsap";
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 
-import { ScrollArrow } from "./../../components";
+import { ScrollArrow, Bars } from "./../../components";
 import { NavigationContext, useIsTopInView } from "./../../utils";
+import { Destructure } from "./../../vendors/destructuration";
 import { animationsRefs } from "./Header.animations";
 
 const objToday = new Date();
@@ -114,6 +115,10 @@ export const Header: React.FC = () => {
     return (
         <Container id="header_container">
             <ContainerBackground ref={elRefs.background} />
+            <Bars type="vertical" />
+            <Fade />
+            {/* <Helix /> */}
+            <Destructure />
             <WidthContainer>
                 <Title>
                     <Main ref={elRefs.title.main}>Andre Nguyen</Main>
@@ -128,10 +133,9 @@ export const Header: React.FC = () => {
                 <HorizontalBar ref={elRefs.horizontalBar}>&nbsp;</HorizontalBar>
                 <DateTime ref={elRefs.dateTime}>{today}</DateTime>
             </DateContainer>
-            <ScrollArrowContainer>
+            {/* <ScrollArrowContainer>
                 <ScrollArrow />
-            </ScrollArrowContainer>
-            <Fade />
+            </ScrollArrowContainer> */}
         </Container>
     );
 };
@@ -160,7 +164,7 @@ const Fade = styled.div`
     width: 100%;
     bottom: 0;
     left: 0;
-    z-index: -1;
+    z-index: -2;
     background-image: linear-gradient(to top, rgba(22, 22, 22, 1) 0%, rgba(22, 22, 22, 0) 100%);
 `;
 
@@ -311,7 +315,7 @@ const ContainerBackground = styled.div`
     background-size: cover;
     background-clip: content-box;
     background-repeat: no-repeat;
-    z-index: -1;
+    z-index: -2;
 
     ${({ theme }) => theme.mixins.initialHidden};
 
