@@ -180,7 +180,7 @@ const Button = styled.button<{ isActive: boolean }>`
         if (!props.isActive) {
             s.push(css`
                 &:hover ${ButtonIcon} {
-                    animation: ${props.theme.animations.growIn} 0.8s;
+                    animation: ${props.theme.animations.growIn} 0.6s;
 
                     &:nth-child(1) {
                         animation-delay: 0s;

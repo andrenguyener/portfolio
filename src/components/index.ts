@@ -5,8 +5,9 @@ import Dash from "./Dash";
 import Icon from "./icons/icon";
 import Logo from "./Logo";
 import NumberedHeading from "./NumberedHeading";
-import Scroll from "./Scroll";
 import ScrollArrow from "./ScrollArrow";
+import ScrollLink from "./ScrollLink";
+import ScrollProgress from "./ScrollProgress";
 import Section from "./Section";
 import SectionHeading from "./SectionHeading";
 
@@ -19,8 +20,9 @@ export {
     Dash,
     Logo,
     NumberedHeading,
-    Scroll,
     ScrollArrow,
+    ScrollLink,
+    ScrollProgress,
     Section,
     SectionHeading,
     Icon,
@@ -35,8 +37,9 @@ export default {
     Dash,
     Logo,
     NumberedHeading,
-    Scroll,
     ScrollArrow,
+    ScrollLink,
+    ScrollProgress,
     Section,
     SectionHeading,
     Icon,

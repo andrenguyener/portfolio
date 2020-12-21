@@ -1,5 +1,5 @@
 import * as constants from "./constants";
-import { useIsTopInView } from "./hooks";
+import { useIsBottomInView, useIsTopInView } from "./hooks";
 import {
     NavigationContext,
     NavigationContextConsumer,
@@ -9,6 +9,7 @@ import {
 export {
     constants,
     useIsTopInView,
+    useIsBottomInView,
     NavigationContext,
     NavigationContextConsumer,
     NavigationContextProvider,
@@ -17,6 +18,7 @@ export {
 export default {
     constants,
     useIsTopInView,
+    useIsBottomInView,
     NavigationContext,
     NavigationContextConsumer,
     NavigationContextProvider,

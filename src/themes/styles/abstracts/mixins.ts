@@ -10,6 +10,19 @@ export const fullDisplay = css`
     transition: all 0.5s;
 `;
 
+export const absoluteCenter = css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+`;
+
 export const linkHeading = css`
     text-decoration: none;
     color: ${(props) => props.theme.color.white};
@@ -194,6 +207,7 @@ export const respond = (
 export default {
     dash,
     fullDisplay,
+    absoluteCenter,
     linkHeading,
     flexCenter,
     flexBetween,

@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 
-import { ScrollArrow, Bars } from "./../../components";
+import { Bars } from "./../../components";
 import { NavigationContext, useIsTopInView } from "./../../utils";
 import { Destructure } from "./../../vendors/destructuration";
 import { animationsRefs } from "./Header.animations";
@@ -140,23 +140,23 @@ export const Header: React.FC = () => {
     );
 };
 
-const ScrollArrowContainer = styled.div`
-    position: absolute;
-    width: 25rem;
-    height: 25rem;
+// const ScrollArrowContainer = styled.div`
+//     position: absolute;
+//     width: 25rem;
+//     height: 25rem;
 
-    right: calc(25% - 2px);
-    bottom: 10%;
-    transform: translate(50%, 50%);
+//     right: calc(25% - 2px);
+//     bottom: 10%;
+//     transform: translate(50%, 50%);
 
-    ${({ theme }) =>
-        theme.mixins.respond(
-            "tab-port",
-            css`
-                right: calc(10%);
-            `
-        )}
-`;
+//     ${({ theme }) =>
+//         theme.mixins.respond(
+//             "tab-port",
+//             css`
+//                 right: calc(10%);
+//             `
+//         )}
+// `;
 
 const Fade = styled.div`
     position: absolute;
