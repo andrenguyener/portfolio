@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import React from "react";
+import { animateScroll } from "react-scroll";
 import styled from "styled-components";
 
 import { tweens } from "./../themes/styles/abstracts";
@@ -90,8 +91,22 @@ export const ScrollLink: React.FC = () => {
                 );
         }
     }, [isBottom]);
+
+    const onClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        event.preventDefault();
+        if (isBottom) {
+            animateScroll.scrollToTop();
+        } else {
+            const percent = 15;
+            const percentagePx =
+                (document.documentElement.scrollHeight - document.documentElement.clientHeight) *
+                (percent / 100);
+            animateScroll.scrollMore(percentagePx);
+        }
+    };
+
     return (
-        <Scroll>
+        <Scroll onClick={onClick}>
             <div id="forward">Scroll</div>
             <div id="backward">Back</div>
             <ScrollLine id="scroll_underline" />

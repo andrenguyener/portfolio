@@ -7,7 +7,7 @@ import styled, { css } from "styled-components";
 import { Logo, ScrollLink, ScrollProgress } from "./../../components";
 import Navigation from "./Navigation";
 
-import SmoothScroll from "./../../vendors/SmoothScroll";
+// import SmoothScroll from "./../../vendors/SmoothScroll";
 
 const AnimatedCursor = dynamic(() => import("./../../vendors/AnimatedCursor"), {
     ssr: false,
@@ -45,7 +45,7 @@ export const Page: React.FC = ({ children }) => {
                 .play();
         }
         setIsReady(true);
-        SmoothScroll(document, 50, 10);
+        // SmoothScroll(document, 50, 10);
     }, []);
 
     return (

@@ -42,13 +42,15 @@ export class Destructure extends React.Component<Props> {
     componentDidMount = () => {
         this.ctx = this.c?.getContext("2d");
         window.addEventListener("resize", this.resize);
-        // this.c?.addEventListener("mousemove", (e) => {
-        //     this.angleYOffsetGoal = Math.PI * 2 * (e.clientX / this.c?.width - 0.5);
-        //     this.angleXOffsetGoal = Math.PI * (0.5 - e.clientY / this.c?.height);
-        // });
-        // this.c?.addEventListener("mouseout", (e) => {
-        //     this.angleYOffsetGoal = this.angleXOffsetGoal = 0;
-        // });
+        this.c?.addEventListener("mousemove", (e) => {
+            if (this.c?.width && this.c.height) {
+                this.angleYOffsetGoal = Math.PI * 2 * (e.clientX / this.c.width - 0.5);
+                this.angleXOffsetGoal = Math.PI * (0.5 - e.clientY / this.c.height);
+            }
+        });
+        this.c?.addEventListener("mouseout", () => {
+            this.angleYOffsetGoal = this.angleXOffsetGoal = 0;
+        });
         this.resize();
         this.populatePointsArray();
         this.populateLinesArray();
@@ -202,6 +204,7 @@ export class Destructure extends React.Component<Props> {
         return (
             <canvas
                 ref={(ref) => (this.c = ref)}
+                id="destructure"
                 style={{
                     position: "absolute",
                     top: 0,

@@ -6,6 +6,7 @@ import { Bars } from "./../../components";
 import { NavigationContext, useIsTopInView } from "./../../utils";
 import { Destructure } from "./../../vendors/destructuration";
 import { animationsRefs } from "./Header.animations";
+import { tweens } from "./../../themes/styles/abstracts";
 
 const objToday = new Date();
 
@@ -99,6 +100,7 @@ export const Header: React.FC = () => {
             { visibility: "visible" }
         );
         introTimeline
+            .add(tweens.fadeIn("#destructure", {}, { opacity: 1, duration: 1 }))
             .add(titleSlideIn(), "title")
             .add(backgroundFadeIn(), "title-=1")
             .add(dateTimeSlideIn())
