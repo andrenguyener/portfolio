@@ -3,10 +3,10 @@ import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 
 import { Bars } from "./../../components";
+import { tweens } from "./../../themes/styles/abstracts";
 import { NavigationContext, useIsTopInView } from "./../../utils";
 import { Destructure } from "./../../vendors/destructuration";
 import { animationsRefs } from "./Header.animations";
-import { tweens } from "./../../themes/styles/abstracts";
 
 const objToday = new Date();
 
@@ -100,7 +100,7 @@ export const Header: React.FC = () => {
             { visibility: "visible" }
         );
         introTimeline
-            .add(tweens.fadeIn("#destructure", {}, { opacity: 1, duration: 1 }))
+            .add(tweens.fadeIn("#destructure", {}, { duration: 1 }), "title")
             .add(titleSlideIn(), "title")
             .add(backgroundFadeIn(), "title-=1")
             .add(dateTimeSlideIn())
@@ -312,7 +312,7 @@ const ContainerBackground = styled.div`
     top: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.2;
+    opacity: 0.1;
     background-image: url("/images/forest-s.jpg");
     background-size: cover;
     background-clip: content-box;

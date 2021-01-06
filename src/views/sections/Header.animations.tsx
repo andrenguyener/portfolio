@@ -61,7 +61,7 @@ export const animationsRefs = () => {
         const timeline = gsap.timeline();
         timeline.set(background.current, { visibility: "visible" });
         return timeline.add(
-            tweens.fadeIn(background.current, {}, { opacity: 0.1, duration: 2 }),
+            tweens.fadeIn(background.current, {}, { opacity: 0.1, duration: 1 }),
             label
         );
     };
