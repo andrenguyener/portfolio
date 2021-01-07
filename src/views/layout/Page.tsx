@@ -32,7 +32,7 @@ export const Page: React.FC = ({ children }) => {
                     { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1 },
                     "-=1.1"
                 )
-                .to("#blocks", { zIndex: -4, duration: 0 })
+                .to("#blocks", { zIndex: -5, opacity: 0, duration: 0 })
                 .play();
         } else {
             timeline
@@ -41,7 +41,7 @@ export const Page: React.FC = ({ children }) => {
                     { width: "calc(25% - 1px)" },
                     { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1 }
                 )
-                .to("#blocks", { zIndex: -4, opacity: 0, duration: 0 })
+                .to("#blocks", { zIndex: -5, opacity: 0, duration: 0 })
                 .play();
         }
         setIsReady(true);
