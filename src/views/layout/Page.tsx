@@ -23,13 +23,13 @@ export const Page: React.FC = ({ children }) => {
             timeline
                 .fromTo(
                     ["#block-1", "#block-4"],
-                    { width: "calc(10% - 1px)" },
+                    { width: "calc(10% - 1px)", zIndex: -5 },
                     { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.4 }
                 )
                 .fromTo(
                     ["#block-2", "#block-3"],
                     { width: "calc(40% - 1px)" },
-                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1 },
+                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1, zIndex: -5 },
                     "-=1.1"
                 )
                 .to("#blocks", { zIndex: -5, opacity: 0, duration: 0 })
@@ -38,8 +38,8 @@ export const Page: React.FC = ({ children }) => {
             timeline
                 .fromTo(
                     ["#block-1", "#block-2", "#block-3", "#block-4"],
-                    { width: "calc(25% - 1px)" },
-                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1 }
+                    { width: "calc(25% - 1px)", zIndex: -5 },
+                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1, zIndex: -5 }
                 )
                 .to("#blocks", { zIndex: -5, opacity: 0, duration: 0 })
                 .play();
