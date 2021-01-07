@@ -195,11 +195,11 @@ export const Header: React.FC = () => {
                     ),
                     0.04
                 );
-                gsap.set(".grid__item", { x: translationVals.tx, y: translationVals.ty });
+                gsap.set("#background-image", { x: translationVals.tx, y: translationVals.ty });
             } else {
                 translationVals.tx = 0;
                 translationVals.ty = 0;
-                gsap.set(".grid__item", { x: translationVals.tx, y: translationVals.ty });
+                gsap.set("#background-image", { x: translationVals.tx, y: translationVals.ty });
             }
             requestAnimationFrame(render);
         };
@@ -210,7 +210,7 @@ export const Header: React.FC = () => {
         <Container id="header_container">
             {/* <div className="grid">
                 <div className="grid__item pos-1"> */}
-            <ContainerBackground ref={elRefs.background} />
+            <ContainerBackground ref={elRefs.background} id="background-image" />
             {/* </div> */}
             {/* </div> */}
             <Bars type="vertical" />
@@ -273,9 +273,9 @@ const Fade = styled.div`
     left: 0;
     z-index: -2;
     background: linear-gradient(to top, #161616, rgba(22, 22, 22, 0));
-    /* background: ${({ theme }) => `linear-gradient(to top, #161616, rgba(22, 22, 22, 0))`}; */
-    /* background: ${({ theme }) => `linear-gradient(to top, red, rgba(22, 22, 22, 0))`}; */
 `;
+/* background: ${({ theme }) => `linear-gradient(to top, #161616, rgba(22, 22, 22, 0))`}; */
+/* background: ${({ theme }) => `linear-gradient(to top, red, rgba(22, 22, 22, 0))`}; */
 
 const DateTime = styled.p`
     ${({ theme }) => theme.mixins.initialHidden};
@@ -415,8 +415,8 @@ const Title = styled.div`
 
 const ContainerBackground = styled.div`
     position: absolute;
-    left: 0;
-    top: 0;
+    left: -10%;
+    top: -10%;
     width: 120%;
     height: 120%;
     opacity: 0.15;
@@ -467,6 +467,10 @@ const Container = styled.header`
         position: relative;
     }
 
+    .pos-1 {
+        grid-area: 1 / 1 / 1 / 1;
+    }
+
     /* .grid__item-img {
         position: relative;
         width: 100%;
@@ -474,10 +478,6 @@ const Container = styled.header`
         background-size: cover;
         background-position: 50% 50%;
     } */
-
-    .pos-1 {
-        grid-area: 1 / 1 / 1 / 1;
-    }
 
     /* .grid--img .grid__item {
         overflow: hidden;
