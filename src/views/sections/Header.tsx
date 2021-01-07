@@ -272,7 +272,8 @@ const Fade = styled.div`
     bottom: 0;
     left: 0;
     z-index: -2;
-    background: ${({ theme }) => `linear-gradient(to top, #161616, rgba(22, 22, 22, 0))`};
+    background: linear-gradient(to top, #161616, rgba(22, 22, 22, 0));
+    /* background: ${({ theme }) => `linear-gradient(to top, #161616, rgba(22, 22, 22, 0))`}; */
     /* background: ${({ theme }) => `linear-gradient(to top, red, rgba(22, 22, 22, 0))`}; */
 `;
 
