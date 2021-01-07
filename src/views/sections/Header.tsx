@@ -418,7 +418,7 @@ const ContainerBackground = styled.div`
     top: 0;
     width: 120%;
     height: 120%;
-    opacity: 0.2;
+    opacity: 0.15;
     background-image: url("/images/forest-s.jpg");
     background-size: cover;
     background-clip: content-box;
