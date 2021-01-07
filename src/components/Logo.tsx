@@ -19,7 +19,7 @@ const Logo: React.FC = () => {
     };
 
     React.useEffect(() => {
-        const timeline = gsap.timeline();
+        const timeline = gsap.timeline({ delay: 1 });
         timeline.set(elRefs.logo.current, { visibility: "visible" });
         timeline.add(tweens.fadeIn(elRefs.logo.current, {}, { duration: 3 }));
     }, []);

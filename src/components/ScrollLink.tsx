@@ -13,6 +13,9 @@ export const ScrollLink: React.FC = () => {
     React.useEffect(() => {
         const timeline = gsap.timeline({ delay: 2.5 });
         const label = "together";
+        timeline.set("#scroll_underline", {
+            transform: "translateX(-50%)",
+        });
         timeline.set(["#forward", "#backward", "#scroll_underline"], {
             visibility: "visible",
         });
@@ -26,8 +29,9 @@ export const ScrollLink: React.FC = () => {
                 {
                     transform: "translate(-50%, 100%)",
                 },
-                { transform: "translate(-50%, -50%)" }
-            )
+                { transform: "translate(-50%, -50%)", duration: 1 }
+            ),
+            label + "+=2"
         );
         timeline.play();
         setIsReady(true);
@@ -119,9 +123,8 @@ const ScrollLine = styled.span`
     height: 3px;
     position: absolute;
     background-color: ${(props) => props.theme.color.white};
-    left: 50%;
+    /* left: 50%; */
     bottom: 0px;
-    transform: translateX(-50%);
     cursor: pointer;
     transition: all 0.4s;
     ${({ theme }) => theme.mixins.initialHidden};

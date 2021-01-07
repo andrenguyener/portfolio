@@ -6,9 +6,11 @@ interface Props {
     fillStyle?: string;
     posX?: number;
     posY?: number;
+    followMouse?: boolean;
+    opts?: {};
 }
 
-const opts = {
+const defaultOpts = {
     size: 200,
     side: 6,
     dotRadius: 2,
@@ -39,18 +41,27 @@ export class Destructure extends React.Component<Props> {
     basePoints: PointsMatrix[] = [];
     lines: [number, number][] = [];
 
+    opts = {
+        ...defaultOpts,
+        ...this.props.opts,
+    };
+
     componentDidMount = () => {
         this.ctx = this.c?.getContext("2d");
         window.addEventListener("resize", this.resize);
-        this.c?.addEventListener("mousemove", (e) => {
-            if (this.c?.width && this.c.height) {
-                this.angleYOffsetGoal = Math.PI * 2 * (e.clientX / this.c.width - 0.5);
-                this.angleXOffsetGoal = Math.PI * (0.5 - e.clientY / this.c.height);
-            }
-        });
-        this.c?.addEventListener("mouseout", () => {
-            this.angleYOffsetGoal = this.angleXOffsetGoal = 0;
-        });
+
+        if (this.props.followMouse) {
+            this.c?.addEventListener("mousemove", (e) => {
+                if (this.c?.width && this.c.height) {
+                    this.angleYOffsetGoal = Math.PI * 2 * (e.clientX / this.c.width - 0.5);
+                    this.angleXOffsetGoal = Math.PI * (0.5 - e.clientY / this.c.height);
+                }
+            });
+            this.c?.addEventListener("mouseout", () => {
+                this.angleYOffsetGoal = this.angleXOffsetGoal = 0;
+            });
+        }
+
         this.resize();
         this.populatePointsArray();
         this.populateLinesArray();
@@ -93,8 +104,8 @@ export class Destructure extends React.Component<Props> {
 
     // Populate points array
     populatePointsArray = () => {
-        const l = opts.side - 1;
-        const s = opts.size;
+        const l = this.opts.side - 1;
+        const s = this.opts.size;
         for (let i = 0; i <= l; i++) {
             for (let j = 0; j <= l; j++) {
                 for (let k = 0; k <= l; k++) {
@@ -109,7 +120,7 @@ export class Destructure extends React.Component<Props> {
 
     // Populate lines array
     populateLinesArray = () => {
-        const l = opts.side;
+        const l = this.opts.side;
         const l2 = l * l;
         for (let i = 0; i < l; i++) {
             for (let j = 0; j < l; j++) {
@@ -126,7 +137,7 @@ export class Destructure extends React.Component<Props> {
     deformation = (p: PointsMatrix[]): PointsMatrix[] => {
         const t = [];
         for (let i = 0, l = p.length; i < l; i++) {
-            const r = this.random(opts.minDeformation, opts.maxDeformation);
+            const r = this.random(this.opts.minDeformation, this.opts.maxDeformation);
             const a = this.random(0, 2 * Math.PI);
             const b = this.random(0, 2 * Math.PI);
             const tmp = r * Math.sin(a);
@@ -166,9 +177,9 @@ export class Destructure extends React.Component<Props> {
             );
         }
         const t = Date.now() * 1e-3;
-        const transform = opts.transEasing((Math.sin(t * opts.transSpeed) + 1) * 0.5);
+        const transform = this.opts.transEasing((Math.sin(t * this.opts.transSpeed) + 1) * 0.5);
         // Detect when we change of "transform direction"
-        const tdir = Math.cos(t * opts.transSpeed) > 0 ? 1 : -1;
+        const tdir = Math.cos(t * this.opts.transSpeed) > 0 ? 1 : -1;
         if (this.previousTdir !== tdir) {
             this.previousTdir = tdir;
             // Generate new points
@@ -176,18 +187,24 @@ export class Destructure extends React.Component<Props> {
                 this.transformedPoints = this.deformation(this.basePoints);
             }
         }
-        const rot = t * opts.rotSpeed + this.angleYOffset;
+        const rot = t * this.opts.rotSpeed + this.angleYOffset;
         const points = [];
         let i;
         const l = this.basePoints.length;
         for (i = 0; i < l; i++) {
             let p = this.lerp(this.basePoints[i], this.transformedPoints[i], transform);
             p = this.rotateX(this.rotateY(p, rot), this.angleXOffset);
-            p[2] += opts.distZ;
-            p = this.projection(p, opts.focal);
+            p[2] += this.opts.distZ;
+            p = this.projection(p, this.opts.focal);
             points.push(p);
             this.ctx?.beginPath();
-            this.ctx?.arc(p[0], p[1], (opts.focal * opts.dotRadius) / p[2], 0, Math.PI * 2);
+            this.ctx?.arc(
+                p[0],
+                p[1],
+                (this.opts.focal * this.opts.dotRadius) / p[2],
+                0,
+                Math.PI * 2
+            );
             this.ctx?.fill();
         }
 

@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 
 import { Bars } from "./../../components";
 import { tweens } from "./../../themes/styles/abstracts";
-import { NavigationContext, useIsTopInView } from "./../../utils";
+import { NavigationContext } from "./../../utils";
 import { Destructure } from "./../../vendors/destructuration";
 import { animationsRefs } from "./Header.animations";
 
@@ -70,10 +70,52 @@ const timeline = gsap.timeline();
 //     });
 // };
 
+let winsize: undefined | { width: number; height: number };
+let mousepos: undefined | { x: number; y: number };
+
+// Map number x from range [a, b] to [c, d]
+const map = (x: number, a: number, b: number, c: number, d: number) =>
+    ((x - a) * (d - c)) / (b - a) + c;
+
+// Linear interpolation
+const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b;
+
+const calcWinsize = () => {
+    return { width: window?.innerWidth, height: window?.innerHeight };
+};
+
+const getRandomNumber = (min: number, max: number) =>
+    // tslint:disable-next-line:insecure-random
+    Math.floor(Math.random() * (max - min + 1) + min);
+
+// Gets the mouse position
+const getMousePos = (e: MouseEvent) => {
+    let posx = 0;
+    let posy = 0;
+    if (!e) {
+        e = window.event as MouseEvent;
+    }
+    if (e.pageX || e.pageY) {
+        posx = e.pageX;
+        posy = e.pageY;
+    } else if (e.clientX || e.clientY) {
+        posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+
+    return { x: posx, y: posy };
+};
+const invertMovement = !getRandomNumber(0, 3);
+
+const translationVals = { tx: 0, ty: 0 };
+const xstart = invertMovement ? getRandomNumber(20, 70) : getRandomNumber(40, 80);
+const ystart = invertMovement ? getRandomNumber(10, 60) : getRandomNumber(40, 80);
+
 export const Header: React.FC = () => {
     const { isActive } = useContext(NavigationContext);
     const [isReady, setIsReady] = React.useState(false);
-    const isTop = useIsTopInView();
+    const [isSmallScreen, setIsSmallScreen] = React.useState<boolean | null>(null);
+    // const isTop = useIsTopInView();
 
     React.useEffect(() => {
         if (isReady) {
@@ -88,6 +130,13 @@ export const Header: React.FC = () => {
     }, [isActive]);
 
     React.useEffect(() => {
+        // Calculate the viewport size
+        winsize = calcWinsize();
+        window.addEventListener("resize", () => (winsize = calcWinsize()));
+
+        mousepos = { x: winsize.width / 2, y: winsize.height / 2 };
+        window.addEventListener("mousemove", (ev) => (mousepos = getMousePos(ev)));
+
         const introTimeline = gsap.timeline({ delay: 1.3 });
 
         introTimeline.set(
@@ -105,23 +154,79 @@ export const Header: React.FC = () => {
             .add(backgroundFadeIn(), "title-=1")
             .add(dateTimeSlideIn())
             .play();
+
+        setIsSmallScreen(window?.matchMedia?.("(max-width: 768px)")?.matches);
         setIsReady(true);
+
+        return () => {
+            window.removeEventListener("resize", () => (winsize = calcWinsize()));
+            window.removeEventListener("mousemove", () => (winsize = calcWinsize()));
+        };
     }, []);
 
     React.useEffect(() => {
-        document.querySelector("#header_container")?.addEventListener("mousemove", (_) => {
-            // parallaxIt(e, elRefs.background.current, -100);
-        });
-    }, [isTop]);
+        if (isReady && isSmallScreen === false) {
+            animateBackground();
+        }
+    }, [isReady]);
+
+    const animateBackground = () => {
+        const render = () => {
+            if (window.scrollY <= 300 && mousepos && winsize) {
+                translationVals.tx = lerp(
+                    translationVals.tx,
+                    map(
+                        mousepos.x,
+                        0,
+                        winsize.width,
+                        invertMovement ? xstart : -xstart,
+                        invertMovement ? -xstart : xstart
+                    ),
+                    0.04
+                );
+                translationVals.ty = lerp(
+                    translationVals.ty,
+                    map(
+                        mousepos.y,
+                        0,
+                        winsize.height,
+                        invertMovement ? ystart : -ystart,
+                        invertMovement ? -ystart : ystart
+                    ),
+                    0.04
+                );
+                gsap.set(".grid__item", { x: translationVals.tx, y: translationVals.ty });
+            } else {
+                translationVals.tx = 0;
+                translationVals.ty = 0;
+                gsap.set(".grid__item", { x: translationVals.tx, y: translationVals.ty });
+            }
+            requestAnimationFrame(render);
+        };
+        requestAnimationFrame(render);
+    };
 
     return (
         <Container id="header_container">
-            <ContainerBackground ref={elRefs.background} />
+            <div className="grid">
+                <div className="grid__item pos-1">
+                    <ContainerBackground ref={elRefs.background} />
+                </div>
+            </div>
             <Bars type="vertical" />
             <Fade />
             {/* <Helix /> */}
-            <Destructure />
             <WidthContainer>
+                {isSmallScreen !== null && (
+                    <Destructure
+                        opts={{
+                            ...(isSmallScreen && {
+                                size: 150,
+                                side: 4,
+                            }),
+                        }}
+                    />
+                )}
                 <Title>
                     <Main ref={elRefs.title.main}>Andre Nguyen</Main>
                     <Sub ref={elRefs.title.sub}>
@@ -310,14 +415,14 @@ const ContainerBackground = styled.div`
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.1;
+    width: 120%;
+    height: 120%;
+    opacity: 0.2;
     background-image: url("/images/forest-s.jpg");
     background-size: cover;
     background-clip: content-box;
     background-repeat: no-repeat;
-    z-index: -2;
+    will-change: transform;
 
     ${({ theme }) => theme.mixins.initialHidden};
 
@@ -340,6 +445,56 @@ const Container = styled.header`
     color: ${({ theme }) => theme.color.white};
     height: 100vh;
     position: relative;
+    overflow: hidden;
+
+    .grid {
+        pointer-events: none;
+        position: absolute;
+        width: 120%;
+        height: 120%;
+        top: -10%;
+        left: -10%;
+        display: grid;
+        grid-template-columns: repeat(25, 4%);
+        grid-template-rows: repeat(25, 4%);
+        z-index: -2;
+    }
+
+    .grid__item {
+        position: relative;
+    }
+
+    /* .grid__item-img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: 50% 50%;
+    } */
+
+    .pos-1 {
+        grid-area: 1 / 1 / 25 / 25;
+    }
+
+    .grid--img .grid__item {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        will-change: transform;
+
+        flex: none;
+        width: calc(100% + 100px);
+        height: calc(100% + 100px);
+        will-change: transform;
+    }
+
+    /* .grid--img .grid__item-img {
+        flex: none;
+        width: calc(100% + 100px);
+        height: calc(100% + 100px);
+        will-change: transform;
+    } */
 `;
 
 export default Header;

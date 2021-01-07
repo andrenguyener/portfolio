@@ -47,7 +47,7 @@ export const Navi: React.FC = () => {
     }, [isActive]);
 
     React.useEffect(() => {
-        const introTimeline = gsap.timeline();
+        const introTimeline = gsap.timeline({ delay: 1.75 });
         introTimeline.add(buttonFadeIn()).play();
         setIsReady(true);
     }, []);
