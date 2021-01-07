@@ -423,13 +423,13 @@ const ContainerBackground = styled.div`
     background-clip: content-box;
     background-repeat: no-repeat;
     will-change: transform;
-    z-index: -2;
+    z-index: -3;
 
     ${({ theme }) => theme.mixins.initialHidden};
 
-    @media only screen and (max-width: 37.5em) {
+    /* @media only screen and (max-width: 37.5em) {
         background-image: url("/images/forest-xs.jpg");
-    }
+    } */
 `;
 
 const WidthContainer = styled.div`
@@ -458,12 +458,12 @@ const Container = styled.header`
         display: grid;
         grid-template-columns: repeat(1, 100%);
         grid-template-rows: repeat(1, 100%);
-        z-index: -2;
+        z-index: -3;
     }
 
     .grid__item {
         position: relative;
-        z-index: -2;
+        z-index: -3;
     }
 
     /* .grid__item-img {
