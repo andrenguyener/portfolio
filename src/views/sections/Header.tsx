@@ -145,6 +145,7 @@ export const Header: React.FC = () => {
                 elRefs.title.sub.current,
                 elRefs.dateTime.current,
                 elRefs.horizontalBar.current,
+                "#fade",
             ],
             { visibility: "visible" }
         );
@@ -214,7 +215,7 @@ export const Header: React.FC = () => {
             {/* </div> */}
             {/* </div> */}
             <Bars type="vertical" />
-            <Fade />
+            <Fade id="fade" />
             {/* <Helix /> */}
             <WidthContainer>
                 {isSmallScreen !== null && (
@@ -273,6 +274,7 @@ const Fade = styled.div`
     left: 0;
     z-index: -2;
     background: linear-gradient(to top, #161616, rgba(22, 22, 22, 0));
+    /* background: linear-gradient(to top, red, rgba(22, 22, 22, 0)); */
 `;
 /* background: ${({ theme }) => `linear-gradient(to top, #161616, rgba(22, 22, 22, 0))`}; */
 /* background: ${({ theme }) => `linear-gradient(to top, red, rgba(22, 22, 22, 0))`}; */
@@ -424,7 +426,7 @@ const ContainerBackground = styled.div`
     background-size: cover;
     background-clip: content-box;
     background-repeat: no-repeat;
-    will-change: transform;
+
     z-index: -3;
 
     ${({ theme }) => theme.mixins.initialHidden};
@@ -447,6 +449,7 @@ const WidthContainer = styled.div`
 const Container = styled.header`
     color: ${({ theme }) => theme.color.white};
     height: 100vh;
+    width: 100vw;
     position: relative;
     overflow: hidden;
 
