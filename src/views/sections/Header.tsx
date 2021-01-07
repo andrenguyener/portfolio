@@ -423,6 +423,7 @@ const ContainerBackground = styled.div`
     background-clip: content-box;
     background-repeat: no-repeat;
     will-change: transform;
+    z-index: -2;
 
     ${({ theme }) => theme.mixins.initialHidden};
 
@@ -455,13 +456,14 @@ const Container = styled.header`
         top: -10%;
         left: -10%;
         display: grid;
-        grid-template-columns: repeat(25, 4%);
-        grid-template-rows: repeat(25, 4%);
+        grid-template-columns: repeat(1, 100%);
+        grid-template-rows: repeat(1, 100%);
         z-index: -2;
     }
 
     .grid__item {
         position: relative;
+        z-index: -2;
     }
 
     /* .grid__item-img {
@@ -473,10 +475,10 @@ const Container = styled.header`
     } */
 
     .pos-1 {
-        grid-area: 1 / 1 / 25 / 25;
+        grid-area: 1 / 1 / 1 / 1;
     }
 
-    .grid--img .grid__item {
+    /* .grid--img .grid__item {
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -487,7 +489,7 @@ const Container = styled.header`
         width: calc(100% + 100px);
         height: calc(100% + 100px);
         will-change: transform;
-    }
+    } */
 
     /* .grid--img .grid__item-img {
         flex: none;
