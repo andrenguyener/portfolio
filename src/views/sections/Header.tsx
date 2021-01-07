@@ -208,11 +208,11 @@ export const Header: React.FC = () => {
 
     return (
         <Container id="header_container">
-            <div className="grid">
-                <div className="grid__item pos-1">
-                    <ContainerBackground ref={elRefs.background} />
-                </div>
-            </div>
+            {/* <div className="grid">
+                <div className="grid__item pos-1"> */}
+            <ContainerBackground ref={elRefs.background} />
+            {/* </div> */}
+            {/* </div> */}
             <Bars type="vertical" />
             <Fade />
             {/* <Helix /> */}
@@ -272,8 +272,8 @@ const Fade = styled.div`
     bottom: 0;
     left: 0;
     z-index: -2;
-    background: ${({ theme }) =>
-        `linear-gradient(to top, ${theme.color.gray.dark}, rgba(22, 22, 22, 0))`};
+    background: ${({ theme }) => `linear-gradient(to top, #161616, rgba(22, 22, 22, 0))`};
+    /* background: ${({ theme }) => `linear-gradient(to top, red, rgba(22, 22, 22, 0))`}; */
 `;
 
 const DateTime = styled.p`
@@ -424,6 +424,7 @@ const ContainerBackground = styled.div`
     background-clip: content-box;
     background-repeat: no-repeat;
     will-change: transform;
+    z-index: -3;
 
     ${({ theme }) => theme.mixins.initialHidden};
 

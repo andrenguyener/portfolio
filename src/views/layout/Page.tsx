@@ -29,19 +29,19 @@ export const Page: React.FC = ({ children }) => {
                 .fromTo(
                     ["#block-2", "#block-3"],
                     { width: "calc(40% - 1px)" },
-                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1, zIndex: -5 },
+                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1 },
                     "-=1.1"
                 )
-                .to("#blocks", { zIndex: -5, opacity: 0, duration: 0 })
+                .to("#blocks", { zIndex: -5, duration: 0 })
                 .play();
         } else {
             timeline
                 .fromTo(
                     ["#block-1", "#block-2", "#block-3", "#block-4"],
                     { width: "calc(25% - 1px)", zIndex: -5 },
-                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1, zIndex: -5 }
+                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1 }
                 )
-                .to("#blocks", { zIndex: -5, opacity: 0, duration: 0 })
+                .to("#blocks", { zIndex: -5, duration: 0 })
                 .play();
         }
         setIsReady(true);
@@ -81,7 +81,7 @@ const Block = styled.div`
     height: 100%;
     background-color: ${(props) => props.theme.color.gray.dark};
     /* background-color: ${(props) => props.theme.color.primary.base}; */
-    opacity: 0.2;
+    /* opacity: 0.2; */
     width: calc(25% - 1px);
     top: 0;
 
