@@ -272,7 +272,8 @@ const Fade = styled.div`
     bottom: 0;
     left: 0;
     z-index: -2;
-    background-image: linear-gradient(to top, rgba(22, 22, 22, 1) 0%, rgba(22, 22, 22, 0) 100%);
+    background: ${({ theme }) =>
+        `linear-gradient(to top, ${theme.color.gray.dark}, rgba(22, 22, 22, 0))`};
 `;
 
 const DateTime = styled.p`
@@ -423,13 +424,12 @@ const ContainerBackground = styled.div`
     background-clip: content-box;
     background-repeat: no-repeat;
     will-change: transform;
-    z-index: -3;
 
     ${({ theme }) => theme.mixins.initialHidden};
 
-    /* @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 37.5em) {
         background-image: url("/images/forest-xs.jpg");
-    } */
+    }
 `;
 
 const WidthContainer = styled.div`
@@ -463,7 +463,6 @@ const Container = styled.header`
 
     .grid__item {
         position: relative;
-        z-index: -3;
     }
 
     /* .grid__item-img {
