@@ -13,10 +13,7 @@ export const ScrollLink: React.FC = () => {
     React.useEffect(() => {
         const timeline = gsap.timeline({ delay: 2.5 });
         const label = "together";
-        timeline.set("#scroll_underline", {
-            transform: "translateX(-50%)",
-        });
-        timeline.set(["#forward", "#backward", "#scroll_underline"], {
+        timeline.set(["#forward", "#backward"], {
             visibility: "visible",
         });
         timeline.add(
@@ -27,11 +24,12 @@ export const ScrollLink: React.FC = () => {
             gsap.fromTo(
                 "#scroll_underline",
                 {
+                    visibility: "visible",
                     transform: "translate(-50%, 100%)",
                 },
                 { transform: "translate(-50%, -50%)", duration: 1 }
             ),
-            label + "+=2"
+            label + "+=1"
         );
         timeline.play();
         setIsReady(true);
@@ -123,10 +121,10 @@ const ScrollLine = styled.span`
     height: 3px;
     position: absolute;
     background-color: ${(props) => props.theme.color.white};
-    /* left: 50%; */
     bottom: 0px;
     cursor: pointer;
     transition: all 0.4s;
+    mix-blend-mode: exclusion;
     ${({ theme }) => theme.mixins.initialHidden};
 `;
 
@@ -160,7 +158,7 @@ const Scroll = styled.div`
 
     &:hover {
         ${ScrollLine} {
-            width: 0%;
+            height: 70%;
         }
     }
 `;
