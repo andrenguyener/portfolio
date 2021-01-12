@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import React from "react";
 import { animateScroll as scroll } from "react-scroll";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { tweens } from "./../themes/styles/abstracts";
 import { useIsTopInView } from "./../utils";
@@ -63,6 +63,14 @@ const LogoContainer = styled.div<{ isTop: boolean }>`
     z-index: 1;
 
     ${({ theme }) => theme.mixins.initialHidden};
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone-land",
+            css`
+                width: 5rem;
+            `
+        )};
 
     ${Image} {
         opacity: ${(props) => (props.isTop ? "0.3" : "1")};
