@@ -23,12 +23,12 @@ export const Page: React.FC = ({ children }) => {
             timeline
                 .fromTo(
                     ["#block-1", "#block-4"],
-                    { width: "calc(10% - 1px)", zIndex: -5 },
+                    { width: "calc(10% + 1px)", zIndex: -5 },
                     { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.4 }
                 )
                 .fromTo(
                     ["#block-2", "#block-3"],
-                    { width: "calc(40% - 1px)" },
+                    { width: "calc(40% + 1px)" },
                     { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1 },
                     "-=1.1"
                 )
@@ -38,8 +38,8 @@ export const Page: React.FC = ({ children }) => {
             timeline
                 .fromTo(
                     ["#block-1", "#block-2", "#block-3", "#block-4"],
-                    { width: "calc(25% - 1px)", zIndex: -5 },
-                    { width: 0, ease: "power4.inOut", duration: 1, stagger: 0.1 }
+                    { width: "calc(25% + 1px)", zIndex: -5 },
+                    { width: "0%", ease: "power4.inOut", duration: 1, stagger: 0.1 }
                 )
                 .to("#blocks", { zIndex: -5, duration: 0 })
                 .play();
@@ -82,12 +82,12 @@ const Block = styled.div`
     background-color: ${(props) => props.theme.color.gray.dark};
     /* background-color: ${(props) => props.theme.color.primary.base}; */
     /* opacity: 0.2; */
-    width: calc(25% - 1px);
+    width: calc(25%);
     top: 0;
 
     &#block-1 {
-        left: calc(0);
-        width: calc(25% - 0px);
+        left: 0;
+        width: calc(25% + 1px);
     }
 
     &#block-2 {
@@ -107,18 +107,18 @@ const Block = styled.div`
             "tab-port",
             css`
                 &#block-1 {
-                    left: calc(0);
-                    width: calc(10% - 0px);
+                    left: 0;
+                    width: calc(10% + 1px);
                 }
 
                 &#block-2 {
                     left: calc(10% + 1px);
-                    width: calc(40% - 1px);
+                    width: calc(40% + 1px);
                 }
 
                 &#block-3 {
                     left: calc(50% + 1px);
-                    width: calc(40% - 1px);
+                    width: calc(40% + 1px);
                 }
 
                 &#block-4 {

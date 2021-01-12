@@ -19,6 +19,8 @@ const domEnder = ["th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"];
 const dayOfMonth =
     objToday.getDate() < 10
         ? "0" + objToday.getDate() + domEnder[objToday.getDate()]
+        : objToday.getDate() < 20
+        ? objToday.getDate() + domEnder[0]
         : objToday.getDate() +
           domEnder[
               parseFloat(("" + objToday.getDate()).substr(("" + objToday.getDate()).length - 1))
@@ -145,7 +147,6 @@ export const Header: React.FC = () => {
                 elRefs.title.sub.current,
                 elRefs.dateTime.current,
                 elRefs.horizontalBar.current,
-                "#fade",
             ],
             { visibility: "visible" }
         );
@@ -164,6 +165,13 @@ export const Header: React.FC = () => {
             window.removeEventListener("mousemove", () => (winsize = calcWinsize()));
         };
     }, []);
+
+    React.useEffect(() => {
+        if (isSmallScreen !== null) {
+            const destructTimeline = gsap.timeline();
+            destructTimeline.add(tweens.fadeIn("#destructure", {}, { duration: 4 })).play();
+        }
+    }, [isSmallScreen]);
 
     React.useEffect(() => {
         if (isReady && isSmallScreen === false) {

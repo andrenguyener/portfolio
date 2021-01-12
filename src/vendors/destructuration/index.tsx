@@ -227,7 +227,7 @@ export class Destructure extends React.Component<Props> {
                     top: 0,
                     left: 0,
                     width: "100%",
-                    height: "100%",
+                    height: "125%",
                     ...this.props.style,
                 }}
             />
