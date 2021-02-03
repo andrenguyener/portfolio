@@ -16,6 +16,9 @@ export const ScrollLink: React.FC = () => {
         timeline.set(["#forward", "#backward"], {
             visibility: "visible",
         });
+        timeline.set("#scroll_underline", {
+            opacity: 1,
+        });
         timeline.add(
             tweens.fadeIn(["#forward", "#backward"], {}, { opacity: 1, duration: 1 }),
             label
@@ -125,7 +128,9 @@ const ScrollLine = styled.span`
     cursor: pointer;
     transition: all 0.4s;
     mix-blend-mode: exclusion;
+
     ${({ theme }) => theme.mixins.initialHidden};
+    opacity: 0;
 `;
 
 const Scroll = styled.div`
