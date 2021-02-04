@@ -28,6 +28,19 @@ interface Project {
 
 const projects: Project[] = [
     {
+        title: "Spotty",
+        description:
+            "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, detailed audio information about each track, and an audio visualizer",
+        techList: ["Typescript", "Next.js", "Spotify Web API", "Howler.js"],
+        image: {
+            desktop: {
+                url: "/projects/spotty/desktop1.png",
+            },
+        },
+        external: "https://spotty.andrenguyen.dev",
+        github: "https://github.com/andrenguyener/spotty",
+    },
+    {
         title: "Mito",
         description:
             "Mito is a social platform that lets users purchase products available on major online e-commerce shops, such as Amazon, to send to one another without exchanging physical addresses.",
@@ -90,12 +103,22 @@ export const Projects = () => {
                             </TechList>
                             <Links>
                                 {project.github && (
-                                    <a href={project.github} aria-label="GitHub Link">
+                                    <a
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label="GitHub Link"
+                                    >
                                         <Icon name="GitHub" />
                                     </a>
                                 )}
                                 {project.external && (
-                                    <a href={project.external} aria-label="External Link">
+                                    <a
+                                        href={project.external}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label="External Link"
+                                    >
                                         <Icon name="External" />
                                     </a>
                                 )}
@@ -313,7 +336,7 @@ const DevicesContainer = styled.div<{ type: "mobile" | "desktop" }>`
 
     /* Todo right now aspect ratio is 1:1 make it more appropriate */
     padding-top: ${(props) =>
-        props.type === "desktop" ? "clamp(320px, 35.25%, 595px)" : "clamp(400px , 43.25%, 440px)"};
+        props.type === "desktop" ? "clamp(280px, 35.25%, 595px)" : "clamp(400px , 43.25%, 440px)"};
     flex-basis: calc(60% - 1rem);
 
     > * {
@@ -400,6 +423,8 @@ const Project = styled.div`
     position: relative;
     display: flex;
     ${({ theme }) => theme.mixins.initialHidden};
+
+    margin-bottom: 15px;
 
     /* Todo fix - it wont target the 1st type */
     &:not(:nth-of-type(2)) {
