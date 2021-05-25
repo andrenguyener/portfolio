@@ -3,34 +3,31 @@ import React from "react";
 import { animateScroll } from "react-scroll";
 import styled from "styled-components";
 
-import { tweens } from "./../themes/styles/abstracts";
 import { useIsBottomInView } from "./../utils";
 
 export const ScrollLink: React.FC = () => {
-    const [, setIsReady] = React.useState(false);
+    const [isReady, setIsReady] = React.useState(false);
+    const [isFirstRender, setIsFirstRender] = React.useState(true);
     const isBottom = useIsBottomInView();
 
     React.useEffect(() => {
         const timeline = gsap.timeline({ delay: 2.5 });
         const label = "together";
-        timeline.set(["#forward", "#backward"], {
-            visibility: "visible",
-        });
-        timeline.set("#scroll_underline", {
-            opacity: 1,
-        });
-        timeline.add(
-            tweens.fadeIn(["#forward", "#backward"], {}, { opacity: 1, duration: 1 }),
-            label
-        );
+
         timeline.add(
             gsap.fromTo(
                 "#scroll_underline",
                 {
                     visibility: "visible",
-                    transform: "translate(-50%, 100%)",
+                    translateY: "100%",
+                    opacity: 0,
                 },
-                { transform: "translate(-50%, -50%)", duration: 1 }
+                {
+                    opacity: 1,
+                    translateY: "-50%",
+                    duration: 0.75,
+                    ease: "none",
+                }
             ),
             label + "+=1"
         );
@@ -41,61 +38,108 @@ export const ScrollLink: React.FC = () => {
     React.useEffect(() => {
         const timeline = gsap.timeline();
         const label = "scroll";
-        if (isBottom) {
-            timeline
-                .fromTo(
-                    "#forward",
-                    {
-                        transform: "translate(-50%, -50%)",
-                        opacity: 1,
-                    },
-                    {
-                        transform: "translate(-50%, -100%)",
+        if (isReady) {
+            timeline.set(["#forward", "#backward"], {
+                visibility: "visible",
+            });
+            if (isFirstRender) {
+                timeline.delay(2.5);
+                if (isBottom === true) {
+                    timeline.set(["#forward"], {
+                        translateY: "-100%",
                         opacity: 0,
-                    },
-                    label
-                )
-                .fromTo(
-                    "#backward",
-                    {
-                        transform: "translate(-50%, 100%)",
+                    });
+                    timeline
+                        .fromTo(
+                            "#backward",
+                            {
+                                translateY: "100%",
+                                opacity: 0,
+                            },
+                            {
+                                translateY: "0",
+                                opacity: 1,
+                            },
+                            label
+                        )
+                        .play();
+                } else if (isBottom === false) {
+                    timeline.set(["#backward"], {
+                        translateY: "-100%",
                         opacity: 0,
-                    },
-                    {
-                        transform: "translate(-50%, -50%)",
-                        opacity: 1,
-                    },
-                    label
-                )
-                .play();
-        } else {
-            timeline
-                .fromTo(
-                    "#forward",
-                    {
-                        transform: "translate(-50%, 100%)",
-                        opacity: 0,
-                    },
-                    {
-                        transform: "translate(-50%, -50%)",
-                        opacity: 1,
-                    },
-                    label
-                )
-                .fromTo(
-                    "#backward",
-                    {
-                        transform: "translate(-50%, -50%)",
-                        opacity: 1,
-                    },
-                    {
-                        transform: "translate(-50%, -100%)",
-                        opacity: 0,
-                    },
-                    label
-                );
+                    });
+                    timeline.fromTo(
+                        "#forward",
+                        {
+                            translateY: "100%",
+                            opacity: 0,
+                        },
+                        {
+                            translateY: "0%",
+                            opacity: 1,
+                        },
+                        label
+                    );
+                }
+                setIsFirstRender(false);
+            } else {
+                if (isBottom === true) {
+                    timeline
+                        .fromTo(
+                            "#forward",
+                            {
+                                translateY: "0%",
+                                opacity: 1,
+                            },
+                            {
+                                translateY: "-100%",
+                                opacity: 0,
+                            },
+                            label
+                        )
+                        .fromTo(
+                            "#backward",
+                            {
+                                translateY: "100%",
+                                opacity: 0,
+                            },
+                            {
+                                translateY: "0",
+                                opacity: 1,
+                            },
+                            label
+                        )
+                        .play();
+                } else if (isBottom === false) {
+                    timeline
+                        .fromTo(
+                            "#forward",
+                            {
+                                translateY: "100%",
+                                opacity: 0,
+                            },
+                            {
+                                translateY: "0%",
+                                opacity: 1,
+                            },
+                            label
+                        )
+                        .fromTo(
+                            "#backward",
+                            {
+                                translateY: "0%",
+                                opacity: 1,
+                            },
+                            {
+                                translateY: "-100%",
+                                opacity: 0,
+                            },
+                            label
+                        );
+                }
+            }
         }
-    }, [isBottom]);
+    }, [isBottom, isReady]);
 
     const onClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event.preventDefault();
@@ -128,6 +172,7 @@ const ScrollLine = styled.span`
     cursor: pointer;
     transition: all 0.4s;
     mix-blend-mode: exclusion;
+    transform: translateX(-50%);
 
     ${({ theme }) => theme.mixins.initialHidden};
     opacity: 0;
@@ -149,7 +194,6 @@ const Scroll = styled.div`
     font-size: 16px;
     line-height: 1.7em;
     letter-spacing: 0.07em;
-    overflow: hidden;
 
     #forward {
         ${(props) => props.theme.mixins.absoluteCenter}

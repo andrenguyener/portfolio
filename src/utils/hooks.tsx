@@ -24,7 +24,7 @@ export const useIsTopInView = () => {
 };
 
 export const useIsBottomInView = () => {
-    const [isBottom, setIsBottom] = React.useState(false);
+    const [isBottom, setIsBottom] = React.useState<boolean | null>(null);
 
     React.useEffect(() => {
         handleScroll();
