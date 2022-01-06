@@ -43,10 +43,16 @@ export const About = () => {
                     <Profile ref={elRefs.image} />
                     <Description>
                         <p ref={elRefs.description}>
-                            I am an alumni from the University of Washington who studied
-                            Informatics. I spend my time learning new web technologies and building
-                            cool applications. Aside from that, you can find me snowboarding, making
-                            music, or watching anime.
+                            Hello! I'm Andre, a software engineer based in Seattle, WA.
+                            <br />
+                            <br />
+                            I spend my time learning new web technologies and creating cool
+                            applications while trying my best provide pixel-perfect and performant
+                            experiences.
+                            <br />
+                            <br />
+                            Aside from that, you can find me snowboarding, making music, or watching
+                            anime.
                         </p>
                         <CSSImageContainer ref={elRefs.geometric}>
                             <Geometric />
