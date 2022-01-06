@@ -28,6 +28,26 @@ interface Project {
 
 const projects: Project[] = [
     {
+        title: "Voxel Blox",
+        description: "3D voxel models rendered with three.js",
+        techList: [
+            "Typescript",
+            "Next.js",
+            "React Three Fiber",
+            "Chakra UI",
+            "MagicaVoxel",
+            "Blender",
+            "Framer Motion",
+        ],
+        image: {
+            desktop: {
+                url: "/projects/voxel-blox/desktop1.png",
+            },
+        },
+        external: "https://voxel.andrenguyen.dev",
+        github: "https://github.com/andrenguyener/voxel-blox",
+    },
+    {
         title: "Spotty",
         description:
             "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, detailed audio information about each track, and an audio visualizer",

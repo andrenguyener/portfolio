@@ -155,9 +155,13 @@ export const ScrollLink: React.FC = () => {
     };
 
     return (
-        <Scroll onClick={onClick}>
-            <div id="forward">Scroll</div>
-            <div id="backward">Back</div>
+        <Scroll className="button" onClick={onClick}>
+            <div className="button" id="forward">
+                Scroll
+            </div>
+            <div className="button" id="backward">
+                Back
+            </div>
             <ScrollLine id="scroll_underline" />
         </Scroll>
     );

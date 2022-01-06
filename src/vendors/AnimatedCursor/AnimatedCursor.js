@@ -131,7 +131,7 @@ function CursorCore({
     // Target all possible clickables
     useEffect(() => {
         const clickables = document.querySelectorAll(
-            'a, input[type="submit"], input[type="image"], label[for], select, button, .link'
+            'a, input[type="submit"], input[type="image"], label[for], select, button, .link, .button'
         );
 
         clickables.forEach((el) => {

@@ -43,10 +43,10 @@ export const About = () => {
                     <Profile ref={elRefs.image} />
                     <Description>
                         <p ref={elRefs.description}>
-                            I am student studying Informatics at the University of Washington. I
-                            spend my time learning new web technologies and building cool
-                            applications. Aside from that, you can find me spinning on my head or
-                            watching anime.
+                            I am an alumni from the University of Washington who studied
+                            Informatics. I spend my time learning new web technologies and building
+                            cool applications. Aside from that, you can find me snowboarding, making
+                            music, or watching anime.
                         </p>
                         <CSSImageContainer ref={elRefs.geometric}>
                             <Geometric />
