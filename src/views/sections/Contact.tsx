@@ -77,6 +77,22 @@ export const Contact = () => {
                             <Icon name="Mail" />
                             <span>{constants.links.email}</span>
                         </Links>
+                        <Links
+                            href={constants.links.github}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
+                            <Icon name="GitHub" />
+                            <span>Github</span>
+                        </Links>
+                        <Links
+                            href={constants.links.linkedIn}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
+                            <Icon name="Linkedin" />
+                            <span>Linkedin</span>
+                        </Links>
                     </Description>
                     <Form
                         ref={elRefs.form}

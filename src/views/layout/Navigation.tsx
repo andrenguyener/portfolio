@@ -125,6 +125,13 @@ export const Navi: React.FC = () => {
                             >
                                 <Icon name="AdobeAcrobat" />
                             </SocialLink>
+                            <SocialLink
+                                href={constants.links.soundcloud}
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <Icon name="Soundcloud" />
+                            </SocialLink>
                         </SocialContainer>
                     </Social>
                     <Bars type="both">&nbsp;</Bars>

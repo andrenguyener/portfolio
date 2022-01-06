@@ -6,3 +6,4 @@ export { default as IconGitHub } from "./github";
 export { default as IconLinkedin } from "./linkedin";
 export { default as IconAdobeAcrobat } from "./adobeAcrobat";
 export { default as IconMail } from "./mail";
+export { default as IconSoundcloud } from "./soundcloud";

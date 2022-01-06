@@ -1,6 +1,14 @@
 import React from "react";
 
-import { IconAdobeAcrobat, IconExternal, IconFolder, IconGitHub, IconLinkedin, IconMail } from "./";
+import {
+    IconAdobeAcrobat,
+    IconExternal,
+    IconFolder,
+    IconGitHub,
+    IconLinkedin,
+    IconMail,
+    IconSoundcloud,
+} from "./";
 
 enum IconName {
     AdobeAcrobat,
@@ -10,6 +18,7 @@ enum IconName {
     Linkedin,
     Logo,
     Mail,
+    Soundcloud,
 }
 
 const Icon = ({ name }: { name: keyof typeof IconName }) => {
@@ -26,6 +35,8 @@ const Icon = ({ name }: { name: keyof typeof IconName }) => {
             return <IconLinkedin />;
         case "Mail":
             return <IconMail />;
+        case "Soundcloud":
+            return <IconSoundcloud />;
         default:
             return <IconExternal />;
     }
