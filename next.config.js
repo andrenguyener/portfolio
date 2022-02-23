@@ -1,8 +1,15 @@
-const withTM = require("next-transpile-modules")([
-  "gsap"
-]);
+const withTM = require("next-transpile-modules")([]);
 
-module.exports = withTM({
-  // Target must be serverless
-  target: 'serverless'
+const nextConfig = withTM({
+    compiler: {
+        // ssr and displayName are configured by default
+        styledComponents: true,
+    },
+    webpack(config, options) {
+        return config;
+    },
 });
+
+module.exports = {
+    ...nextConfig,
+};

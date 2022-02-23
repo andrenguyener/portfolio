@@ -62,7 +62,7 @@ export const globalFontFamily = (_fonts: FontPath[]) => {
     return (
         <style jsx={true} global={true}>
             {`
-                background-color: #161616;
+                // background-color: #161616;
                 @font-face {
                     font-family: TradeGothic;
                     src: url("/fonts/TradeGothicLTStd.otf");

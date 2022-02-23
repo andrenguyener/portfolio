@@ -386,7 +386,7 @@ const Social = styled.div`
 
 const Container = styled.div<{ topVisible: boolean }>`
     ${({ theme }) => theme.mixins.fullDisplay};
-
+    ${({ theme }) => theme.mixins.initialZIndex};
     ${({ theme }) => theme.mixins.initialOpacity};
 
     background-color: ${(props) => props.theme.modal.color};
