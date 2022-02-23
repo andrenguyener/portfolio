@@ -1,4 +1,4 @@
-const withTM = require("next-transpile-modules")(["gsap"]);
+const withTM = require("next-transpile-modules")([]);
 
 const nextConfig = withTM({
     compiler: {
@@ -11,5 +11,8 @@ const nextConfig = withTM({
 });
 
 module.exports = {
-    ...nextConfig,
+    compiler: {
+        // ssr and displayName are configured by default
+        styledComponents: true,
+    },
 };
