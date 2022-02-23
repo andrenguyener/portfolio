@@ -75,7 +75,7 @@ export const animationRefs = () => {
         const { socialContainer, verticalBar, container } = elRefs;
         const label = "navigation";
         const timeline = gsap.timeline();
-        timeline.set(container.current, { zIndex: 1000, visibility: "visible" });
+        timeline.set(container.current, { zIndex: 1000, opacity: 100 });
         return timeline
             .add(horizontalBarsIn(), label)
             .add(verticalBarsIn(), label)

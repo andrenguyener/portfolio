@@ -132,6 +132,10 @@ export const initialHidden = css`
     visibility: hidden;
 `;
 
+export const initialOpacity = css`
+    opacity: 0;
+`;
+
 // MEDIA QUERY MANAGER
 /*
 0 - 480px:       Phone
@@ -216,4 +220,5 @@ export default {
     hollowBorder,
     hollowBorderHover,
     initialHidden,
+    initialOpacity,
 };

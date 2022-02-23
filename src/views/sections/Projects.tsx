@@ -413,10 +413,6 @@ const TechList = styled.div`
     span {
         margin-top: 0.5rem;
     }
-
-    span :not(:last-child) {
-        margin-right: 1.5rem;
-    }
 `;
 
 const Links = styled.div`
@@ -483,6 +479,10 @@ const Project = styled.div`
 
         ${TechList} {
             justify-content: flex-end;
+
+            span :not(:last-child) {
+                margin-left: 1.5rem;
+            }
         }
 
         ${MobileImageContainer} {
@@ -536,6 +536,10 @@ const Project = styled.div`
 
         ${TechList} {
             justify-content: flex-start;
+
+            span :not(:last-child) {
+                margin-right: 1.5rem;
+            }
         }
 
         ${MobileImageContainer} {
