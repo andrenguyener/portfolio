@@ -5,9 +5,6 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[[plugins]]
-  package = "./node_modules/gsap"
-
 [functions]
   included_files = [".next/*.json"]
   
