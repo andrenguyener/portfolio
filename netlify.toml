@@ -7,5 +7,4 @@
 
 [functions]
   included_files = [".next/*.json"]
-  external_node_modules = ["gsap"]
   node_bundler = "esbuild"
