@@ -373,11 +373,6 @@
     "@types/react" "*"
     csstype "^3.0.2"
 
-"@types/three@^0.135.0":
-  version "0.135.0"
-  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.135.0.tgz#db7f9d9699b60aba844fc5b2893adf6dd6811665"
-  integrity sha512-l7WLhIHjhHMtlpyTSltPPAKLpiMwgMD1hXHj59AVUpYRoZP7Fd9NNOSRSvZBCPLpTHPYojgQvSJCoza9zoL7bg==
-
 "@vercel/node-bridge@^2.1.0":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@vercel/node-bridge/-/node-bridge-2.1.1.tgz#277dbebc174e23c5379df26e1d73722f4a6f9aa5"
