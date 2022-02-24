@@ -136,6 +136,10 @@ export const initialOpacity = css`
     opacity: 0;
 `;
 
+export const initialZIndex = css`
+    z-index: -1;
+`;
+
 // MEDIA QUERY MANAGER
 /*
 0 - 480px:       Phone
@@ -221,4 +225,5 @@ export default {
     hollowBorderHover,
     initialHidden,
     initialOpacity,
+    initialZIndex,
 };
