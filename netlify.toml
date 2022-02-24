@@ -1,13 +1,11 @@
 [build]
   command   = "npm run build"
-  publish   = ".next"
+  
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[[plugins]]
-  package = "./node_modules/gsap"
-
 [functions]
   included_files = [".next/*.json"]
-  
+  external_node_modules = ["gsap"]
+  node_bundler = "esbuild"
