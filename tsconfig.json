@@ -3,7 +3,7 @@
         "target": "esnext",
         "module": "esnext",
         "jsx": "preserve",
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "lib": ["dom", "es2017"],
         "moduleResolution": "node",
         "allowJs": true,
         "noEmit": true,
@@ -18,8 +18,7 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
-        "isolatedModules": true,
-        "incremental": true
+        "isolatedModules": true
     },
     "exclude": ["node_modules", "src/vendors"],
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
