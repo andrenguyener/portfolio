@@ -1,11 +1,7 @@
-import { CSSPlugin, gsap } from "gsap";
+import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// tslint:disable-next-line
-const myPlugins = [CSSPlugin];
-console.warn(myPlugins);
 
 export const slideInDown = (
     selector: gsap.TweenTarget,
