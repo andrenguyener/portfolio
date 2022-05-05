@@ -12,7 +12,7 @@
         "tslint-config-prettier" // Keep this line at the end
     ],
     "linterOptions": {
-        "exclude": ["*.spec.ts", "/vendors"]
+        "exclude": ["*.spec.ts", "src/vendors"]
     },
     "rules": {
         /**
