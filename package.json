@@ -6,6 +6,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "export": "next export",
         "typecheck": "tsc",
         "lint:prettier:ts": "prettier --parser typescript --debug-check src/**/*.{ts,tsx}",
         "lint:ts": "tslint \"src/**/*.t*\"",
