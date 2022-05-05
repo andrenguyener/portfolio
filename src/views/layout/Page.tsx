@@ -1,4 +1,4 @@
-import { gsap } from "gsap";
+import { gsap } from "gsap/dist/gsap";
 import dynamic from "next/dynamic";
 import { rgba as _rgba } from "polished";
 import React from "react";

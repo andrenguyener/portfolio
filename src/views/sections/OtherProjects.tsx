@@ -1,4 +1,4 @@
-import { gsap } from "gsap";
+import { gsap } from "gsap/dist/gsap";
 import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 

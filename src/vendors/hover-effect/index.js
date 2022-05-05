@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import TweenMax, { Expo } from "gsap";
+import TweenMax, { Expo } from "gsap/dist/gsap";
 
 export default function hoverEffect(opts) {
     var vertex = `
