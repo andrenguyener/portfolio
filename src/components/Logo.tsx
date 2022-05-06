@@ -1,4 +1,4 @@
-import { gsap } from "gsap/dist/gsap";
+import { gsap } from "gsap";
 import React from "react";
 import { animateScroll as scroll } from "react-scroll";
 import styled, { css } from "styled-components";

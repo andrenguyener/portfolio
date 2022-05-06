@@ -1,4 +1,4 @@
-import { gsap } from "gsap/dist/gsap";
+import { gsap } from "gsap";
 import React from "react";
 
 import { tweens } from "./../themes/styles/abstracts";
