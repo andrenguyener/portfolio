@@ -16,11 +16,7 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "baseUrl": "src",
-        "incremental": true,
-        "allowSyntheticDefaultImports": true,
-        "noUnusedParameters": true,
-        "removeComments": false,
-        "preserveConstEnums": true
+        "incremental": true
     },
     "exclude": ["node_modules", "src/vendors"],
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src"]

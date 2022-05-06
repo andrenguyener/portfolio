@@ -1,7 +1,7 @@
-const withTM = require("next-transpile-modules")([]);
+// const withTM = require("next-transpile-modules")([]);
 
-module.exports = withTM({
+module.exports = {
     compiler: {
         styledComponents: true,
     },
-});
+};
