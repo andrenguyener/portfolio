@@ -1,5 +1,3 @@
-import React from "react";
-
 const Mail = () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 11.86">
         <g id="Layer_2" data-name="Layer 2">
