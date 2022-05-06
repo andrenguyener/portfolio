@@ -1,5 +1,11 @@
 [build]
-  command   = "npm run build"
+  command   = "yarn build"
+  environment = { NETLIFY_USE_YARN = "true" }
+  publish   = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  included_files = [".next/*.json"]
+  node_bundler = "esbuild"
