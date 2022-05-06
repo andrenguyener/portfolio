@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Home } from "./../views";
+import { Layout } from "./../views/layout";
 
 const App = () => {
     return (
@@ -8,7 +9,9 @@ const App = () => {
                 <title>Andre Nguyen</title>
                 <meta property="og:title" content="Andre Nguyen" key="portfolio" />
             </Head>
-            <Home />
+            <Layout>
+                <Home />
+            </Layout>
         </>
     );
 };
