@@ -480,7 +480,7 @@ const Project = styled.div`
         ${TechList} {
             justify-content: flex-end;
 
-            span :not(:last-child) {
+            span {
                 margin-left: 1.5rem;
             }
         }
@@ -537,7 +537,7 @@ const Project = styled.div`
         ${TechList} {
             justify-content: flex-start;
 
-            span :not(:last-child) {
+            span {
                 margin-right: 1.5rem;
             }
         }
