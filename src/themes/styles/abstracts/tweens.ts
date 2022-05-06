@@ -137,7 +137,8 @@ export const scrollTriggerHeadingTimeline = (selector: string | Element) => {
             scrollTrigger: {
                 trigger: selector,
                 start: "top 90%",
-                once: true,
+                toggleActions: "play none none none",
+                // once: true,
             },
         })
         .set(selector, { visibility: "visible" })
@@ -157,6 +158,7 @@ export const scrollTriggerBatch = (
                     opacity: 0,
                     y: 50,
                     visibility: "visible",
+                    lazy: true,
                 },
                 {
                     opacity: 1,
@@ -164,6 +166,7 @@ export const scrollTriggerBatch = (
                     duration: 0.5,
                     stagger: { each: 0.25 },
                     ease: "power1.inOut",
+                    lazy: true,
                 }
             ),
         start: "top-=50px 95%",
