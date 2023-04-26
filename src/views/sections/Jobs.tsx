@@ -39,9 +39,9 @@ const data: JobData[] = [
         title: "Frontend Software Engineer",
         url: "https://www.nginx.com/",
         company: "NGINX",
-        range: "May 2019 – Present",
+        range: "May 2019 – May 2023",
         notes: [
-            "Worked on various UI features for the NGINX Controller product including API-Manager, App Delivery, and Security",
+            "Worked on UI features for the NGINX Management Suite product including API-Manager, App Delivery, and Security",
             "Led the development and the implementation of the form library currently used by all other members of the team",
             "Contributed to the UI design library, working with designers to create components developed in React and Vue",
         ],
