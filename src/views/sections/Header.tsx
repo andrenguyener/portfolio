@@ -435,6 +435,7 @@ const LastName = styled.h1`
 const MetaFirstName = styled.h3`
     font-size: 1.3rem;
     font-weight: normal;
+    line-height: normal;
     font-family: ${({ theme }) => theme.font.sans};
     text-transform: uppercase;
     padding-top: 22px;
@@ -448,7 +449,7 @@ const MetaFirstName = styled.h3`
         theme.mixins.respond(
             "phone",
             css`
-                padding-top: 12px;
+                padding-top: 1rem;
                 font-size: 1rem;
             `
         )}
