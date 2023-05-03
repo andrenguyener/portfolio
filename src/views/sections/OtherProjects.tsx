@@ -1,9 +1,9 @@
-import { gsap } from "gsap";
 import React, { useEffect } from "react";
+
+import { gsap } from "gsap";
 import styled, { css } from "styled-components";
 
 import { Icon, NumberedHeading, Section, SectionHeading } from "./../../components";
-
 import { tweens } from "./../../themes/styles/abstracts";
 
 export interface Props {}

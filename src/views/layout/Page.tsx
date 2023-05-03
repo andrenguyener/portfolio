@@ -1,7 +1,9 @@
-import { gsap } from "gsap";
-import dynamic from "next/dynamic";
-import { rgba as _rgba } from "polished";
 import React from "react";
+
+import dynamic from "next/dynamic";
+
+import { gsap } from "gsap";
+import { rgba as _rgba } from "polished";
 import styled, { css } from "styled-components";
 
 import { Logo, ScrollLink, ScrollProgress } from "./../../components";
@@ -13,7 +15,7 @@ const AnimatedCursor = dynamic(() => import("./../../vendors/AnimatedCursor"), {
     ssr: false,
 });
 
-export const Page: React.FC = ({ children }) => {
+export const Page: React.FC<React.PropsWithChildren> = ({ children }) => {
     const [, setIsReady] = React.useState(false);
 
     React.useEffect(() => {
@@ -79,7 +81,7 @@ export const Page: React.FC = ({ children }) => {
 const Block = styled.div`
     position: absolute;
     height: 100%;
-    background-color: ${(props) => props.theme.color.gray.dark};
+    background-color: ${(props) => props.theme.color.black};
     /* background-color: ${(props) => props.theme.color.primary.base}; */
     /* opacity: 0.2; */
     width: calc(25%);

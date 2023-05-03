@@ -1,7 +1,10 @@
 import {
     IconAdobeAcrobat,
+    IconChevronLeftCircle,
+    IconChevronRightCircle,
     IconExternal,
     IconFolder,
+    IconFrameAccent,
     IconGitHub,
     IconLinkedin,
     IconMail,
@@ -10,8 +13,11 @@ import {
 
 enum IconName {
     AdobeAcrobat,
+    ChevronLeftCircle,
+    ChevronRightCircle,
     External,
     Folder,
+    FrameAccent,
     GitHub,
     Linkedin,
     Logo,
@@ -23,10 +29,16 @@ const Icon = ({ name }: { name: keyof typeof IconName }) => {
     switch (name) {
         case "AdobeAcrobat":
             return <IconAdobeAcrobat />;
+        case "ChevronLeftCircle":
+            return <IconChevronLeftCircle />;
+        case "ChevronRightCircle":
+            return <IconChevronRightCircle />;
         case "External":
             return <IconExternal />;
         case "Folder":
             return <IconFolder />;
+        case "FrameAccent":
+            return <IconFrameAccent />;
         case "GitHub":
             return <IconGitHub />;
         case "Linkedin":

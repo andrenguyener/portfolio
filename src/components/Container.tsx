@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 import { mixins } from "./../themes/styles/abstracts";
 
-export const Container: React.FC<{ noWrap?: boolean }> = (props) => {
+export const Container: React.FC<React.PropsWithChildren<{ noWrap?: boolean }>> = (props) => {
     return <StyledContainer noWrap={!!props.noWrap}>{props.children}</StyledContainer>;
 };
 

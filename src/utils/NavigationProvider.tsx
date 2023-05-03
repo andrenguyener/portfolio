@@ -8,7 +8,7 @@ interface NavigationProps {
 // tslint:disable-next-line:no-object-literal-type-assertion
 export const NavigationContext = createContext<NavigationProps>({} as NavigationProps);
 
-export const NavigationContextProvider: React.FC = (props) => {
+export const NavigationContextProvider: React.FC<React.PropsWithChildren> = (props) => {
     const [isActive, setIsActive] = useState(false);
 
     const navigationContext = { isActive, setIsActive };

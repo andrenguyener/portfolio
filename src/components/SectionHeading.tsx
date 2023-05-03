@@ -1,9 +1,10 @@
 import React, { HTMLProps } from "react";
+
 import styled, { css } from "styled-components";
 
 export const SectionHeading = React.forwardRef<HTMLHeadingElement, HTMLProps<HTMLHeadingElement>>(
     (props, ref) => {
-        const { as, ...restProps } = props;
+        const { as: _as, ...restProps } = props;
         return <SectionHeadingContainer {...restProps} ref={ref} />;
     }
 );

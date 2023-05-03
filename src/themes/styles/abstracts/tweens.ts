@@ -83,6 +83,38 @@ export const slideOutUp = (
     return gsap.fromTo(selector, _from, _to);
 };
 
+export const slideOutRight = (
+    selector: gsap.TweenTarget,
+    from: gsap.TweenVars = {},
+    to: gsap.TweenVars = {}
+) => {
+    const _from = {
+        xPercent: 0,
+        ...from,
+    };
+    const _to = {
+        xPercent: 100,
+        ...to,
+    };
+    return gsap.fromTo(selector, _from, _to);
+};
+
+export const slideOutLeft = (
+    selector: gsap.TweenTarget,
+    from: gsap.TweenVars = {},
+    to: gsap.TweenVars = {}
+) => {
+    const _from = {
+        xPercent: 0,
+        ...from,
+    };
+    const _to = {
+        xPercent: -100,
+        ...to,
+    };
+    return gsap.fromTo(selector, _from, _to);
+};
+
 export const fadeIn = (
     selector: gsap.TweenTarget,
     from: gsap.TweenVars = {},

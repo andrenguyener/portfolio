@@ -7,3 +7,6 @@ export { default as IconLinkedin } from "./linkedin";
 export { default as IconAdobeAcrobat } from "./adobeAcrobat";
 export { default as IconMail } from "./mail";
 export { default as IconSoundcloud } from "./soundcloud";
+export { default as IconChevronRightCircle } from "./chevronRightCircle";
+export { default as IconChevronLeftCircle } from "./chevronLeftCircle";
+export { default as IconFrameAccent } from "./frameAccent";

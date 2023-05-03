@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Section: React.FC = (props) => {
+export const Section: React.FC<React.PropsWithChildren> = (props) => {
     return <SectionContainer>{props.children}</SectionContainer>;
 };
 

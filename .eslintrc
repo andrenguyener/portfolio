@@ -12,30 +12,37 @@
     "rules": {
         "react-hooks/rules-of-hooks": "error",
         "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off"
-        // "import/order": [
-        //     "warn",
-        //     {
-        //         "groups": ["builtin", "external", "internal"],
-        //         "pathGroups": [
-        //             {
-        //                 "pattern": "react",
-        //                 "group": "external",
-        //                 "position": "before"
-        //             },
-        //             {
-        //                 "pattern": "next/*",
-        //                 "group": "external",
-        //                 "position": "before"
-        //             }
-        //         ],
-        //         "pathGroupsExcludedImportTypes": ["react"],
-        //         "newlines-between": "always",
-        //         "alphabetize": {
-        //             "order": "asc",
-        //             "caseInsensitive": true
-        //         }
-        //     }
-        // ]
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            1,
+            { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+        ],
+        "import/order": [
+            "warn",
+            {
+                "groups": ["builtin", "external", "internal"],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "next/*",
+                        "group": "external",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["react"],
+                "newlines-between": "always",
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ]
     }
 }

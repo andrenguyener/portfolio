@@ -1,5 +1,6 @@
-import { gsap } from "gsap";
 import React from "react";
+
+import { gsap } from "gsap";
 import { animateScroll as scroll } from "react-scroll";
 import styled, { css } from "styled-components";
 
@@ -26,6 +27,7 @@ const Logo: React.FC = () => {
 
     return (
         <LogoContainer ref={elRefs.logo} isTop={isTop}>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/" onClick={onClick}>
                 <Image xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.13 46.9">
                     <Polygon points="61.13 2.23 46.56 2.23 37.74 22.02 44.87 46.9 61.13 2.23" />

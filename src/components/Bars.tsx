@@ -4,7 +4,7 @@ type Props = {
     type: "vertical" | "horizontal" | "both";
 };
 
-const Bars: React.FC<Props> = ({ type }) => {
+const Bars: React.FC<React.PropsWithChildren<Props>> = ({ type }) => {
     return (
         <BarsContainer>
             {type === "vertical" && (

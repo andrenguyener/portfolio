@@ -13,31 +13,35 @@
         "format": "prettier --write src"
     },
     "resolutions": {
-        "@types/react": "17.0.2",
-        "@types/react-dom": "17.0.2"
+        "@types/react": "18.0.2",
+        "@types/react-dom": "18.0.2"
     },
     "dependencies": {
+        "@react-three/drei": "^9.56.18",
+        "@react-three/fiber": "^8.11.0",
+        "@react-three/postprocessing": "2.0.5",
         "gsap": "^3.8.0",
         "hover-effect": "^1.1.0",
         "lodash.debounce": "^4.0.8",
         "lodash.isequal": "^4.5.0",
         "next": "^12.1.6",
+        "next-transpile-modules": "^4.1.0",
         "polished": "^4.0.3",
-        "react": "^17.0.2",
+        "react": "^18.0.2",
         "react-animated-cursor": "^2.1.5",
-        "react-dom": "^17.0.2",
+        "react-dom": "^18.2.0",
         "react-intersection-observer": "^8.29.1",
         "react-scroll": "^1.8.1",
         "react-transition-group": "^4.4.1",
         "styled-components": "^5.2.0",
-        "three": "^0.135.0"
+        "three": "^0.149.0"
     },
     "devDependencies": {
         "@netlify/plugin-nextjs": "^4.7.0",
         "@types/lodash.debounce": "^4.0.6",
         "@types/lodash.isequal": "^4.5.5",
         "@types/node": "^14.6.0",
-        "@types/react": "^17.0.37",
+        "@types/react": "^18.0.2",
         "@types/react-scroll": "^1.8.2",
         "@types/react-transition-group": "^4.4.0",
         "@types/styled-components": "^5.1.4",
@@ -49,14 +53,36 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.25.3",
         "eslint-plugin-react-hooks": "^4.3.0",
+        "husky": "^7.0.1",
+        "lint-staged": "8.1.7",
         "npm-run-all": "^4.1.5",
-        "prettier": "^2.1.2",
+        "prettier": "^2.6.1",
         "typescript": "^4.5.2"
     },
     "eslintConfig": {
         "extends": [
             "react-app",
             "react-app/jest"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "packages/**/*.{js,jsx,ts,tsx,json}": [
+            "yarn prettier --write"
+        ]
+    },
+    "prettier": {
+        "printWidth": 100,
+        "tabWidth": 4,
+        "trailingComma": "es5",
+        "overrides": [
+            {
+                "files": "*.ts"
+            }
         ]
     }
 }

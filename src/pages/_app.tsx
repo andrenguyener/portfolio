@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+
 import { globalFonts } from "./../static/fonts";
 import { Layout } from "./../views/layout";
 import "../static/globals.css";

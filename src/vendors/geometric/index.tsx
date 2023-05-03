@@ -76,7 +76,7 @@ export class Geometric extends React.Component<Props> {
     addCustomSceneObjects = () => {
         // cube
         this.cube = new THREE.Mesh(
-            new THREE.BoxBufferGeometry(this.width / 15, this.width / 17, this.width / 17),
+            new THREE.BoxGeometry(this.width / 15, this.width / 17, this.width / 17),
             new THREE.MeshBasicMaterial({
                 wireframe: true,
             })
@@ -87,7 +87,7 @@ export class Geometric extends React.Component<Props> {
 
         // pyramide
         this.pyr = new THREE.Mesh(
-            new THREE.TetrahedronBufferGeometry(this.width / 15, 0),
+            new THREE.TetrahedronGeometry(this.width / 15, 0),
             new THREE.MeshBasicMaterial({
                 wireframe: true,
             })
@@ -121,7 +121,7 @@ export class Geometric extends React.Component<Props> {
 
         // octahedron
         this.octa = new THREE.Mesh(
-            new THREE.OctahedronBufferGeometry(this.width / 20, 0),
+            new THREE.OctahedronGeometry(this.width / 20, 0),
             new THREE.MeshBasicMaterial({
                 wireframe: true,
             })

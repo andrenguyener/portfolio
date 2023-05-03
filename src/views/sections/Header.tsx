@@ -1,12 +1,12 @@
-import { gsap } from "gsap";
 import React, { useContext } from "react";
+
+import { gsap } from "gsap";
 import styled, { css } from "styled-components";
 
 import { Bars } from "./../../components";
-import { tweens } from "./../../themes/styles/abstracts";
 import { NavigationContext } from "./../../utils";
-import { Destructure } from "./../../vendors/destructuration";
 import { animationsRefs } from "./Header.animations";
+import { PlaygroundGallery } from "./PlaygroundGallery";
 
 const objToday = new Date();
 
@@ -50,7 +50,7 @@ const today = `${curMonth} ${dayOfMonth}, ${curYear}`;
 const MAX_WIDTH = "2000px";
 
 const {
-    backgroundFadeIn,
+    // backgroundFadeIn,
     dateTimeSlideAway,
     dateTimeSlideIn,
     elRefs,
@@ -72,51 +72,51 @@ const timeline = gsap.timeline();
 //     });
 // };
 
-let winsize: undefined | { width: number; height: number };
-let mousepos: undefined | { x: number; y: number };
+// let winsize: undefined | { width: number; height: number };
+// let mousepos: undefined | { x: number; y: number };
 
 // Map number x from range [a, b] to [c, d]
-const map = (x: number, a: number, b: number, c: number, d: number) =>
-    ((x - a) * (d - c)) / (b - a) + c;
+// const map = (x: number, a: number, b: number, c: number, d: number) =>
+//     ((x - a) * (d - c)) / (b - a) + c;
 
-// Linear interpolation
-const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b;
+// // Linear interpolation
+// const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b;
 
-const calcWinsize = () => {
-    return { width: window?.innerWidth, height: window?.innerHeight };
-};
+// const calcWinsize = () => {
+//     return { width: window?.innerWidth, height: window?.innerHeight };
+// };
 
-const getRandomNumber = (min: number, max: number) =>
-    // tslint:disable-next-line:insecure-random
-    Math.floor(Math.random() * (max - min + 1) + min);
+// const getRandomNumber = (min: number, max: number) =>
+//     // tslint:disable-next-line:insecure-random
+//     Math.floor(Math.random() * (max - min + 1) + min);
 
 // Gets the mouse position
-const getMousePos = (e: MouseEvent) => {
-    let posx = 0;
-    let posy = 0;
-    if (!e) {
-        e = window.event as MouseEvent;
-    }
-    if (e.pageX || e.pageY) {
-        posx = e.pageX;
-        posy = e.pageY;
-    } else if (e.clientX || e.clientY) {
-        posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-        posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-    }
+// const getMousePos = (e: MouseEvent) => {
+//     let posx = 0;
+//     let posy = 0;
+//     if (!e) {
+//         e = window.event as MouseEvent;
+//     }
+//     if (e.pageX || e.pageY) {
+//         posx = e.pageX;
+//         posy = e.pageY;
+//     } else if (e.clientX || e.clientY) {
+//         posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+//         posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+//     }
 
-    return { x: posx, y: posy };
-};
-const invertMovement = !getRandomNumber(0, 3);
+//     return { x: posx, y: posy };
+// };
+// const invertMovement = !getRandomNumber(0, 3);
 
-const translationVals = { tx: 0, ty: 0 };
-const xstart = invertMovement ? getRandomNumber(20, 70) : getRandomNumber(40, 80);
-const ystart = invertMovement ? getRandomNumber(10, 60) : getRandomNumber(40, 80);
+// const translationVals = { tx: 0, ty: 0 };
+// const xstart = invertMovement ? getRandomNumber(20, 70) : getRandomNumber(40, 80);
+// const ystart = invertMovement ? getRandomNumber(10, 60) : getRandomNumber(40, 80);
 
 export const Header: React.FC = () => {
     const { isActive } = useContext(NavigationContext);
     const [isReady, setIsReady] = React.useState(false);
-    const [isSmallScreen, setIsSmallScreen] = React.useState<boolean | null>(null);
+    const [_isSmallScreen, setIsSmallScreen] = React.useState<boolean | null>(null);
     // const isTop = useIsTopInView();
 
     React.useEffect(() => {
@@ -133,27 +133,30 @@ export const Header: React.FC = () => {
 
     React.useEffect(() => {
         // Calculate the viewport size
-        winsize = calcWinsize();
-        window.addEventListener("resize", () => (winsize = calcWinsize()));
+        // winsize = calcWinsize();
+        // window.addEventListener("resize", () => (winsize = calcWinsize()));
 
-        mousepos = { x: winsize.width / 2, y: winsize.height / 2 };
-        window.addEventListener("mousemove", (ev) => (mousepos = getMousePos(ev)));
+        // mousepos = { x: winsize.width / 2, y: winsize.height / 2 };
+        // window.addEventListener("mousemove", (ev) => (mousepos = getMousePos(ev)));
 
         const introTimeline = gsap.timeline({ delay: 1.3 });
 
         introTimeline.set(
             [
-                elRefs.title.main.current,
+                elRefs.title.firstName.current,
+                elRefs.title.lastName.current,
+                elRefs.title.metaFirstName.current,
                 elRefs.title.sub.current,
                 elRefs.dateTime.current,
                 elRefs.horizontalBar.current,
+                // elRefs.gallery.leftSlider.current,
+                // elRefs.gallery.rightSlider.current,
             ],
             { visibility: "visible" }
         );
         introTimeline
-            .add(tweens.fadeIn("#destructure", {}, { duration: 1 }), "title")
             .add(titleSlideIn(), "title")
-            .add(backgroundFadeIn(), "title-=1")
+            // .add(backgroundFadeIn(), "title-=1")
             .add(dateTimeSlideIn())
             .play();
 
@@ -161,89 +164,102 @@ export const Header: React.FC = () => {
         setIsReady(true);
 
         return () => {
-            window.removeEventListener("resize", () => (winsize = calcWinsize()));
-            window.removeEventListener("mousemove", () => (winsize = calcWinsize()));
+            // window.removeEventListener("resize", () => (winsize = calcWinsize()));
+            // window.removeEventListener("mousemove", () => (winsize = calcWinsize()));
         };
     }, []);
 
-    React.useEffect(() => {
-        if (isSmallScreen !== null) {
-            const destructTimeline = gsap.timeline();
-            destructTimeline.add(tweens.fadeIn("#destructure", {}, { duration: 4 })).play();
-        }
-    }, [isSmallScreen]);
+    // React.useEffect(() => {
+    //     if (isSmallScreen !== null) {
+    //         const destructTimeline = gsap.timeline();
+    //         destructTimeline.add(tweens.fadeIn("#destructure", {}, { duration: 4 })).play();
+    //     }
+    // }, [isSmallScreen]);
 
-    React.useEffect(() => {
-        if (isReady && isSmallScreen === false) {
-            animateBackground();
-        }
-    }, [isReady]);
+    // React.useEffect(() => {
+    //     if (isReady && isSmallScreen === false) {
+    //         animateBackground();
+    //     }
+    // }, [isReady]);
 
-    const animateBackground = () => {
-        const render = () => {
-            if (window.scrollY <= 300 && mousepos && winsize) {
-                translationVals.tx = lerp(
-                    translationVals.tx,
-                    map(
-                        mousepos.x,
-                        0,
-                        winsize.width,
-                        invertMovement ? xstart : -xstart,
-                        invertMovement ? -xstart : xstart
-                    ),
-                    0.04
-                );
-                translationVals.ty = lerp(
-                    translationVals.ty,
-                    map(
-                        mousepos.y,
-                        0,
-                        winsize.height,
-                        invertMovement ? ystart : -ystart,
-                        invertMovement ? -ystart : ystart
-                    ),
-                    0.04
-                );
-                gsap.set("#background-image", { x: translationVals.tx, y: translationVals.ty });
-            } else {
-                translationVals.tx = 0;
-                translationVals.ty = 0;
-                gsap.set("#background-image", { x: translationVals.tx, y: translationVals.ty });
-            }
-            requestAnimationFrame(render);
-        };
-        requestAnimationFrame(render);
-    };
+    // const animateBackground = () => {
+    //     const render = () => {
+    //         if (window.scrollY <= 300 && mousepos && winsize) {
+    //             translationVals.tx = lerp(
+    //                 translationVals.tx,
+    //                 map(
+    //                     mousepos.x,
+    //                     0,
+    //                     winsize.width,
+    //                     invertMovement ? xstart : -xstart,
+    //                     invertMovement ? -xstart : xstart
+    //                 ),
+    //                 0.04
+    //             );
+    //             translationVals.ty = lerp(
+    //                 translationVals.ty,
+    //                 map(
+    //                     mousepos.y,
+    //                     0,
+    //                     winsize.height,
+    //                     invertMovement ? ystart : -ystart,
+    //                     invertMovement ? -ystart : ystart
+    //                 ),
+    //                 0.04
+    //             );
+    //             // gsap.set("#background-image", { x: translationVals.tx, y: translationVals.ty });
+    //         } else {
+    //             translationVals.tx = 0;
+    //             translationVals.ty = 0;
+    //             // gsap.set("#background-image", { x: translationVals.tx, y: translationVals.ty });
+    //         }
+    //         requestAnimationFrame(render);
+    //     };
+    //     requestAnimationFrame(render);
+    // };
 
     return (
         <Container id="header_container">
             {/* <div className="grid">
                 <div className="grid__item pos-1"> */}
-            <ContainerBackground ref={elRefs.background} id="background-image" />
+            {/* <ContainerBackground ref={elRefs.background} id="background-image" /> */}
             {/* </div> */}
             {/* </div> */}
             <Bars type="vertical" />
             <Fade id="fade" />
             {/* <Helix /> */}
             <WidthContainer>
-                {isSmallScreen !== null && (
-                    <Destructure
-                        opts={{
-                            ...(isSmallScreen && {
-                                size: 150,
-                                side: 4,
-                            }),
-                        }}
-                    />
-                )}
                 <Title>
-                    <Main ref={elRefs.title.main}>Andre Nguyen</Main>
+                    <Main>
+                        <FirstNameContainer>
+                            <FirstName ref={elRefs.title.firstName}>Andre</FirstName>
+                            <MetaFirstName ref={elRefs.title.metaFirstName}>
+                                {/* Todo make this a themeable color */}
+                                <span style={{ color: "#005C5C" }}>Seattle</span> Based <br />{" "}
+                                Frontend Engineer
+                            </MetaFirstName>
+                        </FirstNameContainer>
+                        <LastName ref={elRefs.title.lastName}>Nguyen</LastName>
+                    </Main>
                     <Sub ref={elRefs.title.sub}>
                         <span>I'm a software engineer based in Seattle, WA</span>
                         <span>specializing in bringing to life cool ideas, websites,</span>
                         <span>applications, and everything in between</span>
                     </Sub>
                 </Title>
+                {/* {isSmallScreen !== null && ( */}
+                <>
+                    <PlaygroundGallery />
+                    {/* <Destructure
+                            opts={{
+                                ...(isSmallScreen && {
+                                    size: 150,
+                                    side: 4,
+                                }),
+                            }}
+                        /> */}
+                </>
+                {/* )} */}
             </WidthContainer>
             <DateContainer>
                 <HorizontalBar ref={elRefs.horizontalBar}>&nbsp;</HorizontalBar>
@@ -255,24 +271,6 @@ export const Header: React.FC = () => {
         </Container>
     );
 };
-
-// const ScrollArrowContainer = styled.div`
-//     position: absolute;
-//     width: 25rem;
-//     height: 25rem;
-
-//     right: calc(25% - 2px);
-//     bottom: 10%;
-//     transform: translate(50%, 50%);
-
-//     ${({ theme }) =>
-//         theme.mixins.respond(
-//             "tab-port",
-//             css`
-//                 right: calc(10%);
-//             `
-//         )}
-// `;
 
 const Fade = styled.div`
     position: absolute;
@@ -340,7 +338,7 @@ const Sub = styled.h2`
     font-size: 1.5rem;
     font-weight: normal;
     overflow: hidden;
-    margin-right: 10%;
+    // margin-right: 8%;
     color: ${({ theme }) => theme.color.gray.base};
 
     ${({ theme }) =>
@@ -360,15 +358,17 @@ const Sub = styled.h2`
         )}
 `;
 
-const Main = styled.h1`
-    font-size: 8rem;
+// Todo move the styles for the mixins to the first and last name
+const Main = styled.div`
+    // font-size: 8rem;
 
-    font-family: ${({ theme }) => theme.font.sansBold};
-    letter-spacing: 3px;
-    margin-bottom: 2rem;
+    // font-family: ${({ theme }) => theme.font.sansBold};
+    // letter-spacing: 3px;
+    // margin-bottom: 2rem;
+    display: inline-block;
     overflow: hidden;
 
-    ${({ theme }) => theme.mixins.initialHidden};
+    // ${({ theme }) => theme.mixins.initialHidden};
 
     ${({ theme }) =>
         theme.mixins.respond(
@@ -388,19 +388,61 @@ const Main = styled.h1`
         )}
 `;
 
+const FirstNameContainer = styled.div`
+    display: flex;
+    // align-items: center;
+`;
+
+const FirstName = styled.h1`
+    font-size: 8rem;
+
+    font-family: ${({ theme }) => theme.font.sansBold};
+    text-transform: uppercase;
+    overflow: hidden;
+
+    ${({ theme }) => theme.mixins.initialHidden};
+`;
+const LastName = styled.h1`
+    font-size: 8rem;
+    font-weight: normal;
+    font-family: ${({ theme }) => theme.font.sans};
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    margin-top: -16px;
+    padding-left: 6.5rem;
+    overflow: hidden;
+
+    ${({ theme }) => theme.mixins.initialHidden};
+`;
+
+const MetaFirstName = styled.h3`
+    font-size: 1.75rem;
+    font-weight: normal;
+    font-family: ${({ theme }) => theme.font.sans};
+    font-size: 16px;
+    text-transform: uppercase;
+    padding-top: 22px;
+    margin-left: 5px;
+    overflow: hidden;
+    color: ${({ theme }) => theme.color.gray.light_3};
+
+    ${({ theme }) => theme.mixins.initialHidden};
+`;
+
 const Title = styled.div`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     left: 25%;
     overflow: hidden;
+    z-index: 1;
 
     ${({ theme }) =>
         theme.mixins.respond(
             "small-screen",
             css`
                 left: calc(15%);
-                width: 85%;
+                width: 40%;
             `
         )}
 
@@ -423,26 +465,26 @@ const Title = styled.div`
         )}
 `;
 
-const ContainerBackground = styled.div`
-    position: absolute;
-    left: -10%;
-    top: -10%;
-    width: 120%;
-    height: 120%;
-    opacity: 0.15;
-    background-image: url("/images/forest-s.jpg");
-    background-size: cover;
-    background-clip: content-box;
-    background-repeat: no-repeat;
+// const ContainerBackground = styled.div`
+//     position: absolute;
+//     left: -10%;
+//     top: -10%;
+//     width: 120%;
+//     height: 120%;
+//     opacity: 0.15;
+//     // background-image: url("/images/forest-s.jpg");
+//     background-size: cover;
+//     background-clip: content-box;
+//     background-repeat: no-repeat;
 
-    z-index: -3;
+//     z-index: -3;
 
-    ${({ theme }) => theme.mixins.initialHidden};
+//     ${({ theme }) => theme.mixins.initialHidden};
 
-    @media only screen and (max-width: 37.5em) {
-        background-image: url("/images/forest-xs.jpg");
-    }
-`;
+//     @media only screen and (max-width: 37.5em) {
+//         // background-image: url("/images/forest-xs.jpg");
+//     }
+// `;
 
 const WidthContainer = styled.div`
     position: absolute;

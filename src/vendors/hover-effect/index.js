@@ -234,7 +234,7 @@ void main() {
         opacity: 1.0,
     });
 
-    var geometry = new THREE.PlaneBufferGeometry(parent.offsetWidth, parent.offsetHeight, 1);
+    var geometry = new THREE.PlaneGeometry(parent.offsetWidth, parent.offsetHeight, 1);
     var object = new THREE.Mesh(geometry, mat);
     scene.add(object);
 

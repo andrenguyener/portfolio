@@ -1,5 +1,6 @@
-import { gsap } from "gsap";
 import React, { useContext } from "react";
+
+import { gsap } from "gsap";
 import { Link, LinkProps } from "react-scroll";
 import styled, { css } from "styled-components";
 
