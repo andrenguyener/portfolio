@@ -74,6 +74,15 @@ const LogoContainer = styled.div<{ isTop: boolean }>`
             `
         )};
 
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                top: 2rem;
+                left: 2rem;
+            `
+        )}
+
     ${Image} {
         opacity: ${(props) => (props.isTop ? "0.3" : "1")};
     }

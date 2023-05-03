@@ -178,8 +178,8 @@ const Button = styled.button<{ isActive: boolean }>`
         theme.mixins.respond(
             "phone",
             css`
-                top: 3rem;
-                right: 3rem;
+                top: 2rem;
+                right: 2rem;
             `
         )}
 

@@ -314,7 +314,7 @@ const DateContainer = styled.div`
         theme.mixins.respond(
             "phone",
             css`
-                top: 75vh;
+                top: 80vh;
                 transform: translateY(-50%);
             `
         )}
@@ -353,7 +353,7 @@ const Sub = styled.h2`
         theme.mixins.respond(
             "phone",
             css`
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             `
         )}
 `;
@@ -401,6 +401,14 @@ const FirstName = styled.h1`
     overflow: hidden;
 
     ${({ theme }) => theme.mixins.initialHidden};
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                font-size: 4.5rem;
+            `
+        )}
 `;
 const LastName = styled.h1`
     font-size: 8rem;
@@ -413,13 +421,21 @@ const LastName = styled.h1`
     overflow: hidden;
 
     ${({ theme }) => theme.mixins.initialHidden};
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                padding-left: 3.5rem;
+                font-size: 4.5rem;
+            `
+        )}
 `;
 
 const MetaFirstName = styled.h3`
-    font-size: 1.75rem;
+    font-size: 1.3rem;
     font-weight: normal;
     font-family: ${({ theme }) => theme.font.sans};
-    font-size: 16px;
     text-transform: uppercase;
     padding-top: 22px;
     margin-left: 5px;
@@ -427,6 +443,15 @@ const MetaFirstName = styled.h3`
     color: ${({ theme }) => theme.color.gray.light_3};
 
     ${({ theme }) => theme.mixins.initialHidden};
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                padding-top: 12px;
+                font-size: 1rem;
+            `
+        )}
 `;
 
 const Title = styled.div`
@@ -494,6 +519,14 @@ const WidthContainer = styled.div`
     left: 50%;
     bottom: 0;
     transform: translate(-50%, -50%);
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                top: 40%;
+            `
+        )}
 `;
 
 const Container = styled.header`

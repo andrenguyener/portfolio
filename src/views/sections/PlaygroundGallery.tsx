@@ -2,7 +2,7 @@ import React, { useContext, Suspense } from "react";
 
 import { Canvas, useThree } from "@react-three/fiber";
 import { gsap } from "gsap";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { PerspectiveCamera } from "three";
 
 import { Icon } from "./../../components";
@@ -205,6 +205,14 @@ const ButtonArrow = styled.button`
             stroke: ${(props) => props.theme.color.primary.base};
         }
     }
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                width: 4rem;
+            `
+        )}
 `;
 
 const RightButtonArrow = styled(ButtonArrow)`
@@ -228,6 +236,14 @@ const FrameBorderAccent = styled.div`
     svg {
         fill: ${(props) => props.theme.color.white};
     }
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                display: none;
+            `
+        )}
 `;
 
 const Sandbox = styled.div`
@@ -248,4 +264,15 @@ const GalleryPlaygroundContainer = styled.div`
             opacity: 1;
         }
     }
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone",
+            css`
+                top: 55%;
+                height: 50%;
+                width: calc(100% - 2rem);
+                left: 1rem;
+            `
+        )}
 `;
