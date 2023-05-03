@@ -176,7 +176,7 @@ const Button = styled.button<{ isActive: boolean }>`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 top: 2rem;
                 right: 2rem;

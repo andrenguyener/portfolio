@@ -76,7 +76,7 @@ const LogoContainer = styled.div<{ isTop: boolean }>`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 top: 2rem;
                 left: 2rem;

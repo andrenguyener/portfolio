@@ -351,7 +351,7 @@ const Sub = styled.h2`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 font-size: 1.2rem;
             `
@@ -404,7 +404,7 @@ const FirstName = styled.h1`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 font-size: 4.5rem;
             `
@@ -424,7 +424,7 @@ const LastName = styled.h1`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 padding-left: 3.5rem;
                 font-size: 4.5rem;
@@ -447,7 +447,7 @@ const MetaFirstName = styled.h3`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 padding-top: 1rem;
                 font-size: 1rem;
@@ -478,6 +478,15 @@ const Title = styled.div`
             css`
                 left: 10%;
                 width: 90%;
+            `
+        )}
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone-land",
+            css`
+                top: 25%;
+                left: 10%;
             `
         )}
 
@@ -523,7 +532,7 @@ const WidthContainer = styled.div`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 top: 40%;
             `

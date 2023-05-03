@@ -208,7 +208,7 @@ const ButtonArrow = styled.button`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 width: 4rem;
             `
@@ -239,7 +239,7 @@ const FrameBorderAccent = styled.div`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 display: none;
             `
@@ -267,7 +267,7 @@ const GalleryPlaygroundContainer = styled.div`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "phone-land",
             css`
                 top: 55%;
                 height: 50%;
