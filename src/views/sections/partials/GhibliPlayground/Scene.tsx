@@ -4,6 +4,7 @@ import { useHelper } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Color, DirectionalLightHelper, Group, SpotLight } from "three";
 
+import { Background } from "./Background";
 import { Trees } from "./Trees";
 
 export const Scene = ({ debug }: { debug?: boolean }) => {
@@ -20,6 +21,7 @@ export const Scene = ({ debug }: { debug?: boolean }) => {
 
     return (
         <>
+            <Background />
             <ambientLight intensity={0.1} />
             <spotLight castShadow position={[35, 50, 55]} ref={refLight} />
             <axesHelper args={[15]} visible={debug} />

@@ -1,4 +1,4 @@
-import React, { useContext, Suspense } from "react";
+import React, { useContext, useEffect, Suspense } from "react";
 
 import { Canvas, useThree } from "@react-three/fiber";
 import { gsap } from "gsap";
@@ -30,7 +30,7 @@ const PlaygroundSandboxes = [
         cameraPosition: KingdomHeartsCamPosition,
         render: <KingdomHeartsPlayground />,
     },
-] as const;
+];
 
 const SetLoading = ({
     setIsLoading,
@@ -39,7 +39,7 @@ const SetLoading = ({
 }) => {
     setIsLoading(true);
 
-    React.useEffect(() => {
+    useEffect(() => {
         return () => {
             setTimeout(() => {
                 setIsLoading(false);
@@ -58,7 +58,7 @@ const UpdateCameraScene = ({ index, isLoading }: { index: number; isLoading: boo
     }));
     const tempBackgroundRef = React.useRef(scene.background);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const _camera = camera as PerspectiveCamera;
         const currentCameraPosition = PlaygroundSandboxes?.[index]
             ?.cameraPosition as PerspectiveCamera;
@@ -70,7 +70,7 @@ const UpdateCameraScene = ({ index, isLoading }: { index: number; isLoading: boo
         // controls?.update();
     }, [index]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isLoading) {
             tempBackgroundRef.current = scene.background;
             scene.background = null;
@@ -90,7 +90,7 @@ export const PlaygroundGallery = () => {
     const [isLoading, setIsLoading] = React.useState(true);
     const [playgroundIndex, setPlaygroundIndex] = React.useState(0);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isReady) {
             if (isActive) {
                 timeline.progress(0).clear();
@@ -102,7 +102,7 @@ export const PlaygroundGallery = () => {
         }
     }, [isActive]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const introTimeline = gsap.timeline({ delay: 1.3 });
 
         introTimeline.set([elRefs.leftSlider.current, elRefs.rightSlider.current], {

@@ -6,6 +6,8 @@ import { DirectionalLightHelper, Group, SpotLight } from "three";
 
 import { Chessboard } from "./Chessboard";
 
+const HDRFile = "/playground/kingdom-hearts/background.hdr";
+
 export const Scene = ({ debug }: { debug?: boolean }) => {
     const refChessboard = useRef<Group>(null);
     const refLight = useRef<SpotLight>(null);
@@ -17,7 +19,7 @@ export const Scene = ({ debug }: { debug?: boolean }) => {
             <axesHelper args={[15]} visible={debug} />
             <Stage
                 environment={{
-                    files: "/playground/kingdom-hearts/background.hdr",
+                    files: HDRFile,
                     blur: 0.8,
                     background: true,
                 }}
@@ -34,4 +36,4 @@ export const Scene = ({ debug }: { debug?: boolean }) => {
     );
 };
 
-useTexture.preload("/playground/kingdom-hearts/background.hdr");
+useTexture.preload(HDRFile);
