@@ -312,18 +312,18 @@ const DateContainer = styled.div`
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "phone",
+            "tab-port",
             css`
-                top: 80vh;
-                transform: translateY(-50%);
+                left: calc(10% - 0.5rem + 1px);
             `
         )}
 
     ${({ theme }) =>
         theme.mixins.respond(
-            "tab-port",
+            "phone",
             css`
-                left: calc(10% - 0.5rem + 1px);
+                top: 85vh;
+                transform: translateY(-50%);
             `
         )}
 `;
@@ -494,7 +494,7 @@ const Title = styled.div`
         theme.mixins.respond(
             "phone",
             css`
-                top: 30%;
+                top: 20%;
                 left: 10%;
             `
         )}
@@ -535,6 +535,14 @@ const WidthContainer = styled.div`
             "phone-land",
             css`
                 top: 40%;
+            `
+        )}
+
+    ${({ theme }) =>
+        theme.mixins.respond(
+            "phone-land",
+            css`
+                top: 45%;
             `
         )}
 `;

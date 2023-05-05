@@ -5,13 +5,20 @@ import { Scene } from "./Scene";
 
 export const cameraProps: CanvasProps["camera"] = { position: [0, 1, 1.5], zoom: 4, fov: 100 };
 
-export const FiberContainer = ({ wireframe }: { wireframe?: boolean }) => {
+export const FiberContainer = ({
+    wireframe,
+    isSmallScreen,
+}: {
+    wireframe?: boolean;
+    isSmallScreen?: boolean;
+}) => {
     return (
         <>
             <Stage intensity={0.1} adjustCamera={0.9}>
                 <Scene debug={false} wireframe={wireframe} />
             </Stage>
             <OrbitControls
+                enabled={!isSmallScreen}
                 minDistance={1}
                 maxDistance={50}
                 maxPolarAngle={Math.PI / 2}

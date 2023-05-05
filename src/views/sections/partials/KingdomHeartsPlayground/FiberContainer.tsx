@@ -9,11 +9,17 @@ export const cameraProps: CanvasProps["camera"] = {
     fov: 75,
 };
 
-export const FiberContainer = ({ wireframe }: { wireframe?: boolean }) => {
+export const FiberContainer = ({
+    wireframe,
+    isSmallScreen,
+}: {
+    wireframe?: boolean;
+    isSmallScreen?: boolean;
+}) => {
     return (
         <>
             <Scene debug={false} wireframe={wireframe} />
-            <OrbitControls makeDefault minDistance={0} maxDistance={50} />
+            <OrbitControls makeDefault minDistance={0} maxDistance={50} enabled={!isSmallScreen} />
         </>
     );
 };

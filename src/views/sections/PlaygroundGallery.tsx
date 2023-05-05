@@ -24,15 +24,23 @@ const timeline = gsap.timeline();
 const PlaygroundSandboxes = [
     {
         cameraPosition: GhibliCamPosition,
-        render: ({ wireframe }: { wireframe?: boolean }) => (
-            <GhibliPlayground wireframe={wireframe} />
-        ),
+        render: ({
+            wireframe,
+            isSmallScreen,
+        }: {
+            wireframe?: boolean;
+            isSmallScreen?: boolean;
+        }) => <GhibliPlayground wireframe={wireframe} isSmallScreen={isSmallScreen} />,
     },
     {
         cameraPosition: KingdomHeartsCamPosition,
-        render: ({ wireframe }: { wireframe?: boolean }) => (
-            <KingdomHeartsPlayground wireframe={wireframe} />
-        ),
+        render: ({
+            wireframe,
+            isSmallScreen,
+        }: {
+            wireframe?: boolean;
+            isSmallScreen?: boolean;
+        }) => <KingdomHeartsPlayground wireframe={wireframe} isSmallScreen={isSmallScreen} />,
     },
 ];
 
@@ -93,6 +101,7 @@ export const PlaygroundGallery = () => {
     const [isReady, setIsReady] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(true);
     const [playgroundIndex, setPlaygroundIndex] = React.useState(0);
+    const [isSmallScreen, setIsSmallScreen] = React.useState<boolean | null>(null);
 
     useEffect(() => {
         if (isReady) {
@@ -113,13 +122,17 @@ export const PlaygroundGallery = () => {
             visibility: "visible",
         });
         introTimeline.add(galleryComeIn(), "Gallery").play();
-
+        setIsSmallScreen(window?.matchMedia?.("(max-width: 768px)")?.matches);
+        console.warn(window?.matchMedia?.("(max-width: 768px)")?.matches);
         setIsReady(true);
     }, []);
 
     const getPlayCurrentPlayground = React.useCallback(() => {
-        return PlaygroundSandboxes[playgroundIndex].render({ wireframe: isActive });
-    }, [playgroundIndex, isActive]);
+        return PlaygroundSandboxes[playgroundIndex].render({
+            wireframe: isActive,
+            isSmallScreen: !!isSmallScreen,
+        });
+    }, [playgroundIndex, isActive, isSmallScreen]);
 
     return (
         <>
@@ -255,16 +268,6 @@ const Sandbox = styled.div`
     height: 100%;
     width: 100%;
     // border: 1px solid red;
-
-    canvas {
-        ${({ theme }) =>
-            theme.mixins.respond(
-                "phone",
-                css`
-                    pointer-events: none;
-                `
-            )}
-    }
 `;
 
 const GalleryPlaygroundContainer = styled.div`
