@@ -5,12 +5,22 @@ import styled from "styled-components";
 
 import { Dash } from "./../components";
 import { navLinks } from "./../utils/constants";
-import { About, Contact, Footer, Header, Jobs, OtherProjects, Projects } from "./sections";
+import {
+    About,
+    Contact,
+    Footer,
+    Header,
+    Jobs,
+    OtherProjects,
+    Projects,
+    MidBreakSection,
+} from "./sections";
 
 export const Home = () => {
     return (
         <HomeContainer>
             <Header />
+            <MidBreakSection />
             <Dash location="right" />
             <Element name={navLinks.projects}>
                 <Projects />

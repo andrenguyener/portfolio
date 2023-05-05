@@ -144,9 +144,9 @@ export const initialZIndex = css`
 /*
 0 - 480px:       Phone
 481-600px:       Phone-landscape
-481px — 768px:   Tablet-portrait
+481px - 768px:   Tablet-portrait
 769px - 992px:   Tablet-landscape
-993px — 1200px:  Small screens
+993px — 1200px:  Small screens
 1201px - 1800px: Common - is where our normal styles apply
 1801px + :       Big desktop
 

@@ -24,11 +24,15 @@ const timeline = gsap.timeline();
 const PlaygroundSandboxes = [
     {
         cameraPosition: GhibliCamPosition,
-        render: <GhibliPlayground />,
+        render: ({ wireframe }: { wireframe?: boolean }) => (
+            <GhibliPlayground wireframe={wireframe} />
+        ),
     },
     {
         cameraPosition: KingdomHeartsCamPosition,
-        render: <KingdomHeartsPlayground />,
+        render: ({ wireframe }: { wireframe?: boolean }) => (
+            <KingdomHeartsPlayground wireframe={wireframe} />
+        ),
     },
 ];
 
@@ -114,8 +118,8 @@ export const PlaygroundGallery = () => {
     }, []);
 
     const getPlayCurrentPlayground = React.useCallback(() => {
-        return PlaygroundSandboxes[playgroundIndex].render;
-    }, [playgroundIndex]);
+        return PlaygroundSandboxes[playgroundIndex].render({ wireframe: isActive });
+    }, [playgroundIndex, isActive]);
 
     return (
         <>
@@ -251,6 +255,16 @@ const Sandbox = styled.div`
     height: 100%;
     width: 100%;
     // border: 1px solid red;
+
+    canvas {
+        ${({ theme }) =>
+            theme.mixins.respond(
+                "phone",
+                css`
+                    pointer-events: none;
+                `
+            )}
+    }
 `;
 
 const GalleryPlaygroundContainer = styled.div`

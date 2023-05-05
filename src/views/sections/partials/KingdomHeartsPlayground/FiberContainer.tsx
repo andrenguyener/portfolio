@@ -9,10 +9,10 @@ export const cameraProps: CanvasProps["camera"] = {
     fov: 75,
 };
 
-export const FiberContainer = () => {
+export const FiberContainer = ({ wireframe }: { wireframe?: boolean }) => {
     return (
         <>
-            <Scene debug={false} />
+            <Scene debug={false} wireframe={wireframe} />
             <OrbitControls makeDefault minDistance={0} maxDistance={50} />
         </>
     );

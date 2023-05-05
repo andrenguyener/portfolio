@@ -8,7 +8,7 @@ import { Chessboard } from "./Chessboard";
 
 const HDRFile = "/playground/kingdom-hearts/background.hdr";
 
-export const Scene = ({ debug }: { debug?: boolean }) => {
+export const Scene = ({ debug, wireframe }: { debug?: boolean; wireframe?: boolean }) => {
     const refChessboard = useRef<Group>(null);
     const refLight = useRef<SpotLight>(null);
     useHelper(debug && (refLight as any), DirectionalLightHelper, 1, "yellow");
@@ -26,7 +26,7 @@ export const Scene = ({ debug }: { debug?: boolean }) => {
                 adjustCamera={0.9}
                 intensity={0.1}
             >
-                <Chessboard ref={refChessboard} />
+                <Chessboard ref={refChessboard} wireframe={wireframe} />
             </Stage>
             <EffectComposer>
                 <DepthOfField focusDistance={0} focalLength={0.05} bokehScale={6} />

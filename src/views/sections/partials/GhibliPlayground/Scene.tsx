@@ -7,7 +7,7 @@ import { Color, DirectionalLightHelper, Group, SpotLight } from "three";
 import { Background } from "./Background";
 import { Trees } from "./Trees";
 
-export const Scene = ({ debug }: { debug?: boolean }) => {
+export const Scene = ({ debug, wireframe }: { debug?: boolean; wireframe?: boolean }) => {
     const refTrees = useRef<Group>(null);
     const refLight = useRef<SpotLight>(null);
     useHelper(debug && (refLight as any), DirectionalLightHelper, 1, "yellow");
@@ -28,6 +28,7 @@ export const Scene = ({ debug }: { debug?: boolean }) => {
             <Trees
                 ref={refTrees}
                 position={[0, 1, 0]}
+                wireframe
                 colors={[
                     new Color("#427062").convertLinearToSRGB(),
                     new Color("#33594e").convertLinearToSRGB(),
@@ -37,6 +38,7 @@ export const Scene = ({ debug }: { debug?: boolean }) => {
             />
             <Trees
                 position={[-7, 1, 4]}
+                wireframe
                 colors={[
                     new Color("#4a8d7e").convertLinearToSRGB(),
                     new Color("#377f6a").convertLinearToSRGB(),

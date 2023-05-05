@@ -9,8 +9,20 @@ type GLTFResult = GLTF;
 
 const modelURL = "/playground/kingdom-hearts/kingdom-hearts-3-sora-chess-piece-board.glb";
 
-export const Chessboard = forwardRef<Group, GroupProps>((props, ref) => {
+// Todo move this to shared
+const isMesh = (object: THREE.Object3D): object is THREE.Mesh => {
+    return (object as THREE.Mesh).isMesh;
+};
+
+export const Chessboard = forwardRef<Group, GroupProps & { wireframe?: boolean }>((props, ref) => {
     const { scene } = useGLTF(modelURL) as GLTFResult;
+
+    scene.traverse((child) => {
+        if (isMesh(child)) {
+            const childMaterial = child.material as THREE.MeshBasicMaterial;
+            childMaterial.wireframe = !!props.wireframe;
+        }
+    });
 
     return (
         <group {...props} ref={ref} dispose={null}>
