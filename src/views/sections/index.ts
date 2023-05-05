@@ -1,4 +1,5 @@
 import About from "./About";
+import AbstractSlider from "./AbstractSlider";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -10,6 +11,7 @@ import Projects from "./Projects";
 
 export {
     About,
+    AbstractSlider,
     Contact,
     Footer,
     Header,
@@ -22,6 +24,7 @@ export {
 
 export default {
     About,
+    AbstractSlider,
     Contact,
     Footer,
     Header,

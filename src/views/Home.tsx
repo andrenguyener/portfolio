@@ -14,6 +14,7 @@ import {
     OtherProjects,
     Projects,
     MidBreakSection,
+    AbstractSlider,
 } from "./sections";
 
 export const Home = () => {
@@ -27,6 +28,7 @@ export const Home = () => {
             </Element>
             <Dash location="center" />
             <OtherProjects />
+            <AbstractSlider />
             <Dash location="left" />
             <Element name={navLinks.about}>
                 <About />
