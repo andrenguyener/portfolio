@@ -48,7 +48,7 @@ const ImageSlider = styled.img`
     height: 200px;
     overflow: hidden;
     transform: scale(2.75);
-    background-image: url("/images/artwork.webp");
+    background-image: url("/images/abstract_slider.webp");
     background-size: auto 100%;
     background-repeat: repeat-x;
     background-position: 0% 0%;
