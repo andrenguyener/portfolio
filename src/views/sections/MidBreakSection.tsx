@@ -50,6 +50,38 @@ export const BrushDome = ({ wireframe }: { wireframe?: boolean }) => {
     );
 };
 
+// const modelURL2 = "/playground/strokes.glb";
+
+// useGLTF.preload(modelURL2);
+
+// type GLTFResult = GLTF & {
+//     nodes: {
+//         Mesh_0: THREE.Mesh;
+//     };
+// };
+
+// export const StrokesModel = forwardRef<Group, GroupProps & { wireframe?: boolean }>(
+//     (props, ref) => {
+//         const { scene } = useGLTF(modelURL2) as GLTFResult;
+
+//         scene.traverse((child) => {
+//             if (isMesh(child)) {
+//                 const childMaterial = child.material as THREE.MeshBasicMaterial;
+//                 childMaterial.wireframe = !!props.wireframe;
+//                 console.warn("here");
+//                 childMaterial.color = new Color("#4141E3").convertLinearToSRGB();
+//             }
+//         });
+//         console.warn(scene);
+//         return (
+//             <group {...props} ref={ref} dispose={null}>
+//                 <primitive object={scene} />
+//                 {/* <meshStandardMaterial attach="material" color={"#6be092"} /> */}
+//             </group>
+//         );
+//     }
+// );
+
 export const MidBreakSection = () => {
     const { isActive } = useContext(NavigationContext);
 
