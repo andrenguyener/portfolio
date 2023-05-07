@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import styled, { css } from "styled-components";
 
@@ -22,6 +22,7 @@ interface Project {
     title: string;
     description: string;
     image: Desktop | Mobile;
+    video?: Desktop;
     techList: string[];
     github?: string;
     external?: string;
@@ -45,6 +46,11 @@ const projects: Project[] = [
                 url: "/projects/voxel-blox/desktop1.png",
             },
         },
+        video: {
+            desktop: {
+                url: "/projects/voxel-blox/voxel-blox-vid.mp4",
+            },
+        },
         external: "https://voxel.andrenguyen.dev",
         github: "https://github.com/andrenguyener/voxel-blox",
     },
@@ -56,6 +62,11 @@ const projects: Project[] = [
         image: {
             desktop: {
                 url: "/projects/spotty/desktop1.png",
+            },
+        },
+        video: {
+            desktop: {
+                url: "/projects/spotty/spotty-vid.mp4",
             },
         },
         external: "https://spotty.andrenguyen.dev",
@@ -98,9 +109,12 @@ const elRefs = {
 };
 
 export const Projects = () => {
+    const [isSmallScreen, setIsSmallScreen] = useState<boolean | null>(null);
+
     useEffect(() => {
         tweens.scrollTriggerHeadingTimeline(elRefs.heading.current!);
         tweens.scrollTriggerBatch(elRefs.projects.map((project) => project.current));
+        setIsSmallScreen(window?.matchMedia?.("(max-width: 768px)")?.matches);
     }, []);
 
     return (
@@ -149,7 +163,12 @@ export const Projects = () => {
                     const ImageElement = [];
                     if (isDesktop(project.image)) {
                         ImageElement.push(
-                            <DevicesContainer key="desktop" type="desktop">
+                            <DevicesContainer
+                                key="desktop"
+                                type="desktop"
+                                // onMouseEnter={() => setHover(true)}
+                                // onMouseLeave={() => setHover(false)}
+                            >
                                 <In>
                                     <HeadOfBrows>
                                         <In>
@@ -160,12 +179,24 @@ export const Projects = () => {
                                     </HeadOfBrows>
                                     <DeviceScroll>
                                         <In>
-                                            <ImageWrap>
-                                                <img
-                                                    src={project.image.desktop.url}
-                                                    alt="device-mockup-image"
-                                                />
-                                            </ImageWrap>
+                                            {project.video && !isSmallScreen ? (
+                                                <VideoWrap>
+                                                    <video autoPlay={true} muted={true} loop={true}>
+                                                        <source
+                                                            src={project.video.desktop.url}
+                                                            type="video/mp4"
+                                                        />
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                </VideoWrap>
+                                            ) : (
+                                                <ImageWrap>
+                                                    <img
+                                                        src={project.image.desktop.url}
+                                                        alt="device-mockup-image"
+                                                    />
+                                                </ImageWrap>
+                                            )}
                                         </In>
                                     </DeviceScroll>
                                 </In>
@@ -281,18 +312,12 @@ const MobileImageContainer = styled.div`
 
 const MobileImageWrap = styled.div``;
 
-const ImageWrap = styled.div`
+const MediaWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 
-    img {
-        flex-shrink: 0;
-        max-width: 100%;
-        min-width: 100%;
-        position: relative;
-    }
     ${({ theme }) =>
         theme.mixins.respond(
             "phone-land",
@@ -311,6 +336,24 @@ const ImageWrap = styled.div`
                 }
             `
         )}
+`;
+
+const ImageWrap = styled(MediaWrap)`
+    img {
+        flex-shrink: 0;
+        max-width: 100%;
+        min-width: 100%;
+        position: relative;
+    }
+`;
+
+const VideoWrap = styled(MediaWrap)`
+    video {
+        flex-shrink: 0;
+        max-width: 100%;
+        min-width: 100%;
+        position: relative;
+    }
 `;
 
 const DeviceScroll = styled.div``;

@@ -1,6 +1,6 @@
 import { useEffect, Suspense, useRef, useContext } from "react";
 
-import { useGLTF, OrbitControls, Scroll, ScrollControls } from "@react-three/drei";
+import { OrbitControls, Scroll, ScrollControls } from "@react-three/drei";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import styled, { css } from "styled-components";
 import { Color, Group } from "three";
@@ -12,9 +12,9 @@ import { animationsRefs } from "./MidBreakSection.animations";
 
 const { elRefs, scrollTriggerMidBreakTextTop } = animationsRefs();
 
-const modelURL = "/playground/strokes.glb";
+// const modelURL = "/playground/strokes.glb";
 
-useGLTF.preload(modelURL);
+// useGLTF.preload(modelURL);
 
 const isMesh = (object: THREE.Object3D): object is THREE.Mesh => {
     return (object as THREE.Mesh).isMesh;
