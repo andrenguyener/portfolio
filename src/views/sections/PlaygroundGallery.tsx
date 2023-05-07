@@ -123,7 +123,6 @@ export const PlaygroundGallery = () => {
         });
         introTimeline.add(galleryComeIn(), "Gallery").play();
         setIsSmallScreen(window?.matchMedia?.("(max-width: 768px)")?.matches);
-        console.warn(window?.matchMedia?.("(max-width: 768px)")?.matches);
         setIsReady(true);
     }, []);
 
