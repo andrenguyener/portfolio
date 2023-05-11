@@ -1,9 +1,9 @@
-import { OrbitControls, Stage } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { CanvasProps } from "@react-three/fiber";
 
 import { Scene } from "./Scene";
 
-export const cameraProps: CanvasProps["camera"] = { position: [0, 1, 1.5], zoom: 4, fov: 100 };
+export const cameraProps: CanvasProps["camera"] = { position: [0, 15, 55], zoom: 5, fov: 100 };
 
 export const FiberContainer = ({
     wireframe,
@@ -14,13 +14,11 @@ export const FiberContainer = ({
 }) => {
     return (
         <>
-            <Stage intensity={0.1} adjustCamera={0.9}>
-                <Scene debug={false} wireframe={wireframe} />
-            </Stage>
+            <Scene debug={false} wireframe={wireframe} />
             <OrbitControls
                 enabled={!isSmallScreen}
                 minDistance={1}
-                maxDistance={50}
+                maxDistance={70}
                 maxPolarAngle={Math.PI / 2}
                 minAzimuthAngle={-Math.PI / 2}
                 maxAzimuthAngle={Math.PI / 2}

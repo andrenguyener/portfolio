@@ -25,7 +25,13 @@ export const Chessboard = forwardRef<Group, GroupProps & { wireframe?: boolean }
     });
 
     return (
-        <group {...props} ref={ref} dispose={null}>
+        <group
+            {...props}
+            ref={ref}
+            dispose={null}
+            position={[-3.75, -4.1, 1.8]}
+            rotation={[0, 0.2, 0]}
+        >
             <primitive object={scene} />
         </group>
     );

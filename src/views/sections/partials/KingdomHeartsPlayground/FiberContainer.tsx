@@ -4,8 +4,8 @@ import { CanvasProps } from "@react-three/fiber";
 import { Scene } from "./Scene";
 
 export const cameraProps: CanvasProps["camera"] = {
-    position: [-0.5, 0.1, 0.4],
-    zoom: 4.5,
+    position: [-5.5, 1, 5.15],
+    zoom: 13,
     fov: 75,
 };
 
@@ -19,7 +19,7 @@ export const FiberContainer = ({
     return (
         <>
             <Scene debug={false} wireframe={wireframe} />
-            <OrbitControls makeDefault minDistance={0} maxDistance={50} enabled={!isSmallScreen} />
+            <OrbitControls makeDefault minDistance={0} maxDistance={35} enabled={!isSmallScreen} />
         </>
     );
 };

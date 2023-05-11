@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, Suspense } from "react";
 
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { gsap } from "gsap";
 import styled, { css } from "styled-components";
-import { PerspectiveCamera } from "three";
 
 import { Icon } from "./../../components";
 import { NavigationContext } from "./../../utils";
@@ -44,57 +43,57 @@ const PlaygroundSandboxes = [
     },
 ];
 
-const SetLoading = ({
-    setIsLoading,
-}: {
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
-    setIsLoading(true);
+// const SetLoading = ({
+//     setIsLoading,
+// }: {
+//     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+// }) => {
+//     setIsLoading(true);
 
-    useEffect(() => {
-        return () => {
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 500);
-        };
-    }, []);
+//     useEffect(() => {
+//         return () => {
+//             setTimeout(() => {
+//                 setIsLoading(false);
+//             }, 500);
+//         };
+//     }, []);
 
-    return null;
-};
+//     return null;
+// };
 
-const UpdateCameraScene = ({ index, isLoading }: { index: number; isLoading: boolean }) => {
-    const { camera, scene } = useThree(({ camera, scene, controls }) => ({
-        camera,
-        scene,
-        controls,
-    }));
-    const tempBackgroundRef = React.useRef(scene.background);
+// const UpdateCameraScene = ({ index, isLoading }: { index: number; isLoading: boolean }) => {
+//     const { camera, scene } = useThree(({ camera, scene, controls }) => ({
+//         camera,
+//         scene,
+//         controls,
+//     }));
+//     const tempBackgroundRef = React.useRef(scene.background);
 
-    useEffect(() => {
-        const _camera = camera as PerspectiveCamera;
-        const currentCameraPosition = PlaygroundSandboxes?.[index]
-            ?.cameraPosition as PerspectiveCamera;
-        const positions = currentCameraPosition?.position as unknown as [number, number, number];
+//     useEffect(() => {
+//         const _camera = camera as PerspectiveCamera;
+//         const currentCameraPosition = PlaygroundSandboxes?.[index]
+//             ?.cameraPosition as PerspectiveCamera;
+//         const positions = currentCameraPosition?.position as unknown as [number, number, number];
 
-        _camera.position.set(positions?.[0], positions?.[1], positions?.[2]);
-        _camera.zoom = currentCameraPosition?.zoom ?? 1;
-        _camera.fov = currentCameraPosition?.fov ?? 75;
-        // controls?.update();
-    }, [index]);
+//         _camera.position.set(positions?.[0] || 0, positions?.[1] || 0, positions?.[2] || 0);
+//         _camera.zoom = currentCameraPosition?.zoom ?? 1;
+//         _camera.fov = currentCameraPosition?.fov ?? 75;
+//         // controls?.update();
+//     }, [index]);
 
-    useEffect(() => {
-        if (isLoading) {
-            tempBackgroundRef.current = scene.background;
-            scene.background = null;
-            scene.visible = false;
-        } else {
-            scene.background = tempBackgroundRef.current;
-            scene.visible = true;
-        }
-    }, [isLoading]);
+//     useEffect(() => {
+//         if (isLoading) {
+//             tempBackgroundRef.current = scene.background;
+//             scene.background = null;
+//             scene.visible = false;
+//         } else {
+//             scene.background = tempBackgroundRef.current;
+//             scene.visible = true;
+//         }
+//     }, [isLoading]);
 
-    return null;
-};
+//     return null;
+// };
 
 export const PlaygroundGallery = () => {
     const { isActive } = useContext(NavigationContext);
@@ -124,6 +123,9 @@ export const PlaygroundGallery = () => {
         introTimeline.add(galleryComeIn(), "Gallery").play();
         setIsSmallScreen(window?.matchMedia?.("(max-width: 768px)")?.matches);
         setIsReady(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
     }, []);
 
     const getPlayCurrentPlayground = React.useCallback(() => {
@@ -131,7 +133,7 @@ export const PlaygroundGallery = () => {
             wireframe: isActive,
             isSmallScreen: !!isSmallScreen,
         });
-    }, [playgroundIndex, isActive, isSmallScreen]);
+    }, [playgroundIndex]);
 
     return (
         <>
@@ -154,9 +156,12 @@ export const PlaygroundGallery = () => {
                         </Fade>
                     </div>
                     <Fade out={isLoading}>
-                        <Canvas>
-                            <Suspense fallback={<SetLoading setIsLoading={setIsLoading} />}>
-                                <UpdateCameraScene index={playgroundIndex} isLoading={isLoading} />
+                        <Canvas
+                            key={playgroundIndex}
+                            camera={PlaygroundSandboxes[playgroundIndex].cameraPosition}
+                        >
+                            <Suspense fallback={null}>
+                                {/* <UpdateCameraScene index={playgroundIndex} isLoading={isLoading} /> */}
                                 {getPlayCurrentPlayground()}
                             </Suspense>
                         </Canvas>
@@ -167,11 +172,15 @@ export const PlaygroundGallery = () => {
                         ref={elRefs.leftSlider}
                         onClick={(evt) => {
                             evt.preventDefault();
-                            if (playgroundIndex - 1 < 0) {
-                                setPlaygroundIndex(PlaygroundSandboxes.length - 1);
-                            } else {
-                                setPlaygroundIndex(playgroundIndex - 1);
-                            }
+                            setIsLoading(true);
+                            setTimeout(() => {
+                                if (playgroundIndex - 1 < 0) {
+                                    setPlaygroundIndex(PlaygroundSandboxes.length - 1);
+                                } else {
+                                    setPlaygroundIndex(playgroundIndex - 1);
+                                }
+                                setIsLoading(false);
+                            }, 500);
                         }}
                     >
                         <Icon name="ChevronLeftCircle" />
@@ -180,11 +189,15 @@ export const PlaygroundGallery = () => {
                         ref={elRefs.rightSlider}
                         onClick={(evt) => {
                             evt.preventDefault();
-                            if (playgroundIndex + 1 >= PlaygroundSandboxes.length) {
-                                setPlaygroundIndex(0);
-                            } else {
-                                setPlaygroundIndex(playgroundIndex + 1);
-                            }
+                            setIsLoading(true);
+                            setTimeout(() => {
+                                if (playgroundIndex + 1 >= PlaygroundSandboxes.length) {
+                                    setPlaygroundIndex(0);
+                                } else {
+                                    setPlaygroundIndex(playgroundIndex + 1);
+                                }
+                                setIsLoading(false);
+                            }, 500);
                         }}
                     >
                         <Icon name="ChevronRightCircle" />

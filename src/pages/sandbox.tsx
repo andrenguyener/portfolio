@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 
 import {
     // GhibliPlayground,
+    // GhibliCamPosition,
     KingdomHeartsPlayground,
     KingdomHeartsCamPosition,
 } from "../views/sections/partials";
