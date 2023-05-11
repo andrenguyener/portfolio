@@ -43,23 +43,23 @@ const PlaygroundSandboxes = [
     },
 ];
 
-// const SetLoading = ({
-//     setIsLoading,
-// }: {
-//     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-// }) => {
-//     setIsLoading(true);
+const SetLoading = ({
+    setIsLoading,
+}: {
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+    setIsLoading(true);
 
-//     useEffect(() => {
-//         return () => {
-//             setTimeout(() => {
-//                 setIsLoading(false);
-//             }, 500);
-//         };
-//     }, []);
+    useEffect(() => {
+        return () => {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 500);
+        };
+    }, []);
 
-//     return null;
-// };
+    return null;
+};
 
 // const UpdateCameraScene = ({ index, isLoading }: { index: number; isLoading: boolean }) => {
 //     const { camera, scene } = useThree(({ camera, scene, controls }) => ({
@@ -123,9 +123,6 @@ export const PlaygroundGallery = () => {
         introTimeline.add(galleryComeIn(), "Gallery").play();
         setIsSmallScreen(window?.matchMedia?.("(max-width: 768px)")?.matches);
         setIsReady(true);
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
     }, []);
 
     const getPlayCurrentPlayground = React.useCallback(() => {
@@ -138,9 +135,9 @@ export const PlaygroundGallery = () => {
     return (
         <>
             <GalleryPlaygroundContainer>
-                <FrameBorderAccent>
+                {/* <FrameBorderAccent>
                     <Icon name="FrameAccent" />
-                </FrameBorderAccent>
+                </FrameBorderAccent> */}
                 <Sandbox ref={elRefs.playground}>
                     {/* Todo refactor this */}
                     <div
@@ -160,7 +157,7 @@ export const PlaygroundGallery = () => {
                             key={playgroundIndex}
                             camera={PlaygroundSandboxes[playgroundIndex].cameraPosition}
                         >
-                            <Suspense fallback={null}>
+                            <Suspense fallback={<SetLoading setIsLoading={setIsLoading} />}>
                                 {/* <UpdateCameraScene index={playgroundIndex} isLoading={isLoading} /> */}
                                 {getPlayCurrentPlayground()}
                             </Suspense>
@@ -252,34 +249,41 @@ const LeftButtonArrow = styled(ButtonArrow)`
     ${({ theme }) => theme.mixins.initialHidden};
 `;
 
-const FrameBorderAccent = styled.div`
-    position: absolute;
-    width: 8rem;
-    height: auto;
-    transform: scaleX(-1);
-    top: -50px;
-    left: -35px;
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0, 0, 0.23, 1);
+// const FrameBorderAccent = styled.div`
+//     position: absolute;
+//     width: 8rem;
+//     height: auto;
+//     transform: scaleX(-1);
+//     top: -50px;
+//     left: -35px;
+//     opacity: 0;
+//     transition: opacity 0.4s cubic-bezier(0, 0, 0.23, 1);
 
-    svg {
-        fill: ${(props) => props.theme.color.white};
-    }
+//     svg {
+//         fill: ${(props) => props.theme.color.white};
+//     }
 
-    ${({ theme }) =>
-        theme.mixins.respond(
-            "phone-land",
-            css`
-                display: none;
-            `
-        )}
-`;
+//     ${({ theme }) =>
+//         theme.mixins.respond(
+//             "phone-land",
+//             css`
+//                 display: none;
+//             `
+//         )}
+// `;
 
 const Sandbox = styled.div`
     position: relative;
     height: 100%;
     width: 100%;
-    // border: 1px solid red;
+
+    &:hover,
+    &:focus {
+        outline: 0;
+        ${({ theme }) => theme.mixins.hollowBorderHover};
+    }
+
+    ${({ theme }) => theme.mixins.hollowBorder};
 `;
 
 const GalleryPlaygroundContainer = styled.div`
@@ -287,12 +291,6 @@ const GalleryPlaygroundContainer = styled.div`
     left: 50%;
     height: 100%;
     width: 40%;
-
-    &:hover {
-        ${FrameBorderAccent} {
-            opacity: 1;
-        }
-    }
 
     ${({ theme }) =>
         theme.mixins.respond(
