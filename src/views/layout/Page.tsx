@@ -63,7 +63,7 @@ export const Page: React.FC<React.PropsWithChildren> = ({ children }) => {
                 innerScale={0.4}
                 outerScale={5}
                 customInnerStyles={{
-                    border: `1px solid rgba(193, 11, 111, 1)`,
+                    // border: `1px solid rgba(193, 11, 111, 1)`,
                     mixBlendMode: "exclusion",
                     backgroundColor: `rgba(255, 255, 255, 1)`,
                 }}
