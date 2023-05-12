@@ -3,7 +3,13 @@ import styled from "styled-components";
 export const Footer = () => {
     return (
         <FooterContainer>
-            <FooterText>Made with ❤️</FooterText>
+            <FooterText
+                style={{
+                    display: "none",
+                }}
+            >
+                Made with ❤️
+            </FooterText>
         </FooterContainer>
     );
 };

@@ -56,12 +56,20 @@ export const Page: React.FC<React.PropsWithChildren> = ({ children }) => {
             <Navigation />
             <ScrollProgress />
             <AnimatedCursor
-                innerSize={8}
+                innerSize={50}
                 outerSize={8}
                 color="193, 11, 111"
                 outerAlpha={0.2}
-                innerScale={0.7}
+                innerScale={0.4}
                 outerScale={5}
+                customInnerStyles={{
+                    border: `1px solid rgba(193, 11, 111, 1)`,
+                    mixBlendMode: "exclusion",
+                    backgroundColor: `rgba(255, 255, 255, 1)`,
+                }}
+                customOuterStyles={{
+                    display: "none",
+                }}
             />
 
             {children}

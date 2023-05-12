@@ -8,7 +8,7 @@ import { navLinks } from "./../utils/constants";
 import {
     About,
     Contact,
-    // Footer,
+    Footer,
     Header,
     Jobs,
     OtherProjects,
@@ -39,7 +39,7 @@ export const Home = () => {
                 <Contact />
             </Element>
             <Dash location="farRight" />
-            {/* <Footer /> */}
+            <Footer />
         </HomeContainer>
     );
 };

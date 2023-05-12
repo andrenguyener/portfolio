@@ -18,12 +18,14 @@ import IsDevice from "./helpers/isDevice.js";
  *
  */
 function CursorCore({
-    color = "220, 90, 90",
-    outerAlpha = 0.3,
-    innerSize = 8,
-    innerScale = 0.7,
-    outerSize = 8,
-    outerScale = 5,
+    color,
+    outerAlpha,
+    innerSize,
+    innerScale,
+    outerSize,
+    outerScale,
+    customInnerStyles,
+    customOuterStyles,
 }) {
     const cursorOuterRef = useRef();
     const cursorInnerRef = useRef();
@@ -35,7 +37,6 @@ function CursorCore({
     const [isActiveClickable, setIsActiveClickable] = useState(false);
     let endX = useRef(0);
     let endY = useRef(0);
-
     // Primary Mouse Move event
     const onMouseMove = useCallback(({ clientX, clientY }) => {
         // This is custom code
@@ -45,9 +46,10 @@ function CursorCore({
         // if (!isActive) {
         //     setIsActive(true);
         // }
+        // End of custom code
         setCoords({ x: clientX, y: clientY });
-        cursorInnerRef.current.style.top = clientY + "px";
-        cursorInnerRef.current.style.left = clientX + "px";
+        cursorInnerRef.current.style.top = clientY - innerSize / 2 + "px";
+        cursorInnerRef.current.style.left = clientX - innerSize / 2 + "px";
         endX.current = clientX;
         endY.current = clientY;
     }, []);
@@ -186,13 +188,14 @@ function CursorCore({
             display: "block",
             position: "fixed",
             borderRadius: "50%",
-            width: innerSize,
-            height: innerSize,
+            width: `${innerSize}px`,
+            height: `${innerSize}px`,
             pointerEvents: "none",
             backgroundColor: `rgba(${color}, 1)`,
             transition: "opacity 0.15s ease-in-out, transform 0.25s ease-in-out",
             backfaceVisibility: "hidden",
             willChange: "transform",
+            ...customInnerStyles,
         },
         cursorOuter: {
             zIndex: 9999,
@@ -206,6 +209,7 @@ function CursorCore({
             transition: "opacity 0.15s ease-in-out, transform 0.15s ease-in-out",
             backfaceVisibility: "hidden",
             willChange: "transform",
+            ...customOuterStyles,
         },
     };
 
@@ -231,6 +235,8 @@ function AnimatedCursor({
     outerSize = 8,
     outerScale = 5,
     innerScale = 0.7,
+    customInnerStyles = {},
+    customOuterStyles = {},
 }) {
     if (typeof navigator !== "undefined" && IsDevice.any()) {
         return <React.Fragment></React.Fragment>;
@@ -243,6 +249,8 @@ function AnimatedCursor({
             innerScale={innerScale}
             outerSize={outerSize}
             outerScale={outerScale}
+            customInnerStyles={customInnerStyles}
+            customOuterStyles={customOuterStyles}
         />
     );
 }
