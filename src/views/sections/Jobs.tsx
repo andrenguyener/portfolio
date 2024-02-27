@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 
 import { NumberedHeading, Section, SectionHeading } from "./../../components";
 import { tweens } from "./../../themes/styles/abstracts";
+import { JOBS_DATA } from "../../config/jobs";
 
 const KEY_CODES = {
     ARROW_UP: "ArrowUp",
@@ -26,50 +27,6 @@ const tabWidth = 150;
 const tabHeight = 42;
 
 // const totalTabWidth = 200;
-
-interface JobData {
-    title: string;
-    url: string;
-    company: string;
-    range: string;
-    notes: string[];
-}
-
-const data: JobData[] = [
-    {
-        title: "Frontend Software Engineer",
-        url: "https://www.nginx.com/",
-        company: "NGINX",
-        range: "May 2019 – May 2023",
-        notes: [
-            "Worked on UI features for the NGINX Management Suite product including API-Manager, App Delivery, and Security",
-            "Led the development and the implementation of the form library currently used by all other members of the team",
-            "Contributed to the UI design library, working with designers to create components developed in React and Vue",
-        ],
-    },
-    {
-        title: "Software Engineer Intern",
-        url: "https://genemod.net/",
-        company: "Genemod",
-        range: "Jan – April 2019",
-        notes: [
-            "Created a custom component to be used for the web app dashboard, mimicked that of a biomedical freezer in a lab",
-            "Converted, redesigned, and optimized features that were written in jQuery to React components",
-            "Collaborated with the UX designer and the tech lead to architect, mockup, and code out wireframe designs",
-        ],
-    },
-    {
-        title: "Software Engineer Intern",
-        url: "https://www.f5.com/",
-        company: "F5 Networks",
-        range: "June – Sept 2018",
-        notes: [
-            "Released a bot that deployed a teammates’ merge request, so members could efficiently see and review their changes",
-            "Worked with developers and designers to build out features for the application specifically certificate management",
-            "Helped incorporate unit and integration tests into the pipeline for the application and the UI design library",
-        ],
-    },
-];
 
 const elRefs = {
     heading: React.createRef<HTMLHeadingElement>(),
@@ -143,7 +100,7 @@ const Jobs = () => {
 
                     <div className="inner" ref={elRefs.jobs}>
                         <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={onKeyDown}>
-                            {data.map(({ company }, i) => {
+                            {JOBS_DATA.map(({ company }, i) => {
                                 return (
                                     <li key={i}>
                                         <StyledTabButton
@@ -167,8 +124,8 @@ const Jobs = () => {
                             <StyledHighlight activeTabId={activeTabId} />
                         </StyledTabList>
                         <div>
-                            {data &&
-                                data.map(({ title, url, company, range, notes }, i) => {
+                            {JOBS_DATA &&
+                                JOBS_DATA.map(({ title, url, company, range, notes }, i) => {
                                     return (
                                         <CSSTransition
                                             key={i}

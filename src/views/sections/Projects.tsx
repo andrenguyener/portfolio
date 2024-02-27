@@ -2,102 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import styled, { css } from "styled-components";
 
+import { PROJECTS_DATA, type Desktop, type Mobile } from "../../config/projects";
 import { Icon, NumberedHeading, Section, SectionHeading } from "./../../components";
 import { tweens } from "./../../themes/styles/abstracts";
-
-interface Desktop {
-    desktop: {
-        url: string;
-    };
-}
-
-interface Mobile {
-    mobile: {
-        url1: string;
-        url2: string;
-    };
-}
-
-interface Project {
-    title: string;
-    description: string;
-    image: Desktop | Mobile;
-    video?: Desktop;
-    techList: string[];
-    github?: string;
-    external?: string;
-}
-
-const projects: Project[] = [
-    {
-        title: "Voxel Blox",
-        description: "3D voxel models rendered with three.js",
-        techList: [
-            "Typescript",
-            "Next.js",
-            "React Three Fiber",
-            "Chakra UI",
-            "MagicaVoxel",
-            "Blender",
-            "Framer Motion",
-        ],
-        image: {
-            desktop: {
-                url: "/projects/voxel-blox/desktop1.png",
-            },
-        },
-        video: {
-            desktop: {
-                url: "/projects/voxel-blox/voxel-blox-vid.mp4",
-            },
-        },
-        external: "https://voxel.andrenguyen.dev",
-        github: "https://github.com/andrenguyener/voxel-blox",
-    },
-    {
-        title: "Spotty",
-        description:
-            "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, detailed audio information about each track, and an audio visualizer",
-        techList: ["Typescript", "Next.js", "Spotify Web API", "Howler.js"],
-        image: {
-            desktop: {
-                url: "/projects/spotty/desktop1.png",
-            },
-        },
-        video: {
-            desktop: {
-                url: "/projects/spotty/spotty-vid.mp4",
-            },
-        },
-        external: "https://spotty.andrenguyen.dev",
-        github: "https://github.com/andrenguyener/spotty",
-    },
-    {
-        title: "Mito",
-        description:
-            "Mito is a social platform that lets users purchase products available on major online e-commerce shops, such as Amazon, to send to one another without exchanging physical addresses.",
-        techList: ["Swift", "Go", "Node", "SQL"],
-        image: {
-            mobile: {
-                url1: "/projects/mito/login.png",
-                url2: "/projects/mito/home.png",
-            },
-        },
-        github: "https://github.com/andrenguyener/mito",
-    },
-    {
-        title: "Drippy Chat",
-        description:
-            "Drippy is an instant messaging application similar to slack. Allows users to signup/signin, create channels, and post messages in real time. Features user login with HTTPS authentication, CORS middleware, local caching, and sessions / credentials encryption.",
-        techList: ["React", "Node", "Go", "MongoDB", "Websocket", "RabbitMQ", "Redis"],
-        image: {
-            desktop: {
-                url: "/projects/drippy/desktop.png",
-            },
-        },
-        github: "https://github.com/andrenguyener/drippy-chat",
-    },
-];
 
 const isDesktop = (image: Desktop | Mobile): image is Desktop => {
     return typeof (image as Desktop).desktop !== "undefined";
@@ -105,7 +12,7 @@ const isDesktop = (image: Desktop | Mobile): image is Desktop => {
 
 const elRefs = {
     heading: React.createRef<HTMLHeadingElement>(),
-    projects: projects.map(() => React.createRef<HTMLDivElement>()),
+    projects: PROJECTS_DATA.map(() => React.createRef<HTMLDivElement>()),
 };
 
 export const Projects = () => {
@@ -126,7 +33,7 @@ export const Projects = () => {
                         Featured Projects
                     </SectionHeading>
                 </SectionHeadingWrapper>
-                {projects.map((project, index) => {
+                {PROJECTS_DATA.map((project, index) => {
                     const ContentElement = (
                         <Content>
                             <Title>{project.title}</Title>
