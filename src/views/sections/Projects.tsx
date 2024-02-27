@@ -87,7 +87,7 @@ export const Projects = () => {
                                     <DeviceScroll>
                                         <In>
                                             {project.video && !isSmallScreen ? (
-                                                <VideoWrap>
+                                                <VideoWrap isWIP={project.wip}>
                                                     <video autoPlay={true} muted={true} loop={true}>
                                                         <source
                                                             src={project.video.desktop.url}
@@ -97,7 +97,7 @@ export const Projects = () => {
                                                     </video>
                                                 </VideoWrap>
                                             ) : (
-                                                <ImageWrap>
+                                                <ImageWrap isWIP={project.wip}>
                                                     <img
                                                         src={project.image.desktop.url}
                                                         alt="device-mockup-image"
@@ -219,11 +219,35 @@ const MobileImageContainer = styled.div`
 
 const MobileImageWrap = styled.div``;
 
-const MediaWrap = styled.div`
+const MediaWrap = styled.div<{ isWIP?: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    ${({ isWIP }) => {
+        const _css = [];
+
+        if (isWIP) {
+            _css.push(css`
+                img,
+                video {
+                    filter: blur(2.8px) grayscale(0.65);
+                }
+
+                &:after {
+                    position: absolute;
+                    display: flex;
+                    flex: 1;
+                    justify-content: center;
+                    align-items: center;
+                    content: "WIP";
+                }
+            `);
+        }
+
+        return _css;
+    }}
 
     ${({ theme }) =>
         theme.mixins.respond(

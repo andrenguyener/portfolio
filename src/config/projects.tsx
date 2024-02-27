@@ -13,15 +13,34 @@ export interface Mobile {
 
 export interface Project {
     title: string;
-    description: string;
+    description: string | JSX.Element;
     image: Desktop | Mobile;
     video?: Desktop;
     techList: string[];
     github?: string;
     external?: string;
+    wip?: boolean;
 }
 
 export const PROJECTS_DATA: Project[] = [
+    {
+        title: "3CCLESIA",
+        description: (
+            <>
+                A garden of projects and experiments that I've cultivated or been inspired by. My
+                goal is to explore my expression of art on the modern web. <br /> One day these buds
+                might grow into something beautiful.
+            </>
+        ),
+        techList: ["Typescript", "Next.js", "WebGL", "Three", "React Three Fiber", "GSAP"],
+        image: {
+            desktop: {
+                url: "/projects/3CCLESIA/desktop.png",
+            },
+        },
+        external: "https://garden.andrenguyen.dev",
+        wip: true,
+    },
     {
         title: "Voxel Blox",
         description: "3D voxel models rendered with three.js",
